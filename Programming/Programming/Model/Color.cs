@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    internal enum Color
+    internal enum Colors
     {
         Red,
         Green,

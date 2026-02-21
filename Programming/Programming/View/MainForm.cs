@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Programming.Model;
 
 namespace Programming
 {
@@ -39,27 +40,27 @@ namespace Programming
         {
             TabControlMain = new TabControl();
             tabPage1 = new TabPage();
+            IntValueLabel = new Label();
+            IntValueTextBox = new TextBox();
+            GroupBoxWeekParse = new GroupBox();
+            ParseButton = new Button();
+            label4 = new Label();
+            TextBoxValueParsing = new TextBox();
+            ParsingValueLabel = new Label();
+            GroupBoxSeason = new GroupBox();
+            ComboBoxSeason = new ComboBox();
+            SeasonLabel = new Label();
+            GoButton = new Button();
+            GroupBoxListBox = new GroupBox();
             ValuesListBox = new ListBox();
             EnumsListBox = new ListBox();
-            GroupBoxListBox = new GroupBox();
-            GroupBoxWeekParse = new GroupBox();
-            GroupBoxSeason = new GroupBox();
-            IntValueTextBox = new TextBox();
-            TextBoxValueParsing = new TextBox();
-            GoButton = new Button();
-            ParseButton = new Button();
             EnumsListBoxLabel = new Label();
             ValuesListBoxLabel = new Label();
-            ParsingValueLabel = new Label();
-            label4 = new Label();
-            SeasonLabel = new Label();
-            IntValueLabel = new Label();
-            ComboBoxSeason = new ComboBox();
             TabControlMain.SuspendLayout();
             tabPage1.SuspendLayout();
-            GroupBoxListBox.SuspendLayout();
             GroupBoxWeekParse.SuspendLayout();
             GroupBoxSeason.SuspendLayout();
+            GroupBoxListBox.SuspendLayout();
             SuspendLayout();
             // 
             // TabControlMain
@@ -87,35 +88,22 @@ namespace Programming
             tabPage1.Text = "Enums";
             tabPage1.UseVisualStyleBackColor = true;
             // 
-            // ValuesListBox
+            // IntValueLabel
             // 
-            ValuesListBox.FormattingEnabled = true;
-            ValuesListBox.Location = new Point(219, 64);
-            ValuesListBox.Name = "ValuesListBox";
-            ValuesListBox.Size = new Size(157, 264);
-            ValuesListBox.TabIndex = 1;
+            IntValueLabel.AutoSize = true;
+            IntValueLabel.Location = new Point(400, 41);
+            IntValueLabel.Name = "IntValueLabel";
+            IntValueLabel.Size = new Size(68, 20);
+            IntValueLabel.TabIndex = 5;
+            IntValueLabel.Text = "Int value:";
             // 
-            // EnumsListBox
+            // IntValueTextBox
             // 
-            EnumsListBox.FormattingEnabled = true;
-            EnumsListBox.Location = new Point(8, 64);
-            EnumsListBox.Name = "EnumsListBox";
-            EnumsListBox.Size = new Size(157, 264);
-            EnumsListBox.TabIndex = 2;
-            EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
-            // 
-            // GroupBoxListBox
-            // 
-            GroupBoxListBox.Controls.Add(ValuesListBox);
-            GroupBoxListBox.Controls.Add(EnumsListBox);
-            GroupBoxListBox.Controls.Add(EnumsListBoxLabel);
-            GroupBoxListBox.Controls.Add(ValuesListBoxLabel);
-            GroupBoxListBox.Location = new Point(0, 0);
-            GroupBoxListBox.Name = "GroupBoxListBox";
-            GroupBoxListBox.Size = new Size(394, 342);
-            GroupBoxListBox.TabIndex = 3;
-            GroupBoxListBox.TabStop = false;
-            GroupBoxListBox.Text = "Enumerations";
+            IntValueTextBox.Location = new Point(400, 64);
+            IntValueTextBox.Name = "IntValueTextBox";
+            IntValueTextBox.Size = new Size(264, 27);
+            IntValueTextBox.TabIndex = 4;
+            IntValueTextBox.TextChanged += IntValueTextBox_TextChanged;
             // 
             // GroupBoxWeekParse
             // 
@@ -130,6 +118,40 @@ namespace Programming
             GroupBoxWeekParse.TabStop = false;
             GroupBoxWeekParse.Text = "Weekday parsing";
             // 
+            // ParseButton
+            // 
+            ParseButton.Location = new Point(274, 63);
+            ParseButton.Name = "ParseButton";
+            ParseButton.Size = new Size(94, 29);
+            ParseButton.TabIndex = 2;
+            ParseButton.Text = "Parse";
+            ParseButton.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(6, 95);
+            label4.Name = "label4";
+            label4.Size = new Size(50, 20);
+            label4.TabIndex = 8;
+            label4.Text = "label4";
+            // 
+            // TextBoxValueParsing
+            // 
+            TextBoxValueParsing.Location = new Point(6, 65);
+            TextBoxValueParsing.Name = "TextBoxValueParsing";
+            TextBoxValueParsing.Size = new Size(264, 27);
+            TextBoxValueParsing.TabIndex = 5;
+            // 
+            // ParsingValueLabel
+            // 
+            ParsingValueLabel.AutoSize = true;
+            ParsingValueLabel.Location = new Point(6, 42);
+            ParsingValueLabel.Name = "ParsingValueLabel";
+            ParsingValueLabel.Size = new Size(158, 20);
+            ParsingValueLabel.TabIndex = 7;
+            ParsingValueLabel.Text = "Type value for parsing:";
+            // 
             // GroupBoxSeason
             // 
             GroupBoxSeason.Controls.Add(ComboBoxSeason);
@@ -142,19 +164,22 @@ namespace Programming
             GroupBoxSeason.TabStop = false;
             GroupBoxSeason.Text = "Season handle";
             // 
-            // IntValueTextBox
+            // ComboBoxSeason
             // 
-            IntValueTextBox.Location = new Point(400, 64);
-            IntValueTextBox.Name = "IntValueTextBox";
-            IntValueTextBox.Size = new Size(264, 27);
-            IntValueTextBox.TabIndex = 4;
+            ComboBoxSeason.FormattingEnabled = true;
+            ComboBoxSeason.Location = new Point(6, 66);
+            ComboBoxSeason.Name = "ComboBoxSeason";
+            ComboBoxSeason.Size = new Size(264, 28);
+            ComboBoxSeason.TabIndex = 1;
             // 
-            // TextBoxValueParsing
+            // SeasonLabel
             // 
-            TextBoxValueParsing.Location = new Point(6, 65);
-            TextBoxValueParsing.Name = "TextBoxValueParsing";
-            TextBoxValueParsing.Size = new Size(264, 27);
-            TextBoxValueParsing.TabIndex = 5;
+            SeasonLabel.AutoSize = true;
+            SeasonLabel.Location = new Point(6, 42);
+            SeasonLabel.Name = "SeasonLabel";
+            SeasonLabel.Size = new Size(107, 20);
+            SeasonLabel.TabIndex = 9;
+            SeasonLabel.Text = "Choose season";
             // 
             // GoButton
             // 
@@ -165,14 +190,37 @@ namespace Programming
             GoButton.Text = "Go!";
             GoButton.UseVisualStyleBackColor = true;
             // 
-            // ParseButton
+            // GroupBoxListBox
             // 
-            ParseButton.Location = new Point(274, 63);
-            ParseButton.Name = "ParseButton";
-            ParseButton.Size = new Size(94, 29);
-            ParseButton.TabIndex = 2;
-            ParseButton.Text = "Parse";
-            ParseButton.UseVisualStyleBackColor = true;
+            GroupBoxListBox.Controls.Add(ValuesListBox);
+            GroupBoxListBox.Controls.Add(EnumsListBox);
+            GroupBoxListBox.Controls.Add(EnumsListBoxLabel);
+            GroupBoxListBox.Controls.Add(ValuesListBoxLabel);
+            GroupBoxListBox.Location = new Point(0, 0);
+            GroupBoxListBox.Name = "GroupBoxListBox";
+            GroupBoxListBox.Size = new Size(394, 342);
+            GroupBoxListBox.TabIndex = 3;
+            GroupBoxListBox.TabStop = false;
+            GroupBoxListBox.Text = "Enumerations";
+            // 
+            // ValuesListBox
+            // 
+            ValuesListBox.FormattingEnabled = true;
+            ValuesListBox.Location = new Point(219, 64);
+            ValuesListBox.Name = "ValuesListBox";
+            ValuesListBox.Size = new Size(157, 264);
+            ValuesListBox.TabIndex = 1;
+            ValuesListBox.SelectedIndexChanged += ValuesListBox_SelectedIndexChanged;
+            // 
+            // EnumsListBox
+            // 
+            EnumsListBox.FormattingEnabled = true;
+            EnumsListBox.Items.AddRange(new object[] { "Colors", "StudyForm", "Genre", "PhoneCreatoes", "Seasons", "Weekday" });
+            EnumsListBox.Location = new Point(8, 64);
+            EnumsListBox.Name = "EnumsListBox";
+            EnumsListBox.Size = new Size(157, 264);
+            EnumsListBox.TabIndex = 2;
+            EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
             // 
             // EnumsListBoxLabel
             // 
@@ -192,50 +240,6 @@ namespace Programming
             ValuesListBoxLabel.TabIndex = 6;
             ValuesListBoxLabel.Text = "Choose value:";
             // 
-            // ParsingValueLabel
-            // 
-            ParsingValueLabel.AutoSize = true;
-            ParsingValueLabel.Location = new Point(6, 42);
-            ParsingValueLabel.Name = "ParsingValueLabel";
-            ParsingValueLabel.Size = new Size(158, 20);
-            ParsingValueLabel.TabIndex = 7;
-            ParsingValueLabel.Text = "Type value for parsing:";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(6, 95);
-            label4.Name = "label4";
-            label4.Size = new Size(50, 20);
-            label4.TabIndex = 8;
-            label4.Text = "label4";
-            // 
-            // SeasonLabel
-            // 
-            SeasonLabel.AutoSize = true;
-            SeasonLabel.Location = new Point(6, 42);
-            SeasonLabel.Name = "SeasonLabel";
-            SeasonLabel.Size = new Size(107, 20);
-            SeasonLabel.TabIndex = 9;
-            SeasonLabel.Text = "Choose season";
-            // 
-            // IntValueLabel
-            // 
-            IntValueLabel.AutoSize = true;
-            IntValueLabel.Location = new Point(400, 41);
-            IntValueLabel.Name = "IntValueLabel";
-            IntValueLabel.Size = new Size(68, 20);
-            IntValueLabel.TabIndex = 5;
-            IntValueLabel.Text = "Int value:";
-            // 
-            // ComboBoxSeason
-            // 
-            ComboBoxSeason.FormattingEnabled = true;
-            ComboBoxSeason.Location = new Point(6, 66);
-            ComboBoxSeason.Name = "ComboBoxSeason";
-            ComboBoxSeason.Size = new Size(264, 28);
-            ComboBoxSeason.TabIndex = 1;
-            // 
             // Form1
             // 
             ClientSize = new Size(852, 530);
@@ -246,12 +250,12 @@ namespace Programming
             TabControlMain.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
-            GroupBoxListBox.ResumeLayout(false);
-            GroupBoxListBox.PerformLayout();
             GroupBoxWeekParse.ResumeLayout(false);
             GroupBoxWeekParse.PerformLayout();
             GroupBoxSeason.ResumeLayout(false);
             GroupBoxSeason.PerformLayout();
+            GroupBoxListBox.ResumeLayout(false);
+            GroupBoxListBox.PerformLayout();
             ResumeLayout(false);
 
         }
@@ -262,6 +266,51 @@ namespace Programming
         }
 
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ValuesListBox.Items.Clear(); // Очистка ValuesListBox после нового выбора в EnumsListBox
+            string selectedEnum = EnumsListBox.SelectedItem.ToString(); //Определение выбранной строки из EnumsListBox
+            Array enumValues; // Массив значений перечеслений
+
+            switch (selectedEnum) // значение - массив
+            {
+                case "Colors":
+                    enumValues = Enum.GetValues(typeof(Colors));
+                    break;
+                case "StudyForm":
+                    enumValues = Enum.GetValues(typeof(StudyForm));
+                    break;
+                case "Genre":
+                    enumValues = Enum.GetValues(typeof(Genre));
+                    break;
+                case "PhoneCreatoes":
+                    enumValues = Enum.GetValues(typeof(PhoneCreators));
+                    break;
+                case "Seasons":
+                    enumValues = Enum.GetValues(typeof(Seasons));
+                    break;
+                case "Weekday":
+                    enumValues = Enum.GetValues(typeof(Weekday));
+                    break;
+                default:
+                    return;
+            }
+            foreach (var value in enumValues) //добавление значений в ValuesListBox
+            {
+                ValuesListBox.Items.Add(value);
+            }
+        }
+
+        private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ValuesListBox.SelectedItem != null) // Проверка на то, что действительно выбран элемент
+            {
+                var selectedValue = ValuesListBox.SelectedItem; // Получение значения
+                int intValue = (int)selectedValue; // Преобразование в Int
+                IntValueTextBox.Text = intValue.ToString(); // Вывод значения
+            }
+        }
+
+        private void IntValueTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }
