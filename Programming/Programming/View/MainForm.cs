@@ -169,16 +169,13 @@ namespace Programming
             // 
             // ComboBoxSeason
             // 
+            ComboBoxSeason.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboBoxSeason.FormattingEnabled = true;
+            ComboBoxSeason.Items.AddRange(new object[] { "Winter", "Autumn", "Summer", "Spring" });
             ComboBoxSeason.Location = new Point(6, 66);
             ComboBoxSeason.Name = "ComboBoxSeason";
             ComboBoxSeason.Size = new Size(264, 28);
             ComboBoxSeason.TabIndex = 1;
-
-            ComboBoxSeason.Items.Add("Winter");
-            ComboBoxSeason.Items.Add("Autumn");
-            ComboBoxSeason.Items.Add("Summer");
-            ComboBoxSeason.Items.Add("Spring");
             // 
             // SeasonLabel
             // 
@@ -342,13 +339,14 @@ namespace Programming
 
         private void GoButton_Click(object sender, EventArgs e)
         {
-            if (ComboBoxSeason.SelectedItem == null)
+            if (ComboBoxSeason.SelectedItem == null) // Проверка на то, что элемент выбран
             {
+                MessageBox.Show("Ошибка. Выберите сезон.");
                 return;
             }
-            string selectedText = ComboBoxSeason.SelectedItem.ToString();
-            Seasons SelectedSeasons = (Seasons)Enum.Parse(typeof(Seasons), selectedText);
-            switch (SelectedSeasons)
+            string selectedText = ComboBoxSeason.SelectedItem.ToString(); // Получение текста выбранного элемента
+            Seasons SelectedSeasons = (Seasons)Enum.Parse(typeof(Seasons), selectedText); // Преобразование строки в тип seasons
+            switch (SelectedSeasons) // Различные действия для различных выборов
             {
                 case Seasons.Summer:
                     MessageBox.Show("Астрологи объявляют месяц Лета! Население всех жилищ возросло.");
