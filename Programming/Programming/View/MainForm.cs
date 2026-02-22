@@ -101,6 +101,7 @@ namespace Programming
             // 
             IntValueTextBox.Location = new Point(400, 64);
             IntValueTextBox.Name = "IntValueTextBox";
+            IntValueTextBox.ReadOnly = true;
             IntValueTextBox.Size = new Size(264, 27);
             IntValueTextBox.TabIndex = 4;
             IntValueTextBox.TextChanged += IntValueTextBox_TextChanged;
@@ -120,12 +121,13 @@ namespace Programming
             // 
             // ParseButton
             // 
+            ParseButton.BackColor = Color.LightGray;
             ParseButton.Location = new Point(274, 63);
             ParseButton.Name = "ParseButton";
             ParseButton.Size = new Size(94, 29);
             ParseButton.TabIndex = 2;
             ParseButton.Text = "Parse";
-            ParseButton.UseVisualStyleBackColor = true;
+            ParseButton.UseVisualStyleBackColor = false;
             ParseButton.Click += ParseButton_Click;
             // 
             // ResultLabel
@@ -172,6 +174,11 @@ namespace Programming
             ComboBoxSeason.Name = "ComboBoxSeason";
             ComboBoxSeason.Size = new Size(264, 28);
             ComboBoxSeason.TabIndex = 1;
+
+            ComboBoxSeason.Items.Add("Winter");
+            ComboBoxSeason.Items.Add("Autumn");
+            ComboBoxSeason.Items.Add("Summer");
+            ComboBoxSeason.Items.Add("Spring");
             // 
             // SeasonLabel
             // 
@@ -184,12 +191,14 @@ namespace Programming
             // 
             // GoButton
             // 
+            GoButton.BackColor = Color.LightGray;
             GoButton.Location = new Point(276, 65);
             GoButton.Name = "GoButton";
             GoButton.Size = new Size(94, 29);
             GoButton.TabIndex = 1;
             GoButton.Text = "Go!";
-            GoButton.UseVisualStyleBackColor = true;
+            GoButton.UseVisualStyleBackColor = false;
+            GoButton.Click += GoButton_Click;
             // 
             // GroupBoxListBox
             // 
@@ -216,7 +225,7 @@ namespace Programming
             // EnumsListBox
             // 
             EnumsListBox.FormattingEnabled = true;
-            EnumsListBox.Items.AddRange(new object[] { "Colors", "StudyForm", "Genre", "PhoneCreatoes", "Seasons", "Weekday" }); // Добавление перечислений в первый ListBox
+            EnumsListBox.Items.AddRange(new object[] { "Colors", "StudyForm", "Genre", "PhoneCreatoes", "Seasons", "Weekday" });
             EnumsListBox.Location = new Point(8, 64);
             EnumsListBox.Name = "EnumsListBox";
             EnumsListBox.Size = new Size(157, 264);
@@ -329,6 +338,38 @@ namespace Programming
             {
                 ResultLabel.Text = "Ошибка! День недели не распознан."; // Сообщение при неверно введённом значении.
             }
+        }
+
+        private void GoButton_Click(object sender, EventArgs e)
+        {
+            if (ComboBoxSeason.SelectedItem == null)
+            {
+                return;
+            }
+            string selectedText = ComboBoxSeason.SelectedItem.ToString();
+            Seasons SelectedSeasons = (Seasons)Enum.Parse(typeof(Seasons), selectedText);
+            switch (SelectedSeasons)
+            {
+                case Seasons.Summer:
+                    MessageBox.Show("Астрологи объявляют месяц Лета! Население всех жилищ возросло.");
+                    break;
+                case Seasons.Winter:
+                    MessageBox.Show("Идём лепить снеговика!");
+                    break;
+                case Seasons.Autumn:
+                    this.BackColor = ColorTranslator.FromHtml("#e29c45");
+                    break;
+                case Seasons.Spring:
+                    this.BackColor = ColorTranslator.FromHtml("#559c45");
+                    break;
+                deafault:
+                    break;
+            }
+        }
+
+        private void ComboBoxSeason_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
