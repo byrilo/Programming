@@ -20,7 +20,7 @@ namespace Programming
         private TabControl TabControlMain;
         private TabPage tabPage1;
         private Label SeasonLabel;
-        private Label label4;
+        private Label ResultLabel;
         private Label ParsingValueLabel;
         private Label ValuesListBoxLabel;
         private Label EnumsListBoxLabel;
@@ -44,7 +44,7 @@ namespace Programming
             IntValueTextBox = new TextBox();
             GroupBoxWeekParse = new GroupBox();
             ParseButton = new Button();
-            label4 = new Label();
+            ResultLabel = new Label();
             TextBoxValueParsing = new TextBox();
             ParsingValueLabel = new Label();
             GroupBoxSeason = new GroupBox();
@@ -108,7 +108,7 @@ namespace Programming
             // GroupBoxWeekParse
             // 
             GroupBoxWeekParse.Controls.Add(ParseButton);
-            GroupBoxWeekParse.Controls.Add(label4);
+            GroupBoxWeekParse.Controls.Add(ResultLabel);
             GroupBoxWeekParse.Controls.Add(TextBoxValueParsing);
             GroupBoxWeekParse.Controls.Add(ParsingValueLabel);
             GroupBoxWeekParse.Location = new Point(8, 348);
@@ -126,15 +126,16 @@ namespace Programming
             ParseButton.TabIndex = 2;
             ParseButton.Text = "Parse";
             ParseButton.UseVisualStyleBackColor = true;
+            ParseButton.Click += ParseButton_Click;
             // 
-            // label4
+            // ResultLabel
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(6, 95);
-            label4.Name = "label4";
-            label4.Size = new Size(50, 20);
-            label4.TabIndex = 8;
-            label4.Text = "label4";
+            ResultLabel.AutoSize = true;
+            ResultLabel.Location = new Point(6, 95);
+            ResultLabel.Name = "ResultLabel";
+            ResultLabel.Size = new Size(49, 20);
+            ResultLabel.TabIndex = 8;
+            ResultLabel.Text = "Result";
             // 
             // TextBoxValueParsing
             // 
@@ -215,7 +216,7 @@ namespace Programming
             // EnumsListBox
             // 
             EnumsListBox.FormattingEnabled = true;
-            EnumsListBox.Items.AddRange(new object[] { "Colors", "StudyForm", "Genre", "PhoneCreatoes", "Seasons", "Weekday" });
+            EnumsListBox.Items.AddRange(new object[] { "Colors", "StudyForm", "Genre", "PhoneCreatoes", "Seasons", "Weekday" }); // Добавление перечислений в первый ListBox
             EnumsListBox.Location = new Point(8, 64);
             EnumsListBox.Name = "EnumsListBox";
             EnumsListBox.Size = new Size(157, 264);
@@ -313,6 +314,21 @@ namespace Programming
         private void IntValueTextBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void ParseButton_Click(object sender, EventArgs e)
+        {
+            string input = TextBoxValueParsing.Text; // Считывание текста из TextBoxValueParsing
+            if (Enum.TryParse(input, true, out Weekday day)) // Пытаемся перевести введённый текст в Enum Weekday, true позволяет игнорировать регистр
+            {
+                int IntValue = (int)day; // Если успешно, то загоняем в переменную числовое значение (порядковый номер) элемента
+                ResultLabel.Text = $"Это день недели ({day} = {IntValue})"; // Вывод результата
+
+            }
+            else
+            {
+                ResultLabel.Text = "Ошибка! День недели не распознан."; // Сообщение при неверно введённом значении.
+            }
         }
     }
 }
