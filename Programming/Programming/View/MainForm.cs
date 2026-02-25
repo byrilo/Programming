@@ -34,6 +34,16 @@ namespace Programming
         private ListBox ValuesListBox;
         private ListBox EnumsListBox;
         private Label IntValueLabel;
+        private TabPage tabPageClasses;
+        private GroupBox groupBox1;
+        private Label ColorLabelClasses;
+        private Label WidthLabelClasses;
+        private Label LenghtLabelClasses;
+        private TextBox textBox3;
+        private TextBox textBox2;
+        private TextBox textBox1;
+        private Button button1;
+        private ListBox listBox1;
         private ComboBox ComboBoxSeason;
 
         private void InitializeComponent()
@@ -56,16 +66,29 @@ namespace Programming
             EnumsListBox = new ListBox();
             EnumsListBoxLabel = new Label();
             ValuesListBoxLabel = new Label();
+            tabPageClasses = new TabPage();
+            listBox1 = new ListBox();
+            groupBox1 = new GroupBox();
+            button1 = new Button();
+            textBox1 = new TextBox();
+            textBox2 = new TextBox();
+            textBox3 = new TextBox();
+            LenghtLabelClasses = new Label();
+            WidthLabelClasses = new Label();
+            ColorLabelClasses = new Label();
             TabControlMain.SuspendLayout();
             tabPage1.SuspendLayout();
             GroupBoxWeekParse.SuspendLayout();
             GroupBoxSeason.SuspendLayout();
             GroupBoxListBox.SuspendLayout();
+            tabPageClasses.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // TabControlMain
             // 
             TabControlMain.Controls.Add(tabPage1);
+            TabControlMain.Controls.Add(tabPageClasses);
             TabControlMain.Dock = DockStyle.Fill;
             TabControlMain.Location = new Point(0, 0);
             TabControlMain.Name = "TabControlMain";
@@ -247,6 +270,99 @@ namespace Programming
             ValuesListBoxLabel.TabIndex = 6;
             ValuesListBoxLabel.Text = "Choose value:";
             // 
+            // tabPageClasses
+            // 
+            tabPageClasses.Controls.Add(groupBox1);
+            tabPageClasses.Location = new Point(4, 29);
+            tabPageClasses.Name = "tabPageClasses";
+            tabPageClasses.Padding = new Padding(3);
+            tabPageClasses.Size = new Size(844, 497);
+            tabPageClasses.TabIndex = 1;
+            tabPageClasses.Text = "Classes";
+            tabPageClasses.UseVisualStyleBackColor = true;
+            // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.Location = new Point(6, 26);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(195, 344);
+            listBox1.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(ColorLabelClasses);
+            groupBox1.Controls.Add(WidthLabelClasses);
+            groupBox1.Controls.Add(LenghtLabelClasses);
+            groupBox1.Controls.Add(textBox3);
+            groupBox1.Controls.Add(textBox2);
+            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(button1);
+            groupBox1.Controls.Add(listBox1);
+            groupBox1.Location = new Point(3, 3);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(385, 418);
+            groupBox1.TabIndex = 1;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Rectangles";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(243, 341);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 2;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(243, 49);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 3;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(243, 191);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(125, 27);
+            textBox2.TabIndex = 4;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(243, 120);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(125, 27);
+            textBox3.TabIndex = 5;
+            // 
+            // LenghtLabelClasses
+            // 
+            LenghtLabelClasses.AutoSize = true;
+            LenghtLabelClasses.Location = new Point(243, 26);
+            LenghtLabelClasses.Name = "LenghtLabelClasses";
+            LenghtLabelClasses.Size = new Size(57, 20);
+            LenghtLabelClasses.TabIndex = 6;
+            LenghtLabelClasses.Text = "Lenght:";
+            // 
+            // WidthLabelClasses
+            // 
+            WidthLabelClasses.AutoSize = true;
+            WidthLabelClasses.Location = new Point(243, 97);
+            WidthLabelClasses.Name = "WidthLabelClasses";
+            WidthLabelClasses.Size = new Size(52, 20);
+            WidthLabelClasses.TabIndex = 7;
+            WidthLabelClasses.Text = "Width:";
+            // 
+            // ColorLabelClasses
+            // 
+            ColorLabelClasses.AutoSize = true;
+            ColorLabelClasses.Location = new Point(243, 168);
+            ColorLabelClasses.Name = "ColorLabelClasses";
+            ColorLabelClasses.Size = new Size(48, 20);
+            ColorLabelClasses.TabIndex = 8;
+            ColorLabelClasses.Text = "Color:";
+            // 
             // Form1
             // 
             ClientSize = new Size(852, 530);
@@ -263,6 +379,9 @@ namespace Programming
             GroupBoxSeason.PerformLayout();
             GroupBoxListBox.ResumeLayout(false);
             GroupBoxListBox.PerformLayout();
+            tabPageClasses.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
 
         }
