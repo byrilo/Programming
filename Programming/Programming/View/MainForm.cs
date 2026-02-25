@@ -35,15 +35,28 @@ namespace Programming
         private ListBox EnumsListBox;
         private Label IntValueLabel;
         private TabPage tabPageClasses;
-        private GroupBox groupBox1;
-        private Label ColorLabelClasses;
-        private Label WidthLabelClasses;
-        private Label LenghtLabelClasses;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
-        private Button button1;
-        private ListBox listBox1;
+        private GroupBox RectangleClassesGroupBox;
+        private Label RectangleClassesLabelColor;
+        private Label RectangleClassesLabelWidth;
+        private Label RectangleClassesLabelLenght;
+        private TextBox RectangleClassesTextBoxWidth;
+        private TextBox RectangleClassesTextBoxColor;
+        private TextBox RectangleClassesTextBoxLenght;
+        private Button RectangleClassesFindButton;
+        private ListBox RectangleClassesListBox;
+        private GroupBox FilmClassesGroupBox;
+        private Label FilmClassesLabelYear;
+        private Label FilmClassesLabelDuration;
+        private Label FilmClassesLabelName;
+        private TextBox FilmClassesTextBoxDuration;
+        private TextBox FilmClassesTextBoxYear;
+        private TextBox FilmClassesTextBoxName;
+        private Button FilmClassesFindButton;
+        private ListBox FilmClassesListBox;
+        private Label FilmClassesLabelRating;
+        private Label FilmClassesLabelGenre;
+        private TextBox FilmClassesTextBoxRating;
+        private TextBox FilmClassesTextBoxGenre;
         private ComboBox ComboBoxSeason;
 
         private void InitializeComponent()
@@ -67,22 +80,36 @@ namespace Programming
             EnumsListBoxLabel = new Label();
             ValuesListBoxLabel = new Label();
             tabPageClasses = new TabPage();
-            listBox1 = new ListBox();
-            groupBox1 = new GroupBox();
-            button1 = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            LenghtLabelClasses = new Label();
-            WidthLabelClasses = new Label();
-            ColorLabelClasses = new Label();
+            RectangleClassesGroupBox = new GroupBox();
+            RectangleClassesLabelColor = new Label();
+            RectangleClassesLabelWidth = new Label();
+            RectangleClassesLabelLenght = new Label();
+            RectangleClassesTextBoxWidth = new TextBox();
+            RectangleClassesTextBoxColor = new TextBox();
+            RectangleClassesTextBoxLenght = new TextBox();
+            RectangleClassesFindButton = new Button();
+            RectangleClassesListBox = new ListBox();
+            FilmClassesGroupBox = new GroupBox();
+            FilmClassesLabelYear = new Label();
+            FilmClassesLabelDuration = new Label();
+            FilmClassesLabelName = new Label();
+            FilmClassesTextBoxDuration = new TextBox();
+            FilmClassesTextBoxYear = new TextBox();
+            FilmClassesTextBoxName = new TextBox();
+            FilmClassesFindButton = new Button();
+            FilmClassesListBox = new ListBox();
+            FilmClassesTextBoxGenre = new TextBox();
+            FilmClassesTextBoxRating = new TextBox();
+            FilmClassesLabelGenre = new Label();
+            FilmClassesLabelRating = new Label();
             TabControlMain.SuspendLayout();
             tabPage1.SuspendLayout();
             GroupBoxWeekParse.SuspendLayout();
             GroupBoxSeason.SuspendLayout();
             GroupBoxListBox.SuspendLayout();
             tabPageClasses.SuspendLayout();
-            groupBox1.SuspendLayout();
+            RectangleClassesGroupBox.SuspendLayout();
+            FilmClassesGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // TabControlMain
@@ -272,7 +299,8 @@ namespace Programming
             // 
             // tabPageClasses
             // 
-            tabPageClasses.Controls.Add(groupBox1);
+            tabPageClasses.Controls.Add(FilmClassesGroupBox);
+            tabPageClasses.Controls.Add(RectangleClassesGroupBox);
             tabPageClasses.Location = new Point(4, 29);
             tabPageClasses.Name = "tabPageClasses";
             tabPageClasses.Padding = new Padding(3);
@@ -281,87 +309,205 @@ namespace Programming
             tabPageClasses.Text = "Classes";
             tabPageClasses.UseVisualStyleBackColor = true;
             // 
-            // listBox1
+            // RectangleClassesGroupBox
             // 
-            listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(6, 26);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(195, 344);
-            listBox1.TabIndex = 0;
+            RectangleClassesGroupBox.Controls.Add(RectangleClassesLabelColor);
+            RectangleClassesGroupBox.Controls.Add(RectangleClassesLabelWidth);
+            RectangleClassesGroupBox.Controls.Add(RectangleClassesLabelLenght);
+            RectangleClassesGroupBox.Controls.Add(RectangleClassesTextBoxWidth);
+            RectangleClassesGroupBox.Controls.Add(RectangleClassesTextBoxColor);
+            RectangleClassesGroupBox.Controls.Add(RectangleClassesTextBoxLenght);
+            RectangleClassesGroupBox.Controls.Add(RectangleClassesFindButton);
+            RectangleClassesGroupBox.Controls.Add(RectangleClassesListBox);
+            RectangleClassesGroupBox.Location = new Point(3, 0);
+            RectangleClassesGroupBox.Name = "RectangleClassesGroupBox";
+            RectangleClassesGroupBox.Size = new Size(400, 449);
+            RectangleClassesGroupBox.TabIndex = 1;
+            RectangleClassesGroupBox.TabStop = false;
+            RectangleClassesGroupBox.Text = "Rectangles";
             // 
-            // groupBox1
+            // RectangleClassesLabelColor
             // 
-            groupBox1.Controls.Add(ColorLabelClasses);
-            groupBox1.Controls.Add(WidthLabelClasses);
-            groupBox1.Controls.Add(LenghtLabelClasses);
-            groupBox1.Controls.Add(textBox3);
-            groupBox1.Controls.Add(textBox2);
-            groupBox1.Controls.Add(textBox1);
-            groupBox1.Controls.Add(button1);
-            groupBox1.Controls.Add(listBox1);
-            groupBox1.Location = new Point(3, 3);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(385, 418);
-            groupBox1.TabIndex = 1;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Rectangles";
+            RectangleClassesLabelColor.AutoSize = true;
+            RectangleClassesLabelColor.Location = new Point(243, 168);
+            RectangleClassesLabelColor.Name = "RectangleClassesLabelColor";
+            RectangleClassesLabelColor.Size = new Size(48, 20);
+            RectangleClassesLabelColor.TabIndex = 8;
+            RectangleClassesLabelColor.Text = "Color:";
             // 
-            // button1
+            // RectangleClassesLabelWidth
             // 
-            button1.Location = new Point(243, 341);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 2;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            RectangleClassesLabelWidth.AutoSize = true;
+            RectangleClassesLabelWidth.Location = new Point(243, 97);
+            RectangleClassesLabelWidth.Name = "RectangleClassesLabelWidth";
+            RectangleClassesLabelWidth.Size = new Size(52, 20);
+            RectangleClassesLabelWidth.TabIndex = 7;
+            RectangleClassesLabelWidth.Text = "Width:";
             // 
-            // textBox1
+            // RectangleClassesLabelLenght
             // 
-            textBox1.Location = new Point(243, 49);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 3;
+            RectangleClassesLabelLenght.AutoSize = true;
+            RectangleClassesLabelLenght.Location = new Point(243, 26);
+            RectangleClassesLabelLenght.Name = "RectangleClassesLabelLenght";
+            RectangleClassesLabelLenght.Size = new Size(57, 20);
+            RectangleClassesLabelLenght.TabIndex = 6;
+            RectangleClassesLabelLenght.Text = "Lenght:";
             // 
-            // textBox2
+            // RectangleClassesTextBoxWidth
             // 
-            textBox2.Location = new Point(243, 191);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 4;
+            RectangleClassesTextBoxWidth.Location = new Point(243, 120);
+            RectangleClassesTextBoxWidth.Name = "RectangleClassesTextBoxWidth";
+            RectangleClassesTextBoxWidth.Size = new Size(125, 27);
+            RectangleClassesTextBoxWidth.TabIndex = 5;
             // 
-            // textBox3
+            // RectangleClassesTextBoxColor
             // 
-            textBox3.Location = new Point(243, 120);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(125, 27);
-            textBox3.TabIndex = 5;
+            RectangleClassesTextBoxColor.Location = new Point(243, 191);
+            RectangleClassesTextBoxColor.Name = "RectangleClassesTextBoxColor";
+            RectangleClassesTextBoxColor.Size = new Size(125, 27);
+            RectangleClassesTextBoxColor.TabIndex = 4;
             // 
-            // LenghtLabelClasses
+            // RectangleClassesTextBoxLenght
             // 
-            LenghtLabelClasses.AutoSize = true;
-            LenghtLabelClasses.Location = new Point(243, 26);
-            LenghtLabelClasses.Name = "LenghtLabelClasses";
-            LenghtLabelClasses.Size = new Size(57, 20);
-            LenghtLabelClasses.TabIndex = 6;
-            LenghtLabelClasses.Text = "Lenght:";
+            RectangleClassesTextBoxLenght.Location = new Point(243, 49);
+            RectangleClassesTextBoxLenght.Name = "RectangleClassesTextBoxLenght";
+            RectangleClassesTextBoxLenght.Size = new Size(125, 27);
+            RectangleClassesTextBoxLenght.TabIndex = 3;
             // 
-            // WidthLabelClasses
+            // RectangleClassesFindButton
             // 
-            WidthLabelClasses.AutoSize = true;
-            WidthLabelClasses.Location = new Point(243, 97);
-            WidthLabelClasses.Name = "WidthLabelClasses";
-            WidthLabelClasses.Size = new Size(52, 20);
-            WidthLabelClasses.TabIndex = 7;
-            WidthLabelClasses.Text = "Width:";
+            RectangleClassesFindButton.Location = new Point(243, 341);
+            RectangleClassesFindButton.Name = "RectangleClassesFindButton";
+            RectangleClassesFindButton.Size = new Size(94, 29);
+            RectangleClassesFindButton.TabIndex = 2;
+            RectangleClassesFindButton.Text = "Find";
+            RectangleClassesFindButton.UseVisualStyleBackColor = true;
             // 
-            // ColorLabelClasses
+            // RectangleClassesListBox
             // 
-            ColorLabelClasses.AutoSize = true;
-            ColorLabelClasses.Location = new Point(243, 168);
-            ColorLabelClasses.Name = "ColorLabelClasses";
-            ColorLabelClasses.Size = new Size(48, 20);
-            ColorLabelClasses.TabIndex = 8;
-            ColorLabelClasses.Text = "Color:";
+            RectangleClassesListBox.FormattingEnabled = true;
+            RectangleClassesListBox.Location = new Point(6, 26);
+            RectangleClassesListBox.Name = "RectangleClassesListBox";
+            RectangleClassesListBox.Size = new Size(195, 344);
+            RectangleClassesListBox.TabIndex = 0;
+            // 
+            // FilmClassesGroupBox
+            // 
+            FilmClassesGroupBox.Controls.Add(FilmClassesLabelRating);
+            FilmClassesGroupBox.Controls.Add(FilmClassesLabelGenre);
+            FilmClassesGroupBox.Controls.Add(FilmClassesTextBoxRating);
+            FilmClassesGroupBox.Controls.Add(FilmClassesTextBoxGenre);
+            FilmClassesGroupBox.Controls.Add(FilmClassesLabelYear);
+            FilmClassesGroupBox.Controls.Add(FilmClassesLabelDuration);
+            FilmClassesGroupBox.Controls.Add(FilmClassesLabelName);
+            FilmClassesGroupBox.Controls.Add(FilmClassesTextBoxDuration);
+            FilmClassesGroupBox.Controls.Add(FilmClassesTextBoxYear);
+            FilmClassesGroupBox.Controls.Add(FilmClassesTextBoxName);
+            FilmClassesGroupBox.Controls.Add(FilmClassesFindButton);
+            FilmClassesGroupBox.Controls.Add(FilmClassesListBox);
+            FilmClassesGroupBox.Location = new Point(409, 3);
+            FilmClassesGroupBox.Name = "FilmClassesGroupBox";
+            FilmClassesGroupBox.Size = new Size(435, 446);
+            FilmClassesGroupBox.TabIndex = 9;
+            FilmClassesGroupBox.TabStop = false;
+            FilmClassesGroupBox.Text = "Film";
+            // 
+            // FilmClassesLabelYear
+            // 
+            FilmClassesLabelYear.AutoSize = true;
+            FilmClassesLabelYear.Location = new Point(243, 132);
+            FilmClassesLabelYear.Name = "FilmClassesLabelYear";
+            FilmClassesLabelYear.Size = new Size(40, 20);
+            FilmClassesLabelYear.TabIndex = 8;
+            FilmClassesLabelYear.Text = "Year:";
+            // 
+            // FilmClassesLabelDuration
+            // 
+            FilmClassesLabelDuration.AutoSize = true;
+            FilmClassesLabelDuration.Location = new Point(243, 79);
+            FilmClassesLabelDuration.Name = "FilmClassesLabelDuration";
+            FilmClassesLabelDuration.Size = new Size(100, 20);
+            FilmClassesLabelDuration.TabIndex = 7;
+            FilmClassesLabelDuration.Text = "Film duration:";
+            // 
+            // FilmClassesLabelName
+            // 
+            FilmClassesLabelName.AutoSize = true;
+            FilmClassesLabelName.Location = new Point(243, 26);
+            FilmClassesLabelName.Name = "FilmClassesLabelName";
+            FilmClassesLabelName.Size = new Size(81, 20);
+            FilmClassesLabelName.TabIndex = 6;
+            FilmClassesLabelName.Text = "Film name:";
+            // 
+            // FilmClassesTextBoxDuration
+            // 
+            FilmClassesTextBoxDuration.Location = new Point(243, 102);
+            FilmClassesTextBoxDuration.Name = "FilmClassesTextBoxDuration";
+            FilmClassesTextBoxDuration.Size = new Size(125, 27);
+            FilmClassesTextBoxDuration.TabIndex = 5;
+            // 
+            // FilmClassesTextBoxYear
+            // 
+            FilmClassesTextBoxYear.Location = new Point(243, 155);
+            FilmClassesTextBoxYear.Name = "FilmClassesTextBoxYear";
+            FilmClassesTextBoxYear.Size = new Size(125, 27);
+            FilmClassesTextBoxYear.TabIndex = 4;
+            // 
+            // FilmClassesTextBoxName
+            // 
+            FilmClassesTextBoxName.Location = new Point(243, 49);
+            FilmClassesTextBoxName.Name = "FilmClassesTextBoxName";
+            FilmClassesTextBoxName.Size = new Size(125, 27);
+            FilmClassesTextBoxName.TabIndex = 3;
+            // 
+            // FilmClassesFindButton
+            // 
+            FilmClassesFindButton.Location = new Point(243, 341);
+            FilmClassesFindButton.Name = "FilmClassesFindButton";
+            FilmClassesFindButton.Size = new Size(94, 29);
+            FilmClassesFindButton.TabIndex = 2;
+            FilmClassesFindButton.Text = "Find";
+            FilmClassesFindButton.UseVisualStyleBackColor = true;
+            // 
+            // FilmClassesListBox
+            // 
+            FilmClassesListBox.FormattingEnabled = true;
+            FilmClassesListBox.Location = new Point(6, 26);
+            FilmClassesListBox.Name = "FilmClassesListBox";
+            FilmClassesListBox.Size = new Size(195, 344);
+            FilmClassesListBox.TabIndex = 0;
+            // 
+            // FilmClassesTextBoxGenre
+            // 
+            FilmClassesTextBoxGenre.Location = new Point(243, 208);
+            FilmClassesTextBoxGenre.Name = "FilmClassesTextBoxGenre";
+            FilmClassesTextBoxGenre.Size = new Size(125, 27);
+            FilmClassesTextBoxGenre.TabIndex = 9;
+            // 
+            // FilmClassesTextBoxRating
+            // 
+            FilmClassesTextBoxRating.Location = new Point(243, 261);
+            FilmClassesTextBoxRating.Name = "FilmClassesTextBoxRating";
+            FilmClassesTextBoxRating.Size = new Size(125, 27);
+            FilmClassesTextBoxRating.TabIndex = 10;
+            // 
+            // FilmClassesLabelGenre
+            // 
+            FilmClassesLabelGenre.AutoSize = true;
+            FilmClassesLabelGenre.Location = new Point(243, 185);
+            FilmClassesLabelGenre.Name = "FilmClassesLabelGenre";
+            FilmClassesLabelGenre.Size = new Size(51, 20);
+            FilmClassesLabelGenre.TabIndex = 11;
+            FilmClassesLabelGenre.Text = "Genre:";
+            // 
+            // FilmClassesLabelRating
+            // 
+            FilmClassesLabelRating.AutoSize = true;
+            FilmClassesLabelRating.Location = new Point(243, 238);
+            FilmClassesLabelRating.Name = "FilmClassesLabelRating";
+            FilmClassesLabelRating.Size = new Size(55, 20);
+            FilmClassesLabelRating.TabIndex = 12;
+            FilmClassesLabelRating.Text = "Rating:";
             // 
             // Form1
             // 
@@ -380,8 +526,10 @@ namespace Programming
             GroupBoxListBox.ResumeLayout(false);
             GroupBoxListBox.PerformLayout();
             tabPageClasses.ResumeLayout(false);
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            RectangleClassesGroupBox.ResumeLayout(false);
+            RectangleClassesGroupBox.PerformLayout();
+            FilmClassesGroupBox.ResumeLayout(false);
+            FilmClassesGroupBox.PerformLayout();
             ResumeLayout(false);
 
         }

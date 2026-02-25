@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Programming.Model
+{
+    public class PhoneContact
+    {
+        private string ContactName;
+        private string ContactSurname;
+        private int PhoneNumber;
+        private string Adress;
+
+    }
+}
