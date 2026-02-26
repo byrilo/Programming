@@ -80,6 +80,19 @@ namespace Programming
             EnumsListBoxLabel = new Label();
             ValuesListBoxLabel = new Label();
             tabPageClasses = new TabPage();
+            FilmClassesGroupBox = new GroupBox();
+            FilmClassesLabelRating = new Label();
+            FilmClassesLabelGenre = new Label();
+            FilmClassesTextBoxRating = new TextBox();
+            FilmClassesTextBoxGenre = new TextBox();
+            FilmClassesLabelYear = new Label();
+            FilmClassesLabelDuration = new Label();
+            FilmClassesLabelName = new Label();
+            FilmClassesTextBoxDuration = new TextBox();
+            FilmClassesTextBoxYear = new TextBox();
+            FilmClassesTextBoxName = new TextBox();
+            FilmClassesFindButton = new Button();
+            FilmClassesListBox = new ListBox();
             RectangleClassesGroupBox = new GroupBox();
             RectangleClassesLabelColor = new Label();
             RectangleClassesLabelWidth = new Label();
@@ -89,27 +102,14 @@ namespace Programming
             RectangleClassesTextBoxLenght = new TextBox();
             RectangleClassesFindButton = new Button();
             RectangleClassesListBox = new ListBox();
-            FilmClassesGroupBox = new GroupBox();
-            FilmClassesLabelYear = new Label();
-            FilmClassesLabelDuration = new Label();
-            FilmClassesLabelName = new Label();
-            FilmClassesTextBoxDuration = new TextBox();
-            FilmClassesTextBoxYear = new TextBox();
-            FilmClassesTextBoxName = new TextBox();
-            FilmClassesFindButton = new Button();
-            FilmClassesListBox = new ListBox();
-            FilmClassesTextBoxGenre = new TextBox();
-            FilmClassesTextBoxRating = new TextBox();
-            FilmClassesLabelGenre = new Label();
-            FilmClassesLabelRating = new Label();
             TabControlMain.SuspendLayout();
             tabPage1.SuspendLayout();
             GroupBoxWeekParse.SuspendLayout();
             GroupBoxSeason.SuspendLayout();
             GroupBoxListBox.SuspendLayout();
             tabPageClasses.SuspendLayout();
-            RectangleClassesGroupBox.SuspendLayout();
             FilmClassesGroupBox.SuspendLayout();
+            RectangleClassesGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // TabControlMain
@@ -309,6 +309,124 @@ namespace Programming
             tabPageClasses.Text = "Classes";
             tabPageClasses.UseVisualStyleBackColor = true;
             // 
+            // FilmClassesGroupBox
+            // 
+            FilmClassesGroupBox.Controls.Add(FilmClassesLabelRating);
+            FilmClassesGroupBox.Controls.Add(FilmClassesLabelGenre);
+            FilmClassesGroupBox.Controls.Add(FilmClassesTextBoxRating);
+            FilmClassesGroupBox.Controls.Add(FilmClassesTextBoxGenre);
+            FilmClassesGroupBox.Controls.Add(FilmClassesLabelYear);
+            FilmClassesGroupBox.Controls.Add(FilmClassesLabelDuration);
+            FilmClassesGroupBox.Controls.Add(FilmClassesLabelName);
+            FilmClassesGroupBox.Controls.Add(FilmClassesTextBoxDuration);
+            FilmClassesGroupBox.Controls.Add(FilmClassesTextBoxYear);
+            FilmClassesGroupBox.Controls.Add(FilmClassesTextBoxName);
+            FilmClassesGroupBox.Controls.Add(FilmClassesFindButton);
+            FilmClassesGroupBox.Controls.Add(FilmClassesListBox);
+            FilmClassesGroupBox.Location = new Point(409, 3);
+            FilmClassesGroupBox.Name = "FilmClassesGroupBox";
+            FilmClassesGroupBox.Size = new Size(435, 486);
+            FilmClassesGroupBox.TabIndex = 9;
+            FilmClassesGroupBox.TabStop = false;
+            FilmClassesGroupBox.Text = "Film";
+            // 
+            // FilmClassesLabelRating
+            // 
+            FilmClassesLabelRating.AutoSize = true;
+            FilmClassesLabelRating.Location = new Point(243, 238);
+            FilmClassesLabelRating.Name = "FilmClassesLabelRating";
+            FilmClassesLabelRating.Size = new Size(55, 20);
+            FilmClassesLabelRating.TabIndex = 12;
+            FilmClassesLabelRating.Text = "Rating:";
+            // 
+            // FilmClassesLabelGenre
+            // 
+            FilmClassesLabelGenre.AutoSize = true;
+            FilmClassesLabelGenre.Location = new Point(243, 185);
+            FilmClassesLabelGenre.Name = "FilmClassesLabelGenre";
+            FilmClassesLabelGenre.Size = new Size(51, 20);
+            FilmClassesLabelGenre.TabIndex = 11;
+            FilmClassesLabelGenre.Text = "Genre:";
+            // 
+            // FilmClassesTextBoxRating
+            // 
+            FilmClassesTextBoxRating.Location = new Point(243, 261);
+            FilmClassesTextBoxRating.Name = "FilmClassesTextBoxRating";
+            FilmClassesTextBoxRating.Size = new Size(125, 27);
+            FilmClassesTextBoxRating.TabIndex = 10;
+            // 
+            // FilmClassesTextBoxGenre
+            // 
+            FilmClassesTextBoxGenre.Location = new Point(243, 208);
+            FilmClassesTextBoxGenre.Name = "FilmClassesTextBoxGenre";
+            FilmClassesTextBoxGenre.Size = new Size(125, 27);
+            FilmClassesTextBoxGenre.TabIndex = 9;
+            // 
+            // FilmClassesLabelYear
+            // 
+            FilmClassesLabelYear.AutoSize = true;
+            FilmClassesLabelYear.Location = new Point(243, 132);
+            FilmClassesLabelYear.Name = "FilmClassesLabelYear";
+            FilmClassesLabelYear.Size = new Size(40, 20);
+            FilmClassesLabelYear.TabIndex = 8;
+            FilmClassesLabelYear.Text = "Year:";
+            // 
+            // FilmClassesLabelDuration
+            // 
+            FilmClassesLabelDuration.AutoSize = true;
+            FilmClassesLabelDuration.Location = new Point(243, 79);
+            FilmClassesLabelDuration.Name = "FilmClassesLabelDuration";
+            FilmClassesLabelDuration.Size = new Size(100, 20);
+            FilmClassesLabelDuration.TabIndex = 7;
+            FilmClassesLabelDuration.Text = "Film duration:";
+            // 
+            // FilmClassesLabelName
+            // 
+            FilmClassesLabelName.AutoSize = true;
+            FilmClassesLabelName.Location = new Point(243, 26);
+            FilmClassesLabelName.Name = "FilmClassesLabelName";
+            FilmClassesLabelName.Size = new Size(81, 20);
+            FilmClassesLabelName.TabIndex = 6;
+            FilmClassesLabelName.Text = "Film name:";
+            // 
+            // FilmClassesTextBoxDuration
+            // 
+            FilmClassesTextBoxDuration.Location = new Point(243, 102);
+            FilmClassesTextBoxDuration.Name = "FilmClassesTextBoxDuration";
+            FilmClassesTextBoxDuration.Size = new Size(125, 27);
+            FilmClassesTextBoxDuration.TabIndex = 5;
+            // 
+            // FilmClassesTextBoxYear
+            // 
+            FilmClassesTextBoxYear.Location = new Point(243, 155);
+            FilmClassesTextBoxYear.Name = "FilmClassesTextBoxYear";
+            FilmClassesTextBoxYear.Size = new Size(125, 27);
+            FilmClassesTextBoxYear.TabIndex = 4;
+            // 
+            // FilmClassesTextBoxName
+            // 
+            FilmClassesTextBoxName.Location = new Point(243, 49);
+            FilmClassesTextBoxName.Name = "FilmClassesTextBoxName";
+            FilmClassesTextBoxName.Size = new Size(125, 27);
+            FilmClassesTextBoxName.TabIndex = 3;
+            // 
+            // FilmClassesFindButton
+            // 
+            FilmClassesFindButton.Location = new Point(243, 341);
+            FilmClassesFindButton.Name = "FilmClassesFindButton";
+            FilmClassesFindButton.Size = new Size(94, 29);
+            FilmClassesFindButton.TabIndex = 2;
+            FilmClassesFindButton.Text = "Find";
+            FilmClassesFindButton.UseVisualStyleBackColor = true;
+            // 
+            // FilmClassesListBox
+            // 
+            FilmClassesListBox.FormattingEnabled = true;
+            FilmClassesListBox.Location = new Point(6, 26);
+            FilmClassesListBox.Name = "FilmClassesListBox";
+            FilmClassesListBox.Size = new Size(195, 344);
+            FilmClassesListBox.TabIndex = 0;
+            // 
             // RectangleClassesGroupBox
             // 
             RectangleClassesGroupBox.Controls.Add(RectangleClassesLabelColor);
@@ -321,7 +439,7 @@ namespace Programming
             RectangleClassesGroupBox.Controls.Add(RectangleClassesListBox);
             RectangleClassesGroupBox.Location = new Point(3, 0);
             RectangleClassesGroupBox.Name = "RectangleClassesGroupBox";
-            RectangleClassesGroupBox.Size = new Size(400, 449);
+            RectangleClassesGroupBox.Size = new Size(406, 489);
             RectangleClassesGroupBox.TabIndex = 1;
             RectangleClassesGroupBox.TabStop = false;
             RectangleClassesGroupBox.Text = "Rectangles";
@@ -391,124 +509,6 @@ namespace Programming
             RectangleClassesListBox.Size = new Size(195, 344);
             RectangleClassesListBox.TabIndex = 0;
             // 
-            // FilmClassesGroupBox
-            // 
-            FilmClassesGroupBox.Controls.Add(FilmClassesLabelRating);
-            FilmClassesGroupBox.Controls.Add(FilmClassesLabelGenre);
-            FilmClassesGroupBox.Controls.Add(FilmClassesTextBoxRating);
-            FilmClassesGroupBox.Controls.Add(FilmClassesTextBoxGenre);
-            FilmClassesGroupBox.Controls.Add(FilmClassesLabelYear);
-            FilmClassesGroupBox.Controls.Add(FilmClassesLabelDuration);
-            FilmClassesGroupBox.Controls.Add(FilmClassesLabelName);
-            FilmClassesGroupBox.Controls.Add(FilmClassesTextBoxDuration);
-            FilmClassesGroupBox.Controls.Add(FilmClassesTextBoxYear);
-            FilmClassesGroupBox.Controls.Add(FilmClassesTextBoxName);
-            FilmClassesGroupBox.Controls.Add(FilmClassesFindButton);
-            FilmClassesGroupBox.Controls.Add(FilmClassesListBox);
-            FilmClassesGroupBox.Location = new Point(409, 3);
-            FilmClassesGroupBox.Name = "FilmClassesGroupBox";
-            FilmClassesGroupBox.Size = new Size(435, 446);
-            FilmClassesGroupBox.TabIndex = 9;
-            FilmClassesGroupBox.TabStop = false;
-            FilmClassesGroupBox.Text = "Film";
-            // 
-            // FilmClassesLabelYear
-            // 
-            FilmClassesLabelYear.AutoSize = true;
-            FilmClassesLabelYear.Location = new Point(243, 132);
-            FilmClassesLabelYear.Name = "FilmClassesLabelYear";
-            FilmClassesLabelYear.Size = new Size(40, 20);
-            FilmClassesLabelYear.TabIndex = 8;
-            FilmClassesLabelYear.Text = "Year:";
-            // 
-            // FilmClassesLabelDuration
-            // 
-            FilmClassesLabelDuration.AutoSize = true;
-            FilmClassesLabelDuration.Location = new Point(243, 79);
-            FilmClassesLabelDuration.Name = "FilmClassesLabelDuration";
-            FilmClassesLabelDuration.Size = new Size(100, 20);
-            FilmClassesLabelDuration.TabIndex = 7;
-            FilmClassesLabelDuration.Text = "Film duration:";
-            // 
-            // FilmClassesLabelName
-            // 
-            FilmClassesLabelName.AutoSize = true;
-            FilmClassesLabelName.Location = new Point(243, 26);
-            FilmClassesLabelName.Name = "FilmClassesLabelName";
-            FilmClassesLabelName.Size = new Size(81, 20);
-            FilmClassesLabelName.TabIndex = 6;
-            FilmClassesLabelName.Text = "Film name:";
-            // 
-            // FilmClassesTextBoxDuration
-            // 
-            FilmClassesTextBoxDuration.Location = new Point(243, 102);
-            FilmClassesTextBoxDuration.Name = "FilmClassesTextBoxDuration";
-            FilmClassesTextBoxDuration.Size = new Size(125, 27);
-            FilmClassesTextBoxDuration.TabIndex = 5;
-            // 
-            // FilmClassesTextBoxYear
-            // 
-            FilmClassesTextBoxYear.Location = new Point(243, 155);
-            FilmClassesTextBoxYear.Name = "FilmClassesTextBoxYear";
-            FilmClassesTextBoxYear.Size = new Size(125, 27);
-            FilmClassesTextBoxYear.TabIndex = 4;
-            // 
-            // FilmClassesTextBoxName
-            // 
-            FilmClassesTextBoxName.Location = new Point(243, 49);
-            FilmClassesTextBoxName.Name = "FilmClassesTextBoxName";
-            FilmClassesTextBoxName.Size = new Size(125, 27);
-            FilmClassesTextBoxName.TabIndex = 3;
-            // 
-            // FilmClassesFindButton
-            // 
-            FilmClassesFindButton.Location = new Point(243, 341);
-            FilmClassesFindButton.Name = "FilmClassesFindButton";
-            FilmClassesFindButton.Size = new Size(94, 29);
-            FilmClassesFindButton.TabIndex = 2;
-            FilmClassesFindButton.Text = "Find";
-            FilmClassesFindButton.UseVisualStyleBackColor = true;
-            // 
-            // FilmClassesListBox
-            // 
-            FilmClassesListBox.FormattingEnabled = true;
-            FilmClassesListBox.Location = new Point(6, 26);
-            FilmClassesListBox.Name = "FilmClassesListBox";
-            FilmClassesListBox.Size = new Size(195, 344);
-            FilmClassesListBox.TabIndex = 0;
-            // 
-            // FilmClassesTextBoxGenre
-            // 
-            FilmClassesTextBoxGenre.Location = new Point(243, 208);
-            FilmClassesTextBoxGenre.Name = "FilmClassesTextBoxGenre";
-            FilmClassesTextBoxGenre.Size = new Size(125, 27);
-            FilmClassesTextBoxGenre.TabIndex = 9;
-            // 
-            // FilmClassesTextBoxRating
-            // 
-            FilmClassesTextBoxRating.Location = new Point(243, 261);
-            FilmClassesTextBoxRating.Name = "FilmClassesTextBoxRating";
-            FilmClassesTextBoxRating.Size = new Size(125, 27);
-            FilmClassesTextBoxRating.TabIndex = 10;
-            // 
-            // FilmClassesLabelGenre
-            // 
-            FilmClassesLabelGenre.AutoSize = true;
-            FilmClassesLabelGenre.Location = new Point(243, 185);
-            FilmClassesLabelGenre.Name = "FilmClassesLabelGenre";
-            FilmClassesLabelGenre.Size = new Size(51, 20);
-            FilmClassesLabelGenre.TabIndex = 11;
-            FilmClassesLabelGenre.Text = "Genre:";
-            // 
-            // FilmClassesLabelRating
-            // 
-            FilmClassesLabelRating.AutoSize = true;
-            FilmClassesLabelRating.Location = new Point(243, 238);
-            FilmClassesLabelRating.Name = "FilmClassesLabelRating";
-            FilmClassesLabelRating.Size = new Size(55, 20);
-            FilmClassesLabelRating.TabIndex = 12;
-            FilmClassesLabelRating.Text = "Rating:";
-            // 
             // Form1
             // 
             ClientSize = new Size(852, 530);
@@ -526,10 +526,10 @@ namespace Programming
             GroupBoxListBox.ResumeLayout(false);
             GroupBoxListBox.PerformLayout();
             tabPageClasses.ResumeLayout(false);
-            RectangleClassesGroupBox.ResumeLayout(false);
-            RectangleClassesGroupBox.PerformLayout();
             FilmClassesGroupBox.ResumeLayout(false);
             FilmClassesGroupBox.PerformLayout();
+            RectangleClassesGroupBox.ResumeLayout(false);
+            RectangleClassesGroupBox.PerformLayout();
             ResumeLayout(false);
 
         }
