@@ -8,10 +8,54 @@ namespace Programming.Model
 {
     public class Film
     {
-        private string Name;
-        private int MinutesDuration;
-        private int YearOfCreation;
-        private string Genre;
-        private double Rating;
+        private string _name;
+        private int _minutesDuration;
+        private int _yearOfCreation;
+        private string _genre;
+        private double _rating;
+
+        public int MinutesDuration
+        {
+            get
+            {
+                return _minutesDuration;
+            }
+            set
+            {
+                if (value < 1)
+                {
+                    MessageBox.Show("Ошибка. Длина фильма не может иметь отрицвтельное значение.");
+                    _minutesDuration = value;
+                }
+            }
+        }
+        public double Rating
+        {
+            get
+            {
+                return _rating;
+            }
+            set
+            {
+                if (value < 0 && value > 10)
+                {
+                    MessageBox.Show("Ошибка. Рейтинг может принимать значение от 0 до 10.");
+                    _rating = value;
+                }
+            }
+        }
+        public string Name { get; set; }
+        public string Genre { get; set; }
+        public int YearOfCreation { get; set; }
+        public Film() { }
+        public Film(string name, int minutesduration, int yearofcreation, string genre, double rating)
+        {
+            Name = Name;
+            MinutesDuration = minutesduration;
+            YearOfCreation = yearofcreation;
+            Genre = genre;
+            Rating = rating;
+        }
     }
+
 }
