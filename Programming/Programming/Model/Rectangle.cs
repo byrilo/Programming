@@ -12,7 +12,7 @@ namespace Programming.Model
         private double _width;
         private string _color;
 
-        public double Length // Свой длины
+        public double Length // Свойcтво длины
         {
             get
             {

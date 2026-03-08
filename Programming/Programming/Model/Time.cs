@@ -12,7 +12,7 @@ namespace Programming.Model
         private int _minutes;
         private int _seconds;
 
-        public int Hours
+        public int Hours // Свойство часа
         {
             get 
             { 
@@ -27,7 +27,7 @@ namespace Programming.Model
                 }
             }
         }
-        public int Minutes
+        public int Minutes // Свойство минуты
         {
             get
             {
@@ -42,7 +42,7 @@ namespace Programming.Model
                 }
             }
         }
-        public int Seconds
+        public int Seconds // Свойство секунды
         {
             get
             {
@@ -57,7 +57,7 @@ namespace Programming.Model
                 }
             }
         }
-        public Time() { }
+        public Time() { } // Конструкторы
         public Time(int hours, int minutes, int seconds)
         {
             Hours = hours;

@@ -12,7 +12,7 @@ namespace Programming.Model
         private string _departurePoint;
         private string _destination;
         private int _minutesFlightTime;
-        public int MinutesFlightTime
+        public int MinutesFlightTime // Свойство минут в полёте
         {
             get
             {
@@ -28,9 +28,9 @@ namespace Programming.Model
             }
 
         }
-        public string DeparturePoint { get; set; }
+        public string DeparturePoint { get; set; } // Автосвойства
         public string Destination { get; set; }
-        public Flight() { }
+        public Flight() { } // Конструкторы
         public Flight(string departurepoint, string destination, int minutesflighttime)
         {
             DeparturePoint = departurepoint;

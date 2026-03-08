@@ -14,7 +14,7 @@ namespace Programming.Model
         private string _genre;
         private double _rating;
 
-        public int MinutesDuration
+        public int MinutesDuration // Свойство длительности фильма
         {
             get
             {
@@ -29,7 +29,7 @@ namespace Programming.Model
                 }
             }
         }
-        public double Rating
+        public double Rating // Свойство рейтинга фильма
         {
             get
             {
@@ -44,10 +44,10 @@ namespace Programming.Model
                 }
             }
         }
-        public string Name { get; set; }
+        public string Name { get; set; } // Автосвойства
         public string Genre { get; set; }
         public int YearOfCreation { get; set; }
-        public Film() { }
+        public Film() { } // Конструкторы
         public Film(string name, int minutesduration, int yearofcreation, string genre, double rating)
         {
             Name = Name;
