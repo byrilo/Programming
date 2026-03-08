@@ -8,9 +8,9 @@ namespace Programming.Model
 {
     public class Discipline
     {
-        private string DisciplineName;
-        private int Grade;
-        private string Teacher;
-        private int DisciplineHours;
+        private string _disciplineName;
+        private int _grade;
+        private string _teacher;
+        private int _disciplineHours;
     }
 }
