@@ -23,8 +23,8 @@ namespace Programming.Model
                 if (value < 0)
                 {
                     MessageBox.Show("Ошибка. Длина не может иметь отрицательное значение.");
-                    _length = value;
                 }
+                _length = value;
             }
         }
         public double Width // Свойство ширины
@@ -38,8 +38,8 @@ namespace Programming.Model
                 if (value < 0)
                 {
                     MessageBox.Show("Ошибка. Ширина не может иметь отрицательное значение");
-                    _width = value;
                 }
+                _width = value;
             }
         }
         public string Color { get; set; } // Автосвойство
