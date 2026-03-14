@@ -16,6 +16,7 @@ namespace Programming
         public Form1()
         {
             InitializeComponent();
+            InitializeRectanglesData();
         }
         private TabControl TabControlMain;
         private TabPage tabPage1;
@@ -506,8 +507,9 @@ namespace Programming
             RectangleClassesListBox.FormattingEnabled = true;
             RectangleClassesListBox.Location = new Point(6, 26);
             RectangleClassesListBox.Name = "RectangleClassesListBox";
-            RectangleClassesListBox.Size = new Size(195, 344);
+            RectangleClassesListBox.Size = new Size(231, 344);
             RectangleClassesListBox.TabIndex = 0;
+            RectangleClassesListBox.SelectedIndexChanged += RectanglesListBox_SelectedIndexChanged;
             // 
             // Form1
             // 
@@ -636,5 +638,48 @@ namespace Programming
         {
 
         }
+        private Programming.Model.Rectangle[] _rectangles;
+        private Programming.Model.Rectangle _currentRectangle;
+        private void InitializeRectanglesData()
+        {
+            Random rnd = new Random();
+            _rectangles = new Programming.Model.Rectangle[5];
+
+            // Генерация 5 случайных прямоугольников
+            for (int i = 0; i < _rectangles.Length; i++)
+            {
+                // Генерируем значения от 1 до 100
+                double length = rnd.Next(1, 100);
+                double width = rnd.Next(1, 100);
+                string color = rnd.Next(0, 2) == 0 ? "Red" : "Blue"; // Случайный цвет для примера
+
+                // Создаем объект (сработают проверки в свойствах)
+                _rectangles[i] = new Programming.Model.Rectangle(length, width, color);
+
+                // Пункт 13: Добавляем объект в ListBox
+                // Благодаря ToString() в списке отобразится понятный текст
+                RectangleClassesListBox.Items.Add(_rectangles[i]);
+            }
+        }
+        private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Проверяем, что элемент действительно выбран
+            if (RectangleClassesListBox.SelectedIndex < 0) return;
+
+            // Пункт 14: Получаем объект из массива по индексу
+            _currentRectangle = _rectangles[RectangleClassesListBox.SelectedIndex];
+
+            // Пункт 15: Заполняем TextBox значениями полей объекта
+            // Используем безопасное преобразование к строке
+            RectangleClassesTextBoxLenght.Text = _currentRectangle.Length.ToString();
+            RectangleClassesTextBoxWidth.Text = _currentRectangle.Width.ToString();
+            RectangleClassesTextBoxColor.Text = _currentRectangle.Color;
+
+            // Сбрасываем цвет фона на белый (на случай, если ранее была ошибка)
+            RectangleClassesTextBoxLenght.BackColor = Color.White;
+            RectangleClassesTextBoxWidth.BackColor = Color.White;
+            RectangleClassesTextBoxColor.BackColor = Color.White;
+        }
+
     }
 }

@@ -8,7 +8,7 @@ namespace Programming.Model
 {
     public class Rectangle
     {
-        private double _lenght;
+        private double _length;
         private double _width;
         private string _color;
 
@@ -16,14 +16,14 @@ namespace Programming.Model
         {
             get
             {
-                return _lenght;
+                return _length;
             }
             set
             {
                 if (value < 0)
                 {
                     MessageBox.Show("Ошибка. Длина не может иметь отрицательное значение.");
-                    _lenght = value;
+                    _length = value;
                 }
             }
         }
