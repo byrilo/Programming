@@ -171,5 +171,51 @@ namespace Programming
         {
 
         }
+
+        private void RectangleClassesTextBoxLenght_TextChanged(object sender, EventArgs e)
+        {
+            if (_currentRectangle == null) return; // Проверка на то, что значение выбрано
+            try
+            {
+                // Преобразование текста в число
+                double length = double.Parse(RectangleClassesTextBoxLenght.Text);
+                // Присваивание через свойство
+                _currentRectangle.Length = length;
+                // Белый фон при успешном вводе
+                RectangleClassesTextBoxLenght.BackColor = Color.White;
+            }
+            catch (Exception)
+            {
+                RectangleClassesTextBoxLenght.BackColor = Color.LightPink; // Розовый фон при ошибке
+            }
+        }
+
+        private void RectangleClassesTextBoxWidth_TextChanged(object sender, EventArgs e)
+        {
+            if (_currentRectangle == null) return; // Проверка на то, что значение выбрано
+            try
+            {
+                // Преобразование текста в число
+                double width = double.Parse(RectangleClassesTextBoxWidth.Text);
+
+                // Присваивание через свойство
+                _currentRectangle.Width = width;
+
+                // Белый фон при успешном вводе
+                RectangleClassesTextBoxWidth.BackColor = Color.White;
+            }
+            catch (Exception)
+            {
+                RectangleClassesTextBoxWidth.BackColor = Color.LightPink; // Розовый фон при ошибке
+            }
+        }
+
+        private void RectangleClassesTextBoxColor_TextChanged(object sender, EventArgs e)
+        {
+            if (_currentRectangle != null)
+            {
+                _currentRectangle.Color = RectangleClassesTextBoxColor.Text;
+            }
+        }
     }
 }

@@ -444,6 +444,7 @@ namespace Programming
             RectangleClassesTextBoxWidth.Name = "RectangleClassesTextBoxWidth";
             RectangleClassesTextBoxWidth.Size = new Size(125, 27);
             RectangleClassesTextBoxWidth.TabIndex = 5;
+            RectangleClassesTextBoxWidth.TextChanged += RectangleClassesTextBoxWidth_TextChanged;
             // 
             // RectangleClassesTextBoxColor
             // 
@@ -451,6 +452,7 @@ namespace Programming
             RectangleClassesTextBoxColor.Name = "RectangleClassesTextBoxColor";
             RectangleClassesTextBoxColor.Size = new Size(125, 27);
             RectangleClassesTextBoxColor.TabIndex = 4;
+            RectangleClassesTextBoxColor.TextChanged += RectangleClassesTextBoxColor_TextChanged;
             // 
             // RectangleClassesTextBoxLenght
             // 
@@ -458,6 +460,7 @@ namespace Programming
             RectangleClassesTextBoxLenght.Name = "RectangleClassesTextBoxLenght";
             RectangleClassesTextBoxLenght.Size = new Size(125, 27);
             RectangleClassesTextBoxLenght.TabIndex = 3;
+            RectangleClassesTextBoxLenght.TextChanged += RectangleClassesTextBoxLenght_TextChanged;
             // 
             // RectangleClassesFindButton
             // 

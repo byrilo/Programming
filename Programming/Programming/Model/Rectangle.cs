@@ -23,7 +23,7 @@ namespace Programming.Model
             {
                 if (value < 0)
                 {
-                    MessageBox.Show("Ошибка. Длина не может иметь отрицательное значение.");
+                    throw new ArgumentException("Ошибка. Длина не может иметь отрицательное значение.");
                 }
                 _length = value;
             }
@@ -38,7 +38,7 @@ namespace Programming.Model
             {
                 if (value < 0)
                 {
-                    MessageBox.Show("Ошибка. Ширина не может иметь отрицательное значение");
+                    throw new ArgumentException("Ширина не может быть отрицательной");
                 }
                 _width = value;
             }
