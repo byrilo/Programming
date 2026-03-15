@@ -317,6 +317,7 @@ namespace Programming
             FilmClassesTextBoxRating.Name = "FilmClassesTextBoxRating";
             FilmClassesTextBoxRating.Size = new Size(125, 27);
             FilmClassesTextBoxRating.TabIndex = 10;
+            FilmClassesTextBoxRating.TextChanged += FilmClassesTextBoxRating_TextChanged;
             // 
             // FilmClassesTextBoxGenre
             // 
@@ -324,6 +325,7 @@ namespace Programming
             FilmClassesTextBoxGenre.Name = "FilmClassesTextBoxGenre";
             FilmClassesTextBoxGenre.Size = new Size(125, 27);
             FilmClassesTextBoxGenre.TabIndex = 9;
+            FilmClassesTextBoxGenre.TextChanged += FilmClassesTextBoxGenre_TextChanged;
             // 
             // FilmClassesLabelYear
             // 
@@ -349,6 +351,7 @@ namespace Programming
             FilmClassesTextBoxDuration.Name = "FilmClassesTextBoxDuration";
             FilmClassesTextBoxDuration.Size = new Size(125, 27);
             FilmClassesTextBoxDuration.TabIndex = 5;
+            FilmClassesTextBoxDuration.TextChanged += FilmClassesTextBoxDuration_TextChanged;
             // 
             // FilmClassesTextBoxYear
             // 
@@ -356,6 +359,7 @@ namespace Programming
             FilmClassesTextBoxYear.Name = "FilmClassesTextBoxYear";
             FilmClassesTextBoxYear.Size = new Size(125, 27);
             FilmClassesTextBoxYear.TabIndex = 4;
+            FilmClassesTextBoxYear.TextChanged += FilmClassesTextBoxYear_TextChanged;
             // 
             // FilmClassesFindButton
             // 

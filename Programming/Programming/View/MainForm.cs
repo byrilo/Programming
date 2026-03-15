@@ -284,12 +284,12 @@ namespace Programming
             int maxIndex = 0;              // Индекс фильма с максимальным рейтингом
             double maxRating = films[0].Rating;  // Максимальный рейтинг
 
-            for (int i = 1; i < films.Length; i++)  
+            for (int i = 1; i < films.Length; i++)
             {
                 if (films[i].Rating > maxRating)
                 {
                     maxRating = films[i].Rating;  // Обновляем максимальный рейтинг
-                    maxIndex = i;                  
+                    maxIndex = i;
                 }
             }
             return maxIndex;
@@ -299,6 +299,57 @@ namespace Programming
             int index = FindFilmWithMaxRating(_films);
             FilmClassesListBox.SelectedIndex = index;
         }
-        // Добавить красный цвет в фильмах при ошибке как в прямоугольниках
+
+        private void FilmClassesTextBoxDuration_TextChanged(object sender, EventArgs e)
+        {
+            if (_currentFilm == null) return; // Проверка на то, что значение выбрано
+            try
+            {
+                // Преобразование текста в число
+                int minutesDuration = int.Parse(FilmClassesTextBoxDuration.Text);
+                // Присваивание через свойство
+                _currentFilm.MinutesDuration = minutesDuration;
+                // Белый фон при успешном вводе
+                FilmClassesTextBoxDuration.BackColor = Color.White;
+            }
+            catch (Exception)
+            {
+                FilmClassesTextBoxDuration.BackColor = Color.LightPink; // Розовый фон при ошибке
+            }
+        }
+
+        private void FilmClassesTextBoxYear_TextChanged(object sender, EventArgs e)
+        {
+            if (_currentFilm == null) return; // Проверка на то, что значение выбрано
+            try
+            {
+                int yearOfCreation = int.Parse(FilmClassesTextBoxYear.Text);
+                _currentFilm.YearOfCreation = yearOfCreation;
+                FilmClassesTextBoxYear.BackColor = Color.White;
+            }
+            catch (Exception)
+            {
+                FilmClassesTextBoxYear.BackColor = Color.LightPink; // Розовый фон при ошибке
+            }
+        }
+
+        private void FilmClassesTextBoxGenre_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void FilmClassesTextBoxRating_TextChanged(object sender, EventArgs e)
+        {
+            if (_currentFilm == null) return; // Проверка на то, что значение выбрано
+            try             {
+                double rating = double.Parse(FilmClassesTextBoxRating.Text);
+                _currentFilm.Rating = rating;
+                FilmClassesTextBoxRating.BackColor = Color.White;
+            }
+            catch (Exception)
+            {
+                FilmClassesTextBoxRating.BackColor = Color.LightPink; // Розовый фон при ошибке
+            }
+        }
     }
 }
