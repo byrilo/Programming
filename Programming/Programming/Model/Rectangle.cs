@@ -23,7 +23,7 @@ namespace Programming.Model
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("Ошибка. Длина не может иметь отрицательное значение.");
+                    throw new ArgumentException("Ошибка. Длина не может иметь отрицательное значение."); // При ошибке
                 }
                 _length = value;
             }
@@ -38,7 +38,7 @@ namespace Programming.Model
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("Ширина не может быть отрицательной");
+                    throw new ArgumentException("Ширина не может быть отрицательной"); //При ошибке
                 }
                 _width = value;
             }
@@ -55,7 +55,7 @@ namespace Programming.Model
         }
 
 
-        public Rectangle() { } // Конструкторы?
+        public Rectangle() { } // Конструкторы
         public Rectangle(double length, double width, string color)
         {
             Length = length;

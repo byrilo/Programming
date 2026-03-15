@@ -212,7 +212,7 @@ namespace Programming
 
         private void RectangleClassesTextBoxColor_TextChanged(object sender, EventArgs e)
         {
-            if (_currentRectangle != null)
+            if (_currentRectangle != null) // Проверка на то, что значение выбрано
             {
                 _currentRectangle.Color = RectangleClassesTextBoxColor.Text;
             }
