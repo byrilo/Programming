@@ -467,6 +467,7 @@ namespace Programming
             RectangleClassesFindButton.TabIndex = 2;
             RectangleClassesFindButton.Text = "Find";
             RectangleClassesFindButton.UseVisualStyleBackColor = true;
+            RectangleClassesFindButton.Click += RectangleClassesFindButton_Click;
             // 
             // RectangleClassesListBox
             // 

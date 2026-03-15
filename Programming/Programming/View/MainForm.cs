@@ -112,7 +112,7 @@ namespace Programming
                 case Seasons.Spring:
                     this.BackColor = ColorTranslator.FromHtml("#559c45");
                     break;
-                default: 
+                default:
                     break;
             }
         }
@@ -121,50 +121,55 @@ namespace Programming
         {
 
         }
-
+        // Объявление классов и переменных для работы с прямоугольниками
         private Programming.Model.Rectangle[] _rectangles;
         private Programming.Model.Rectangle _currentRectangle;
 
-        private void InitializeRectanglesData()
+        private void InitializeRectanglesData() // Метод для инициализации данных о прямоугольниках
         {
             Random rnd = new Random();
             _rectangles = new Programming.Model.Rectangle[5];
 
-            // Генерация 5 случайных прямоугольников
+            // Генерация прямоугольников с случайными данными и добавление их в массив
             for (int i = 0; i < _rectangles.Length; i++)
             {
-                // Генерируем значения от 1 до 100
+                // Генерация случайных данных для прямоугольника
                 double length = rnd.Next(1, 100);
                 double width = rnd.Next(1, 100);
-                string color = rnd.Next(0, 2) == 0 ? "Red" : "Blue"; // Случайный цвет для примера
+                string color = rnd.Next(0, 2) == 0 ? "Red" : "Blue"; // Случайный цвет 
 
-                // Создаем объект (сработают проверки в свойствах)
+                // Создание нового прямоугольника и сохранение его в массив
                 _rectangles[i] = new Programming.Model.Rectangle(length, width, color);
+                _rectangles[i].Number = i + 1; // Устанавливаем номер
 
-                // Пункт 13: Добавляем объект в ListBox
-                // Благодаря ToString() в списке отобразится понятный текст
+                // Добавление прямоугольника в ListBox для отображения
+                // ToString() должен быть переопределён в классе Rectangle для отображения понятного текста.
                 RectangleClassesListBox.Items.Add(_rectangles[i]);
             }
         }
 
-        private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e) // Обработчик события изменения выбранного элемента в ListBox прямоугольников
         {
-            // Проверяем, что элемент действительно выбран
+            // Проверка на то что элемент выбран
             if (RectangleClassesListBox.SelectedIndex < 0) return;
 
-            // Пункт 14: Получаем объект из массива по индексу
+            // Получение объекта по индексу
             _currentRectangle = _rectangles[RectangleClassesListBox.SelectedIndex];
 
-            // Пункт 15: Заполняем TextBox значениями полей объекта
-            // Используем безопасное преобразование к строке
+            // Заполнение TextBox
             RectangleClassesTextBoxLenght.Text = _currentRectangle.Length.ToString();
             RectangleClassesTextBoxWidth.Text = _currentRectangle.Width.ToString();
             RectangleClassesTextBoxColor.Text = _currentRectangle.Color;
 
-            // Сбрасываем цвет фона на белый (на случай, если ранее была ошибка)
+            // Сброс цвета фона TextBox на белый при выборе нового элемента
             RectangleClassesTextBoxLenght.BackColor = Color.White;
             RectangleClassesTextBoxWidth.BackColor = Color.White;
             RectangleClassesTextBoxColor.BackColor = Color.White;
+        }
+
+        private void RectangleClassesFindButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

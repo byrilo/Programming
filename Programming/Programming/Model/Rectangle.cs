@@ -11,6 +11,7 @@ namespace Programming.Model
         private double _length;
         private double _width;
         private string _color;
+        private int _number; // Для отображения порядкового номера прямоугольника
 
         public double Length // Свойcтво длины
         {
@@ -43,6 +44,16 @@ namespace Programming.Model
             }
         }
         public string Color { get; set; } // Автосвойство
+        public int Number // Cвойство порядкового номера
+        {
+            get { return _number; }
+            set { _number = value; }
+        }
+        public override string ToString() // Переписанный метод ToString для отображения информации о прямоугольнике
+        {
+            return $"Rectangle {Number}";
+        }
+
 
         public Rectangle() { } // Конструкторы?
         public Rectangle(double length, double width, string color)
