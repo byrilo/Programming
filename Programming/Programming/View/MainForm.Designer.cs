@@ -365,6 +365,7 @@ namespace Programming
             FilmClassesFindButton.TabIndex = 2;
             FilmClassesFindButton.Text = "Find";
             FilmClassesFindButton.UseVisualStyleBackColor = true;
+            FilmClassesFindButton.Click += FilmClassesFindButton_Click;
             // 
             // FilmClassesListBox
             // 

@@ -148,6 +148,7 @@ namespace Programming
                 double rating = Math.Round(rnd.NextDouble() * 10, 1);
 
                 _films[i] = new Programming.Model.Film(name, minutesDuration, yearOfCreation, genre, rating);
+                _films[i].Number = i + 1; // Устанавливаем номер
                 FilmClassesListBox.Items.Add(_films[i]);
             }
         }
@@ -278,5 +279,26 @@ namespace Programming
             int index = FindRectangleWithMaxWidth(_rectangles);
             RectangleClassesListBox.SelectedIndex = index;
         }
+        private int FindFilmWithMaxRating(Programming.Model.Film[] films)
+        {
+            int maxIndex = 0;              // Индекс фильма с максимальным рейтингом
+            double maxRating = films[0].Rating;  // Максимальный рейтинг
+
+            for (int i = 1; i < films.Length; i++)  
+            {
+                if (films[i].Rating > maxRating)
+                {
+                    maxRating = films[i].Rating;  // Обновляем максимальный рейтинг
+                    maxIndex = i;                  
+                }
+            }
+            return maxIndex;
+        }
+        private void FilmClassesFindButton_Click(object sender, EventArgs e)
+        {
+            int index = FindFilmWithMaxRating(_films);
+            FilmClassesListBox.SelectedIndex = index;
+        }
+        // Добавить красный цвет в фильмах при ошибке как в прямоугольниках
     }
 }

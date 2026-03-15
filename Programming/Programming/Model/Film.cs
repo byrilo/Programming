@@ -14,6 +14,7 @@ namespace Programming.Model
         private int _yearOfCreation;
         private string _genre;
         private double _rating;
+        private int _number;
 
         public int MinutesDuration // Свойство длительности фильма
         {
@@ -49,6 +50,15 @@ namespace Programming.Model
         {
             get { return _name; }
             set { _name = value; }
+        }
+        public int Number // Cвойство порядкового номера
+        {
+            get { return _number; }
+            set { _number = value; }
+        }
+        public override string ToString() // Переписанный метод ToString для отображения информации о прямоугольнике
+        {
+            return $"Film {Number}";
         }
         // Автосвойства
         public string Genre { get; set; }
