@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Programming.Model
 {
@@ -24,9 +25,9 @@ namespace Programming.Model
             {
                 if (value < 1)
                 {
-                    MessageBox.Show("Ошибка. Длина фильма не может иметь отрицвтельное значение.");
-                    _minutesDuration = value;
+                    throw new ArgumentException("Ошибка. Длина фильма не может иметь отрицвтельное значение.");
                 }
+                _minutesDuration = value;
             }
         }
         public double Rating // Свойство рейтинга фильма
@@ -39,12 +40,17 @@ namespace Programming.Model
             {
                 if (value < 0 && value > 10)
                 {
-                    MessageBox.Show("Ошибка. Рейтинг может принимать значение от 0 до 10.");
-                    _rating = value;
+                    throw new ArgumentException("Ошибка. Рейтинг может принимать значение от 0 до 10.");
                 }
+                _rating = value;
             }
         }
-        public string Name { get; set; } // Автосвойства
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+        // Автосвойства
         public string Genre { get; set; }
         public int YearOfCreation { get; set; }
         public Film() { } // Конструкторы
@@ -57,5 +63,4 @@ namespace Programming.Model
             Rating = rating;
         }
     }
-
 }

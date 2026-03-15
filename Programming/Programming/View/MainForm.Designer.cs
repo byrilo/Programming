@@ -54,10 +54,8 @@ namespace Programming
             FilmClassesTextBoxGenre = new TextBox();
             FilmClassesLabelYear = new Label();
             FilmClassesLabelDuration = new Label();
-            FilmClassesLabelName = new Label();
             FilmClassesTextBoxDuration = new TextBox();
             FilmClassesTextBoxYear = new TextBox();
-            FilmClassesTextBoxName = new TextBox();
             FilmClassesFindButton = new Button();
             FilmClassesListBox = new ListBox();
             RectangleClassesGroupBox = new GroupBox();
@@ -284,10 +282,8 @@ namespace Programming
             FilmClassesGroupBox.Controls.Add(FilmClassesTextBoxGenre);
             FilmClassesGroupBox.Controls.Add(FilmClassesLabelYear);
             FilmClassesGroupBox.Controls.Add(FilmClassesLabelDuration);
-            FilmClassesGroupBox.Controls.Add(FilmClassesLabelName);
             FilmClassesGroupBox.Controls.Add(FilmClassesTextBoxDuration);
             FilmClassesGroupBox.Controls.Add(FilmClassesTextBoxYear);
-            FilmClassesGroupBox.Controls.Add(FilmClassesTextBoxName);
             FilmClassesGroupBox.Controls.Add(FilmClassesFindButton);
             FilmClassesGroupBox.Controls.Add(FilmClassesListBox);
             FilmClassesGroupBox.Location = new Point(409, 3);
@@ -300,7 +296,7 @@ namespace Programming
             // FilmClassesLabelRating
             // 
             FilmClassesLabelRating.AutoSize = true;
-            FilmClassesLabelRating.Location = new Point(243, 238);
+            FilmClassesLabelRating.Location = new Point(243, 185);
             FilmClassesLabelRating.Name = "FilmClassesLabelRating";
             FilmClassesLabelRating.Size = new Size(55, 20);
             FilmClassesLabelRating.TabIndex = 12;
@@ -309,7 +305,7 @@ namespace Programming
             // FilmClassesLabelGenre
             // 
             FilmClassesLabelGenre.AutoSize = true;
-            FilmClassesLabelGenre.Location = new Point(243, 185);
+            FilmClassesLabelGenre.Location = new Point(243, 132);
             FilmClassesLabelGenre.Name = "FilmClassesLabelGenre";
             FilmClassesLabelGenre.Size = new Size(51, 20);
             FilmClassesLabelGenre.TabIndex = 11;
@@ -317,14 +313,14 @@ namespace Programming
             // 
             // FilmClassesTextBoxRating
             // 
-            FilmClassesTextBoxRating.Location = new Point(243, 261);
+            FilmClassesTextBoxRating.Location = new Point(243, 208);
             FilmClassesTextBoxRating.Name = "FilmClassesTextBoxRating";
             FilmClassesTextBoxRating.Size = new Size(125, 27);
             FilmClassesTextBoxRating.TabIndex = 10;
             // 
             // FilmClassesTextBoxGenre
             // 
-            FilmClassesTextBoxGenre.Location = new Point(243, 208);
+            FilmClassesTextBoxGenre.Location = new Point(243, 155);
             FilmClassesTextBoxGenre.Name = "FilmClassesTextBoxGenre";
             FilmClassesTextBoxGenre.Size = new Size(125, 27);
             FilmClassesTextBoxGenre.TabIndex = 9;
@@ -332,7 +328,7 @@ namespace Programming
             // FilmClassesLabelYear
             // 
             FilmClassesLabelYear.AutoSize = true;
-            FilmClassesLabelYear.Location = new Point(243, 132);
+            FilmClassesLabelYear.Location = new Point(243, 79);
             FilmClassesLabelYear.Name = "FilmClassesLabelYear";
             FilmClassesLabelYear.Size = new Size(40, 20);
             FilmClassesLabelYear.TabIndex = 8;
@@ -341,41 +337,25 @@ namespace Programming
             // FilmClassesLabelDuration
             // 
             FilmClassesLabelDuration.AutoSize = true;
-            FilmClassesLabelDuration.Location = new Point(243, 79);
+            FilmClassesLabelDuration.Location = new Point(243, 26);
             FilmClassesLabelDuration.Name = "FilmClassesLabelDuration";
             FilmClassesLabelDuration.Size = new Size(100, 20);
             FilmClassesLabelDuration.TabIndex = 7;
             FilmClassesLabelDuration.Text = "Film duration:";
             // 
-            // FilmClassesLabelName
-            // 
-            FilmClassesLabelName.AutoSize = true;
-            FilmClassesLabelName.Location = new Point(243, 26);
-            FilmClassesLabelName.Name = "FilmClassesLabelName";
-            FilmClassesLabelName.Size = new Size(81, 20);
-            FilmClassesLabelName.TabIndex = 6;
-            FilmClassesLabelName.Text = "Film name:";
-            // 
             // FilmClassesTextBoxDuration
             // 
-            FilmClassesTextBoxDuration.Location = new Point(243, 102);
+            FilmClassesTextBoxDuration.Location = new Point(243, 49);
             FilmClassesTextBoxDuration.Name = "FilmClassesTextBoxDuration";
             FilmClassesTextBoxDuration.Size = new Size(125, 27);
             FilmClassesTextBoxDuration.TabIndex = 5;
             // 
             // FilmClassesTextBoxYear
             // 
-            FilmClassesTextBoxYear.Location = new Point(243, 155);
+            FilmClassesTextBoxYear.Location = new Point(243, 102);
             FilmClassesTextBoxYear.Name = "FilmClassesTextBoxYear";
             FilmClassesTextBoxYear.Size = new Size(125, 27);
             FilmClassesTextBoxYear.TabIndex = 4;
-            // 
-            // FilmClassesTextBoxName
-            // 
-            FilmClassesTextBoxName.Location = new Point(243, 49);
-            FilmClassesTextBoxName.Name = "FilmClassesTextBoxName";
-            FilmClassesTextBoxName.Size = new Size(125, 27);
-            FilmClassesTextBoxName.TabIndex = 3;
             // 
             // FilmClassesFindButton
             // 
@@ -391,8 +371,9 @@ namespace Programming
             FilmClassesListBox.FormattingEnabled = true;
             FilmClassesListBox.Location = new Point(6, 26);
             FilmClassesListBox.Name = "FilmClassesListBox";
-            FilmClassesListBox.Size = new Size(195, 344);
+            FilmClassesListBox.Size = new Size(231, 344);
             FilmClassesListBox.TabIndex = 0;
+            FilmClassesListBox.SelectedIndexChanged += FilmClassesListBox_SelectedIndexChanged;
             // 
             // RectangleClassesGroupBox
             // 
@@ -538,10 +519,8 @@ namespace Programming
         private GroupBox FilmClassesGroupBox;
         private Label FilmClassesLabelYear;
         private Label FilmClassesLabelDuration;
-        private Label FilmClassesLabelName;
         private TextBox FilmClassesTextBoxDuration;
         private TextBox FilmClassesTextBoxYear;
-        private TextBox FilmClassesTextBoxName;
         private Button FilmClassesFindButton;
         private ListBox FilmClassesListBox;
         private Label FilmClassesLabelRating;

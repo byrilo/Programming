@@ -17,6 +17,7 @@ namespace Programming
         {
             InitializeComponent();
             InitializeRectanglesData();
+            InitializeFilmsData();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -124,6 +125,52 @@ namespace Programming
         // Объявление классов и переменных для работы с прямоугольниками
         private Programming.Model.Rectangle[] _rectangles;
         private Programming.Model.Rectangle _currentRectangle;
+
+        private Programming.Model.Film[] _films; // Массив для хранения фильмов
+        private Programming.Model.Film _currentFilm; // Переменная для хранения текущего выбранного фильма
+
+        private void InitializeFilmsData()
+        {
+            Random rnd = new Random();  // Один экземпляр на весь метод
+            _films = new Programming.Model.Film[5];
+
+            for (int i = 0; i < _films.Length; i++)
+            {
+                string name = $"Film {i + 1}";
+                int minutesDuration = rnd.Next(60, 180);
+                int yearOfCreation = rnd.Next(1950, 2026);
+
+                // Используем тот же rnd для жанра
+                string[] genres = { "Action", "Comedy", "Drama", "Horror", "Sci-Fi" };
+                string genre = genres[rnd.Next(0, genres.Length)];
+
+                // Используем тот же rnd для рейтинга
+                double rating = Math.Round(rnd.NextDouble() * 10, 1);
+
+                _films[i] = new Programming.Model.Film(name, minutesDuration, yearOfCreation, genre, rating);
+                FilmClassesListBox.Items.Add(_films[i]);
+            }
+        }
+        // string genre = ((Genre)(new Random().Next(0, Enum.GetValues(typeof(Genre)).Length))).ToString();
+        private void FilmClassesListBox_SelectedIndexChanged(object sender, EventArgs e) // Обработчик события изменения выбранного элемента в ListBox прямоугольников
+        {
+            // Проверка на то что элемент выбран
+            if (FilmClassesListBox.SelectedIndex < 0) return;
+
+            // Получение объекта по индексу
+            _currentFilm = _films[FilmClassesListBox.SelectedIndex];
+
+            // Заполнение TextBox
+            FilmClassesTextBoxDuration.Text = _currentFilm.MinutesDuration.ToString();
+            FilmClassesTextBoxYear.Text = _currentFilm.YearOfCreation.ToString();
+            FilmClassesTextBoxGenre.Text = _currentFilm.Genre.ToString();
+            FilmClassesTextBoxRating.Text = _currentFilm.Rating.ToString();
+            // Сброс цвета фона TextBox на белый при выборе нового элемента
+            FilmClassesTextBoxDuration.BackColor = Color.White;
+            FilmClassesTextBoxYear.BackColor = Color.White;
+            FilmClassesTextBoxGenre.BackColor = Color.White;
+            FilmClassesTextBoxRating.BackColor = Color.White;
+        }
 
         private void InitializeRectanglesData() // Метод для инициализации данных о прямоугольниках
         {
