@@ -167,11 +167,6 @@ namespace Programming
             RectangleClassesTextBoxColor.BackColor = Color.White;
         }
 
-        private void RectangleClassesFindButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void RectangleClassesTextBoxLenght_TextChanged(object sender, EventArgs e)
         {
             if (_currentRectangle == null) return; // Проверка на то, что значение выбрано
@@ -216,6 +211,25 @@ namespace Programming
             {
                 _currentRectangle.Color = RectangleClassesTextBoxColor.Text;
             }
+        }
+        private int FindRectangleWithMaxWidth(Programming.Model.Rectangle[] rectangles)
+        {
+            int maxIndex = 0; // Индекс прямоугольника с максимальной шириной
+            double maxWidth = rectangles[0].Width; // Максимальная ширина, изначально - ширина первого прямоугольника
+            for (int i = 1; i < rectangles.Length; i++) // Проход по всем прямоугольникам
+            {
+                if (rectangles[i].Width > maxWidth) // Если текущая ширина больше максимальной
+                {
+                    maxWidth = rectangles[i].Width; // Обновляем максимальную ширину
+                    maxIndex = i; // Обновляем индекс
+                }
+            }
+            return maxIndex; // Возвращаем индекс прямоугольника с максимальной шириной
+        }
+        private void RectangleClassesFindButton_Click(object sender, EventArgs e)
+        {
+            int index = FindRectangleWithMaxWidth(_rectangles);
+            RectangleClassesListBox.SelectedIndex = index;
         }
     }
 }
