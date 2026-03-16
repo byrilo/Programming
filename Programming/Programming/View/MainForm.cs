@@ -187,7 +187,7 @@ namespace Programming
             {
                 double length = rnd.Next(1, 100); // Случайная длина
                 double width = rnd.Next(1, 100); // Случайная ширина
-                string color = rnd.Next(0, 2) == 0 ? "Red" : "Blue"; // Случайный цвет 
+                string color = ((Colors)(rnd.Next(0, Enum.GetValues(typeof(Colors)).Length))).ToString(); // Случайный цвет 
                 _rectangles[i] = new Programming.Model.Rectangle(length, width, color);
                 _rectangles[i].Number = i + 1; // Устанавливаем номер
                 RectangleClassesListBox.Items.Add(_rectangles[i]);
