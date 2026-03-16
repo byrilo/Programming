@@ -16,8 +16,8 @@ namespace Programming
         public Form1()
         {
             InitializeComponent();
-            InitializeRectanglesData();
-            InitializeFilmsData();
+            InitializeRectanglesData(); // Прямоугольники
+            InitializeFilmsData(); // Фильмы
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -122,27 +122,29 @@ namespace Programming
         {
 
         }
-        // Объявление классов и переменных для работы с прямоугольниками
-        private Programming.Model.Rectangle[] _rectangles;
-        private Programming.Model.Rectangle _currentRectangle;
+        private Programming.Model.Rectangle[] _rectangles; // Массив для хранения прямугольников
+        private Programming.Model.Rectangle _currentRectangle; // Переменная для хранения текущего выбранного прямоугольника
 
         private Programming.Model.Film[] _films; // Массив для хранения фильмов
         private Programming.Model.Film _currentFilm; // Переменная для хранения текущего выбранного фильма
-
+        /// <summary>
+        /// Функция иницилизирующая 5 фильмов в программу
+        /// </summary>
         private void InitializeFilmsData()
         {
-            Random rnd = new Random();  // Один экземпляр на весь метод
+            Random rnd = new Random();  
             _films = new Programming.Model.Film[5];
 
             for (int i = 0; i < _films.Length; i++)
             {
                 string name = $"Film {i + 1}";
-                int minutesDuration = rnd.Next(60, 180);
-                int yearOfCreation = rnd.Next(1950, 2026);
+                int minutesDuration = rnd.Next(60, 180); // Случайные значения длительности фильма
+                int yearOfCreation = rnd.Next(1950, 2026); // Случайные значения года создания фильма
 
-                // Используем тот же rnd для жанра
-                string[] genres = { "Action", "Comedy", "Drama", "Horror", "Sci-Fi" };
-                string genre = genres[rnd.Next(0, genres.Length)];
+                string genre = ((Genre)(new Random().Next(0, Enum.GetValues(typeof(Genre)).Length))).ToString(); // Берём жанры из класса жанров
+
+                //string[] genres = { "Action", "Comedy", "Drama", "Horror", "Sci-Fi" };
+                //string genre = genres[rnd.Next(0, genres.Length)];
 
                 // Используем тот же rnd для рейтинга
                 double rating = Math.Round(rnd.NextDouble() * 10, 1);
@@ -153,14 +155,15 @@ namespace Programming
             }
         }
         // string genre = ((Genre)(new Random().Next(0, Enum.GetValues(typeof(Genre)).Length))).ToString();
-        private void FilmClassesListBox_SelectedIndexChanged(object sender, EventArgs e) // Обработчик события изменения выбранного элемента в ListBox прямоугольников
+        /// <summary>
+        /// Функция, которая срабатывает при выборе фильма, инициализируя данные в текстбоксы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FilmClassesListBox_SelectedIndexChanged(object sender, EventArgs e) 
         {
-            // Проверка на то что элемент выбран
-            if (FilmClassesListBox.SelectedIndex < 0) return;
-
-            // Получение объекта по индексу
-            _currentFilm = _films[FilmClassesListBox.SelectedIndex];
-
+            if (FilmClassesListBox.SelectedIndex < 0) return; // Проверка на то, что элемент выбран
+            _currentFilm = _films[FilmClassesListBox.SelectedIndex]; // Получение фильма по индексу
             // Заполнение TextBox
             FilmClassesTextBoxDuration.Text = _currentFilm.MinutesDuration.ToString();
             FilmClassesTextBoxYear.Text = _currentFilm.YearOfCreation.ToString();
@@ -172,43 +175,37 @@ namespace Programming
             FilmClassesTextBoxGenre.BackColor = Color.White;
             FilmClassesTextBoxRating.BackColor = Color.White;
         }
-
-        private void InitializeRectanglesData() // Метод для инициализации данных о прямоугольниках
+        /// <summary>
+        /// Функция инициализирует 5 прямоугольников в программу (Листбокс)
+        /// </summary>
+        private void InitializeRectanglesData() 
         {
             Random rnd = new Random();
             _rectangles = new Programming.Model.Rectangle[5];
 
-            // Генерация прямоугольников с случайными данными и добавление их в массив
             for (int i = 0; i < _rectangles.Length; i++)
             {
-                // Генерация случайных данных для прямоугольника
-                double length = rnd.Next(1, 100);
-                double width = rnd.Next(1, 100);
+                double length = rnd.Next(1, 100); // Случайная длина
+                double width = rnd.Next(1, 100); // Случайная ширина
                 string color = rnd.Next(0, 2) == 0 ? "Red" : "Blue"; // Случайный цвет 
-
-                // Создание нового прямоугольника и сохранение его в массив
                 _rectangles[i] = new Programming.Model.Rectangle(length, width, color);
                 _rectangles[i].Number = i + 1; // Устанавливаем номер
-
-                // Добавление прямоугольника в ListBox для отображения
-                // ToString() должен быть переопределён в классе Rectangle для отображения понятного текста.
                 RectangleClassesListBox.Items.Add(_rectangles[i]);
             }
         }
-
+        /// <summary>
+        /// Функция, которая срабатывает при выборе прямоугольника, инициализируя данные в текстбоксы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e) // Обработчик события изменения выбранного элемента в ListBox прямоугольников
         {
-            // Проверка на то что элемент выбран
-            if (RectangleClassesListBox.SelectedIndex < 0) return;
-
-            // Получение объекта по индексу
-            _currentRectangle = _rectangles[RectangleClassesListBox.SelectedIndex];
-
+            if (RectangleClassesListBox.SelectedIndex < 0) return; // Проверка на то что элемент выбран
+            _currentRectangle = _rectangles[RectangleClassesListBox.SelectedIndex]; // Получение объекта по индексу
             // Заполнение TextBox
             RectangleClassesTextBoxLenght.Text = _currentRectangle.Length.ToString();
             RectangleClassesTextBoxWidth.Text = _currentRectangle.Width.ToString();
             RectangleClassesTextBoxColor.Text = _currentRectangle.Color;
-
             // Сброс цвета фона TextBox на белый при выборе нового элемента
             RectangleClassesTextBoxLenght.BackColor = Color.White;
             RectangleClassesTextBoxWidth.BackColor = Color.White;
