@@ -138,8 +138,8 @@ namespace Programming
             for (int i = 0; i < _films.Length; i++)
             {
                 string name = $"Film {i + 1}";
-                int minutesDuration = rnd.Next(60, 180); // Случайные значения длительности фильма
-                int yearOfCreation = rnd.Next(1950, 2026); // Случайные значения года создания фильма
+                int minutesDuration = rnd.Next(60, 220); // Случайные значения длительности фильма
+                int yearOfCreation = rnd.Next(1990, 2026); // Случайные значения года создания фильма
 
                 string genre = ((Genre)(new Random().Next(0, Enum.GetValues(typeof(Genre)).Length))).ToString(); // Берём жанры из класса жанров
 
