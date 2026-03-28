@@ -68,21 +68,26 @@ namespace Programming
             RectangleClassesTextBoxLenght = new TextBox();
             RectangleClassesFindButton = new Button();
             RectangleClassesListBox = new ListBox();
-            tabPageRectangles = new TabPage();
-            tabPageRings = new TabPage();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            labelName = new Label();
-            labelSurname = new Label();
-            label3 = new Label();
             TabPageContacts = new TabPage();
+            label3 = new Label();
+            labelSurname = new Label();
+            labelName = new Label();
+            textBox2 = new TextBox();
+            textBox1 = new TextBox();
+            tabPageRectangles = new TabPage();
+            labelID = new Label();
+            labelCenterY = new Label();
+            labelCenterX = new Label();
+            textBox7 = new TextBox();
+            textBox6 = new TextBox();
+            textBoxID = new TextBox();
+            textBoxCenterY = new TextBox();
+            textBoxCenterX = new TextBox();
+            tabPageRings = new TabPage();
             errorProvider1 = new ErrorProvider(components);
             errorProvider2 = new ErrorProvider(components);
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
-            textBox7 = new TextBox();
+            listBox1 = new ListBox();
+            panel1 = new Panel();
             TabControlMain.SuspendLayout();
             tabPage1.SuspendLayout();
             GroupBoxWeekParse.SuspendLayout();
@@ -91,8 +96,8 @@ namespace Programming
             tabPageClasses.SuspendLayout();
             FilmClassesGroupBox.SuspendLayout();
             RectangleClassesGroupBox.SuspendLayout();
-            tabPageRectangles.SuspendLayout();
             TabPageContacts.SuspendLayout();
+            tabPageRectangles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider2).BeginInit();
             SuspendLayout();
@@ -490,72 +495,6 @@ namespace Programming
             RectangleClassesListBox.TabIndex = 0;
             RectangleClassesListBox.SelectedIndexChanged += RectanglesListBox_SelectedIndexChanged;
             // 
-            // tabPageRectangles
-            // 
-            tabPageRectangles.Controls.Add(textBox7);
-            tabPageRectangles.Controls.Add(textBox6);
-            tabPageRectangles.Controls.Add(textBox5);
-            tabPageRectangles.Controls.Add(textBox4);
-            tabPageRectangles.Controls.Add(textBox3);
-            tabPageRectangles.Location = new Point(4, 29);
-            tabPageRectangles.Name = "tabPageRectangles";
-            tabPageRectangles.Padding = new Padding(3);
-            tabPageRectangles.Size = new Size(844, 497);
-            tabPageRectangles.TabIndex = 3;
-            tabPageRectangles.Text = "Rectangles";
-            tabPageRectangles.UseVisualStyleBackColor = true;
-            // 
-            // tabPageRings
-            // 
-            tabPageRings.Location = new Point(4, 29);
-            tabPageRings.Name = "tabPageRings";
-            tabPageRings.Padding = new Padding(3);
-            tabPageRings.Size = new Size(844, 497);
-            tabPageRings.TabIndex = 4;
-            tabPageRings.Text = "Rings";
-            tabPageRings.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(106, 46);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(233, 27);
-            textBox1.TabIndex = 0;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(106, 93);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(233, 27);
-            textBox2.TabIndex = 1;
-            // 
-            // labelName
-            // 
-            labelName.AutoSize = true;
-            labelName.Location = new Point(33, 49);
-            labelName.Name = "labelName";
-            labelName.Size = new Size(49, 20);
-            labelName.TabIndex = 2;
-            labelName.Text = "Name";
-            // 
-            // labelSurname
-            // 
-            labelSurname.AutoSize = true;
-            labelSurname.Location = new Point(33, 96);
-            labelSurname.Name = "labelSurname";
-            labelSurname.Size = new Size(67, 20);
-            labelSurname.TabIndex = 3;
-            labelSurname.Text = "Surname";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(33, 141);
-            label3.Name = "label3";
-            label3.Size = new Size(50, 20);
-            label3.TabIndex = 4;
-            label3.Text = "label3";
-            // 
             // TabPageContacts
             // 
             TabPageContacts.Controls.Add(label3);
@@ -571,6 +510,142 @@ namespace Programming
             TabPageContacts.Text = "Contacts";
             TabPageContacts.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(33, 141);
+            label3.Name = "label3";
+            label3.Size = new Size(50, 20);
+            label3.TabIndex = 4;
+            label3.Text = "label3";
+            // 
+            // labelSurname
+            // 
+            labelSurname.AutoSize = true;
+            labelSurname.Location = new Point(33, 96);
+            labelSurname.Name = "labelSurname";
+            labelSurname.Size = new Size(67, 20);
+            labelSurname.TabIndex = 3;
+            labelSurname.Text = "Surname";
+            // 
+            // labelName
+            // 
+            labelName.AutoSize = true;
+            labelName.Location = new Point(33, 49);
+            labelName.Name = "labelName";
+            labelName.Size = new Size(49, 20);
+            labelName.TabIndex = 2;
+            labelName.Text = "Name";
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(106, 93);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(233, 27);
+            textBox2.TabIndex = 1;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(106, 46);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(233, 27);
+            textBox1.TabIndex = 0;
+            // 
+            // tabPageRectangles
+            // 
+            tabPageRectangles.Controls.Add(panel1);
+            tabPageRectangles.Controls.Add(listBox1);
+            tabPageRectangles.Controls.Add(labelID);
+            tabPageRectangles.Controls.Add(labelCenterY);
+            tabPageRectangles.Controls.Add(labelCenterX);
+            tabPageRectangles.Controls.Add(textBox7);
+            tabPageRectangles.Controls.Add(textBox6);
+            tabPageRectangles.Controls.Add(textBoxID);
+            tabPageRectangles.Controls.Add(textBoxCenterY);
+            tabPageRectangles.Controls.Add(textBoxCenterX);
+            tabPageRectangles.Location = new Point(4, 29);
+            tabPageRectangles.Name = "tabPageRectangles";
+            tabPageRectangles.Padding = new Padding(3);
+            tabPageRectangles.Size = new Size(844, 497);
+            tabPageRectangles.TabIndex = 3;
+            tabPageRectangles.Text = "Rectangles";
+            tabPageRectangles.UseVisualStyleBackColor = true;
+            // 
+            // labelID
+            // 
+            labelID.AutoSize = true;
+            labelID.Location = new Point(30, 326);
+            labelID.Name = "labelID";
+            labelID.Size = new Size(24, 20);
+            labelID.TabIndex = 7;
+            labelID.Text = "ID";
+            // 
+            // labelCenterY
+            // 
+            labelCenterY.AutoSize = true;
+            labelCenterY.Location = new Point(30, 293);
+            labelCenterY.Name = "labelCenterY";
+            labelCenterY.Size = new Size(64, 20);
+            labelCenterY.TabIndex = 6;
+            labelCenterY.Text = "Center Y";
+            // 
+            // labelCenterX
+            // 
+            labelCenterX.AutoSize = true;
+            labelCenterX.Location = new Point(30, 263);
+            labelCenterX.Name = "labelCenterX";
+            labelCenterX.Size = new Size(65, 20);
+            labelCenterX.TabIndex = 5;
+            labelCenterX.Text = "Center X";
+            // 
+            // textBox7
+            // 
+            textBox7.Location = new Point(101, 392);
+            textBox7.Name = "textBox7";
+            textBox7.Size = new Size(125, 27);
+            textBox7.TabIndex = 4;
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(101, 359);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(125, 27);
+            textBox6.TabIndex = 3;
+            // 
+            // textBoxID
+            // 
+            textBoxID.Location = new Point(101, 326);
+            textBoxID.Name = "textBoxID";
+            textBoxID.ReadOnly = true;
+            textBoxID.Size = new Size(125, 27);
+            textBoxID.TabIndex = 2;
+            // 
+            // textBoxCenterY
+            // 
+            textBoxCenterY.Location = new Point(101, 293);
+            textBoxCenterY.Name = "textBoxCenterY";
+            textBoxCenterY.ReadOnly = true;
+            textBoxCenterY.Size = new Size(125, 27);
+            textBoxCenterY.TabIndex = 1;
+            // 
+            // textBoxCenterX
+            // 
+            textBoxCenterX.Location = new Point(101, 260);
+            textBoxCenterX.Name = "textBoxCenterX";
+            textBoxCenterX.ReadOnly = true;
+            textBoxCenterX.Size = new Size(125, 27);
+            textBoxCenterX.TabIndex = 0;
+            // 
+            // tabPageRings
+            // 
+            tabPageRings.Location = new Point(4, 29);
+            tabPageRings.Name = "tabPageRings";
+            tabPageRings.Padding = new Padding(3);
+            tabPageRings.Size = new Size(844, 497);
+            tabPageRings.TabIndex = 4;
+            tabPageRings.Text = "Rings";
+            tabPageRings.UseVisualStyleBackColor = true;
+            // 
             // errorProvider1
             // 
             errorProvider1.ContainerControl = this;
@@ -579,40 +654,20 @@ namespace Programming
             // 
             errorProvider2.ContainerControl = this;
             // 
-            // textBox3
+            // listBox1
             // 
-            textBox3.Location = new Point(113, 146);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(125, 27);
-            textBox3.TabIndex = 0;
+            listBox1.FormattingEnabled = true;
+            listBox1.Location = new Point(31, 21);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(393, 184);
+            listBox1.TabIndex = 8;
             // 
-            // textBox4
+            // panel1
             // 
-            textBox4.Location = new Point(113, 179);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(125, 27);
-            textBox4.TabIndex = 1;
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(113, 212);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(125, 27);
-            textBox5.TabIndex = 2;
-            // 
-            // textBox6
-            // 
-            textBox6.Location = new Point(113, 245);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(125, 27);
-            textBox6.TabIndex = 3;
-            // 
-            // textBox7
-            // 
-            textBox7.Location = new Point(113, 278);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(125, 27);
-            textBox7.TabIndex = 4;
+            panel1.Location = new Point(430, 21);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(406, 404);
+            panel1.TabIndex = 9;
             // 
             // Form1
             // 
@@ -635,10 +690,10 @@ namespace Programming
             FilmClassesGroupBox.PerformLayout();
             RectangleClassesGroupBox.ResumeLayout(false);
             RectangleClassesGroupBox.PerformLayout();
-            tabPageRectangles.ResumeLayout(false);
-            tabPageRectangles.PerformLayout();
             TabPageContacts.ResumeLayout(false);
             TabPageContacts.PerformLayout();
+            tabPageRectangles.ResumeLayout(false);
+            tabPageRectangles.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider2).EndInit();
             ResumeLayout(false);
@@ -696,10 +751,15 @@ namespace Programming
         private TextBox textBox1;
         private TextBox textBox7;
         private TextBox textBox6;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
+        private TextBox textBoxID;
+        private TextBox textBoxCenterY;
+        private TextBox textBoxCenterX;
         private ErrorProvider errorProvider1;
         private ErrorProvider errorProvider2;
+        private Label labelCenterY;
+        private Label labelCenterX;
+        private Label labelID;
+        private Panel panel1;
+        private ListBox listBox1;
     }
 }

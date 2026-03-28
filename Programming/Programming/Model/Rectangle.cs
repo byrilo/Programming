@@ -47,7 +47,7 @@ namespace Programming.Model
         }
    
 
-        public Rectangle() { } // Конструкторы
+        // Конструктор
         public Rectangle(double length, double width, string color, int x, int y)
         {
             // Увеличение счетчика

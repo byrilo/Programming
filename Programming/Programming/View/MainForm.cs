@@ -185,10 +185,12 @@ namespace Programming
 
             for (int i = 0; i < _rectangles.Length; i++)
             {
+                int x = rnd.Next(0, 500);  // Случайная координата X центра
+                int y = rnd.Next(0, 500);  // Случайная координата Y центра
                 double length = rnd.Next(1, 100); // Случайная длина
                 double width = rnd.Next(1, 100); // Случайная ширина
                 string color = ((Colors)(rnd.Next(0, Enum.GetValues(typeof(Colors)).Length))).ToString(); // Случайный цвет 
-                _rectangles[i] = new Programming.Model.Rectangle(length, width, color);
+                _rectangles[i] = new Programming.Model.Rectangle(length, width, color, x, y);
                 _rectangles[i].Number = i + 1; // Устанавливаем номер
                 RectangleClassesListBox.Items.Add(_rectangles[i]);
             }
@@ -210,6 +212,9 @@ namespace Programming
             RectangleClassesTextBoxLenght.BackColor = Color.White;
             RectangleClassesTextBoxWidth.BackColor = Color.White;
             RectangleClassesTextBoxColor.BackColor = Color.White;
+            textBoxCenterX.Text = _currentRectangle.Center.X.ToString();
+            textBoxCenterY.Text = _currentRectangle.Center.Y.ToString();
+            textBoxID.Text = _currentRectangle.Id.ToString();
         }
 
         private void RectangleClassesTextBoxLenght_TextChanged(object sender, EventArgs e)
@@ -348,5 +353,6 @@ namespace Programming
                 FilmClassesTextBoxRating.BackColor = Color.LightPink; // Розовый фон при ошибке
             }
         }
+        
     }
 }
