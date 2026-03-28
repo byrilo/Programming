@@ -12,37 +12,29 @@ namespace Programming.Model
         private double _width;
         private string _color;
         private int _number; // Для отображения порядкового номера прямоугольника
+        private static int _allRectanglesCount = 0; // Статическое поле для подсчета всех созданных прямоугольников
 
         public double Length // Свойcтво длины
         {
-            get
-            {
-                return _length;
-            }
+            get => _length;
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Ошибка. Длина не может иметь отрицательное значение."); // При ошибке
-                }
+                Validator.AssertOnPositiveValue(value, nameof(Length));
                 _length = value;
             }
         }
         public double Width // Свойство ширины
         {
-            get
-            {
-                return _width;
-            }
+            get => _width;
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Ширина не может быть отрицательной"); //При ошибке
-                }
+                Validator.AssertOnPositiveValue(value, nameof(Width));
                 _width = value;
             }
         }
+        public static int AllRectanglesCount => _allRectanglesCount; // Статическое свойство для получения количества всех созданных прямоугольников
+        public int Id { get; private set; } // Уникальный ID
+        public Point2D Center { get; set; } // Свойство центра прямоугольника
         public string Color { get; set; } // Автосвойство
         public int Number // Cвойство порядкового номера
         {
@@ -53,14 +45,19 @@ namespace Programming.Model
         {
             return $"Rectangle {Number}";
         }
-
+   
 
         public Rectangle() { } // Конструкторы
-        public Rectangle(double length, double width, string color)
+        public Rectangle(double length, double width, string color, int x, int y)
         {
+            // Увеличение счетчика
+            _allRectanglesCount++;
+            // Присвоение уникального ID
+            Id = _allRectanglesCount;
             Length = length;
             Width = width;
             Color = color;
+            Center = new Point2D(x, y);
         }
     }
 }
