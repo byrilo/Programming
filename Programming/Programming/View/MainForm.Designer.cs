@@ -68,13 +68,9 @@ namespace Programming
             RectangleClassesTextBoxLenght = new TextBox();
             RectangleClassesFindButton = new Button();
             RectangleClassesListBox = new ListBox();
-            TabPageContacts = new TabPage();
-            label3 = new Label();
-            labelSurname = new Label();
-            labelName = new Label();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
             tabPageRectangles = new TabPage();
+            panel1 = new Panel();
+            listBox1 = new ListBox();
             labelID = new Label();
             labelCenterY = new Label();
             labelCenterX = new Label();
@@ -83,11 +79,12 @@ namespace Programming
             textBoxID = new TextBox();
             textBoxCenterY = new TextBox();
             textBoxCenterX = new TextBox();
-            tabPageRings = new TabPage();
             errorProvider1 = new ErrorProvider(components);
             errorProvider2 = new ErrorProvider(components);
-            listBox1 = new ListBox();
-            panel1 = new Panel();
+            labelSelectedRectangle = new Label();
+            labelWidth = new Label();
+            labelLength = new Label();
+            labelRectangles = new Label();
             TabControlMain.SuspendLayout();
             tabPage1.SuspendLayout();
             GroupBoxWeekParse.SuspendLayout();
@@ -96,7 +93,6 @@ namespace Programming
             tabPageClasses.SuspendLayout();
             FilmClassesGroupBox.SuspendLayout();
             RectangleClassesGroupBox.SuspendLayout();
-            TabPageContacts.SuspendLayout();
             tabPageRectangles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider2).BeginInit();
@@ -106,9 +102,7 @@ namespace Programming
             // 
             TabControlMain.Controls.Add(tabPage1);
             TabControlMain.Controls.Add(tabPageClasses);
-            TabControlMain.Controls.Add(TabPageContacts);
             TabControlMain.Controls.Add(tabPageRectangles);
-            TabControlMain.Controls.Add(tabPageRings);
             TabControlMain.Dock = DockStyle.Fill;
             TabControlMain.Location = new Point(0, 0);
             TabControlMain.Name = "TabControlMain";
@@ -495,64 +489,12 @@ namespace Programming
             RectangleClassesListBox.TabIndex = 0;
             RectangleClassesListBox.SelectedIndexChanged += RectanglesListBox_SelectedIndexChanged;
             // 
-            // TabPageContacts
-            // 
-            TabPageContacts.Controls.Add(label3);
-            TabPageContacts.Controls.Add(labelSurname);
-            TabPageContacts.Controls.Add(labelName);
-            TabPageContacts.Controls.Add(textBox2);
-            TabPageContacts.Controls.Add(textBox1);
-            TabPageContacts.Location = new Point(4, 29);
-            TabPageContacts.Name = "TabPageContacts";
-            TabPageContacts.Padding = new Padding(3);
-            TabPageContacts.Size = new Size(844, 497);
-            TabPageContacts.TabIndex = 2;
-            TabPageContacts.Text = "Contacts";
-            TabPageContacts.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(33, 141);
-            label3.Name = "label3";
-            label3.Size = new Size(50, 20);
-            label3.TabIndex = 4;
-            label3.Text = "label3";
-            // 
-            // labelSurname
-            // 
-            labelSurname.AutoSize = true;
-            labelSurname.Location = new Point(33, 96);
-            labelSurname.Name = "labelSurname";
-            labelSurname.Size = new Size(67, 20);
-            labelSurname.TabIndex = 3;
-            labelSurname.Text = "Surname";
-            // 
-            // labelName
-            // 
-            labelName.AutoSize = true;
-            labelName.Location = new Point(33, 49);
-            labelName.Name = "labelName";
-            labelName.Size = new Size(49, 20);
-            labelName.TabIndex = 2;
-            labelName.Text = "Name";
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(106, 93);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(233, 27);
-            textBox2.TabIndex = 1;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(106, 46);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(233, 27);
-            textBox1.TabIndex = 0;
-            // 
             // tabPageRectangles
             // 
+            tabPageRectangles.Controls.Add(labelRectangles);
+            tabPageRectangles.Controls.Add(labelLength);
+            tabPageRectangles.Controls.Add(labelWidth);
+            tabPageRectangles.Controls.Add(labelSelectedRectangle);
             tabPageRectangles.Controls.Add(panel1);
             tabPageRectangles.Controls.Add(listBox1);
             tabPageRectangles.Controls.Add(labelID);
@@ -571,32 +513,47 @@ namespace Programming
             tabPageRectangles.Text = "Rectangles";
             tabPageRectangles.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            panel1.Location = new Point(430, 21);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(406, 404);
+            panel1.TabIndex = 9;
+            // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.Location = new Point(31, 21);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(393, 184);
+            listBox1.TabIndex = 8;
+            // 
             // labelID
             // 
             labelID.AutoSize = true;
-            labelID.Location = new Point(30, 326);
+            labelID.Location = new Point(71, 329);
             labelID.Name = "labelID";
-            labelID.Size = new Size(24, 20);
+            labelID.Size = new Size(27, 20);
             labelID.TabIndex = 7;
-            labelID.Text = "ID";
+            labelID.Text = "ID:";
             // 
             // labelCenterY
             // 
             labelCenterY.AutoSize = true;
-            labelCenterY.Location = new Point(30, 293);
+            labelCenterY.Location = new Point(75, 296);
             labelCenterY.Name = "labelCenterY";
-            labelCenterY.Size = new Size(64, 20);
+            labelCenterY.Size = new Size(20, 20);
             labelCenterY.TabIndex = 6;
-            labelCenterY.Text = "Center Y";
+            labelCenterY.Text = "Y:";
             // 
             // labelCenterX
             // 
             labelCenterX.AutoSize = true;
-            labelCenterX.Location = new Point(30, 263);
+            labelCenterX.Location = new Point(74, 267);
             labelCenterX.Name = "labelCenterX";
-            labelCenterX.Size = new Size(65, 20);
+            labelCenterX.Size = new Size(21, 20);
             labelCenterX.TabIndex = 5;
-            labelCenterX.Text = "Center X";
+            labelCenterX.Text = "X:";
             // 
             // textBox7
             // 
@@ -636,16 +593,6 @@ namespace Programming
             textBoxCenterX.Size = new Size(125, 27);
             textBoxCenterX.TabIndex = 0;
             // 
-            // tabPageRings
-            // 
-            tabPageRings.Location = new Point(4, 29);
-            tabPageRings.Name = "tabPageRings";
-            tabPageRings.Padding = new Padding(3);
-            tabPageRings.Size = new Size(844, 497);
-            tabPageRings.TabIndex = 4;
-            tabPageRings.Text = "Rings";
-            tabPageRings.UseVisualStyleBackColor = true;
-            // 
             // errorProvider1
             // 
             errorProvider1.ContainerControl = this;
@@ -654,20 +601,41 @@ namespace Programming
             // 
             errorProvider2.ContainerControl = this;
             // 
-            // listBox1
+            // labelSelectedRectangle
             // 
-            listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(31, 21);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(393, 184);
-            listBox1.TabIndex = 8;
+            labelSelectedRectangle.AutoSize = true;
+            labelSelectedRectangle.Location = new Point(31, 225);
+            labelSelectedRectangle.Name = "labelSelectedRectangle";
+            labelSelectedRectangle.Size = new Size(139, 20);
+            labelSelectedRectangle.TabIndex = 10;
+            labelSelectedRectangle.Text = "Selected Rectangle:";
             // 
-            // panel1
+            // labelWidth
             // 
-            panel1.Location = new Point(430, 21);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(406, 404);
-            panel1.TabIndex = 9;
+            labelWidth.AutoSize = true;
+            labelWidth.Location = new Point(43, 362);
+            labelWidth.Name = "labelWidth";
+            labelWidth.Size = new Size(52, 20);
+            labelWidth.TabIndex = 11;
+            labelWidth.Text = "Width:";
+            // 
+            // labelLength
+            // 
+            labelLength.AutoSize = true;
+            labelLength.Location = new Point(38, 395);
+            labelLength.Name = "labelLength";
+            labelLength.Size = new Size(57, 20);
+            labelLength.TabIndex = 12;
+            labelLength.Text = "Length:";
+            // 
+            // labelRectangles
+            // 
+            labelRectangles.AutoSize = true;
+            labelRectangles.Location = new Point(31, -2);
+            labelRectangles.Name = "labelRectangles";
+            labelRectangles.Size = new Size(84, 20);
+            labelRectangles.TabIndex = 13;
+            labelRectangles.Text = "Rectangles:";
             // 
             // Form1
             // 
@@ -690,8 +658,6 @@ namespace Programming
             FilmClassesGroupBox.PerformLayout();
             RectangleClassesGroupBox.ResumeLayout(false);
             RectangleClassesGroupBox.PerformLayout();
-            TabPageContacts.ResumeLayout(false);
-            TabPageContacts.PerformLayout();
             tabPageRectangles.ResumeLayout(false);
             tabPageRectangles.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
@@ -742,13 +708,6 @@ namespace Programming
         private TextBox FilmClassesTextBoxGenre;
         private ComboBox ComboBoxSeason;
         private TabPage tabPageRectangles;
-        private TabPage tabPageRings;
-        private TabPage TabPageContacts;
-        private Label label3;
-        private Label labelSurname;
-        private Label labelName;
-        private TextBox textBox2;
-        private TextBox textBox1;
         private TextBox textBox7;
         private TextBox textBox6;
         private TextBox textBoxID;
@@ -761,5 +720,9 @@ namespace Programming
         private Label labelID;
         private Panel panel1;
         private ListBox listBox1;
+        private Label labelSelectedRectangle;
+        private Label labelRectangles;
+        private Label labelLength;
+        private Label labelWidth;
     }
 }
