@@ -18,16 +18,10 @@ namespace Programming.Model
 
         public int MinutesDuration // Свойство длительности фильма
         {
-            get
-            {
-                return _minutesDuration;
-            }
+            get => _minutesDuration;
             set
             {
-                if (value < 1)
-                {
-                    throw new ArgumentException("Ошибка. Длина фильма не может иметь отрицвтельное значение.");
-                }
+                Validator.AssertOnPositiveValue(value, nameof(MinutesDuration));
                 _minutesDuration = value;
             }
         }
@@ -56,7 +50,7 @@ namespace Programming.Model
             get { return _number; }
             set { _number = value; }
         }
-        public override string ToString() // Переписанный метод ToString для отображения информации о прямоугольнике
+        public override string ToString() // метод ToString для отображения информации о прямоугольнике
         {
             return $"Film {Number}";
         }
