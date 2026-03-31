@@ -14,17 +14,10 @@ namespace Programming.Model
         private int _minutesFlightTime;
         public int MinutesFlightTime // Свойство минут в полёте
         {
-            get
-            {
-                return _minutesFlightTime;
-            }
+            get => _minutesFlightTime;        
             set
             {
-                if (value < 1)
-                {
-                    MessageBox.Show("Ошибка. Неккоректное время полёта.");
-                    _minutesFlightTime = value;
-                }
+                Validator.AssertOnPositiveValue(value, nameof(MinutesFlightTime));
             }
 
         }

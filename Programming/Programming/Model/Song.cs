@@ -15,47 +15,26 @@ namespace Programming.Model
 
         public string SongName // Свойcтво названия песни
         {
-            get
-            {
-                return _songName;
-            }
+            get => _songName;
             set
             {
-                if (value.Length < 0)
-                {
-                    MessageBox.Show("Ошибка. Введите название песни.");
-                    _songName = value;
-                }
+                Validator.AssertOnPositiveValue(value.Length, nameof(SongName));
             }
         }
         public string SongAuthor // Свойcтво автора
         {
-            get
-            {
-                return _songAuthor;
-            }
+            get => _songAuthor;            
             set
             {
-                if (value.Length < 0)
-                {
-                    MessageBox.Show("Ошибка. Введите автора песни.");
-                    _songAuthor = value;
-                }
+                Validator.AssertOnPositiveValue(value.Length, nameof(SongAuthor));
             }
         }
         public int Listenings // Свойcтво прослушиваний
         {
-            get
-            {
-                return _listenings;
-            }
+            get => _listenings;
             set
             {
-                if (value < 0)
-                {
-                    MessageBox.Show("Ошибка. Прослушивания не могут быть отрицательными.");
-                    _listenings = value;
-                }
+                Validator.AssertOnPositiveValue(value, nameof(Listenings));
             }
         }
         public string SongAlbum { get; set; }

@@ -69,22 +69,24 @@ namespace Programming
             RectangleClassesFindButton = new Button();
             RectangleClassesListBox = new ListBox();
             tabPageRectangles = new TabPage();
+            buttonRectanglesDelete = new Button();
+            buttonRectanglesAdd = new Button();
+            labelRectangles = new Label();
+            labelLength = new Label();
+            labelWidth = new Label();
+            labelSelectedRectangle = new Label();
             panel1 = new Panel();
-            listBox1 = new ListBox();
+            listBoxRectangles = new ListBox();
             labelID = new Label();
             labelCenterY = new Label();
             labelCenterX = new Label();
-            textBox7 = new TextBox();
-            textBox6 = new TextBox();
+            textBoxLength = new TextBox();
+            textBoxWidth = new TextBox();
             textBoxID = new TextBox();
             textBoxCenterY = new TextBox();
             textBoxCenterX = new TextBox();
             errorProvider1 = new ErrorProvider(components);
             errorProvider2 = new ErrorProvider(components);
-            labelSelectedRectangle = new Label();
-            labelWidth = new Label();
-            labelLength = new Label();
-            labelRectangles = new Label();
             TabControlMain.SuspendLayout();
             tabPage1.SuspendLayout();
             GroupBoxWeekParse.SuspendLayout();
@@ -491,17 +493,19 @@ namespace Programming
             // 
             // tabPageRectangles
             // 
+            tabPageRectangles.Controls.Add(buttonRectanglesDelete);
+            tabPageRectangles.Controls.Add(buttonRectanglesAdd);
             tabPageRectangles.Controls.Add(labelRectangles);
             tabPageRectangles.Controls.Add(labelLength);
             tabPageRectangles.Controls.Add(labelWidth);
             tabPageRectangles.Controls.Add(labelSelectedRectangle);
             tabPageRectangles.Controls.Add(panel1);
-            tabPageRectangles.Controls.Add(listBox1);
+            tabPageRectangles.Controls.Add(listBoxRectangles);
             tabPageRectangles.Controls.Add(labelID);
             tabPageRectangles.Controls.Add(labelCenterY);
             tabPageRectangles.Controls.Add(labelCenterX);
-            tabPageRectangles.Controls.Add(textBox7);
-            tabPageRectangles.Controls.Add(textBox6);
+            tabPageRectangles.Controls.Add(textBoxLength);
+            tabPageRectangles.Controls.Add(textBoxWidth);
             tabPageRectangles.Controls.Add(textBoxID);
             tabPageRectangles.Controls.Add(textBoxCenterY);
             tabPageRectangles.Controls.Add(textBoxCenterX);
@@ -513,6 +517,64 @@ namespace Programming
             tabPageRectangles.Text = "Rectangles";
             tabPageRectangles.UseVisualStyleBackColor = true;
             // 
+            // buttonRectanglesDelete
+            // 
+            buttonRectanglesDelete.FlatAppearance.BorderSize = 0;
+            buttonRectanglesDelete.FlatStyle = FlatStyle.Flat;
+            buttonRectanglesDelete.Location = new Point(359, 221);
+            buttonRectanglesDelete.Name = "buttonRectanglesDelete";
+            buttonRectanglesDelete.Size = new Size(65, 29);
+            buttonRectanglesDelete.TabIndex = 15;
+            buttonRectanglesDelete.Text = "Delete";
+            buttonRectanglesDelete.UseVisualStyleBackColor = true;
+            // 
+            // buttonRectanglesAdd
+            // 
+            buttonRectanglesAdd.FlatAppearance.BorderSize = 0;
+            buttonRectanglesAdd.FlatStyle = FlatStyle.Flat;
+            buttonRectanglesAdd.Location = new Point(300, 221);
+            buttonRectanglesAdd.Name = "buttonRectanglesAdd";
+            buttonRectanglesAdd.Size = new Size(53, 29);
+            buttonRectanglesAdd.TabIndex = 14;
+            buttonRectanglesAdd.Text = "Add";
+            buttonRectanglesAdd.UseVisualStyleBackColor = true;
+            // 
+            // labelRectangles
+            // 
+            labelRectangles.AutoSize = true;
+            labelRectangles.Location = new Point(31, -2);
+            labelRectangles.Name = "labelRectangles";
+            labelRectangles.Size = new Size(84, 20);
+            labelRectangles.TabIndex = 13;
+            labelRectangles.Text = "Rectangles:";
+            // 
+            // labelLength
+            // 
+            labelLength.AutoSize = true;
+            labelLength.Location = new Point(38, 365);
+            labelLength.Name = "labelLength";
+            labelLength.Size = new Size(57, 20);
+            labelLength.TabIndex = 12;
+            labelLength.Text = "Length:";
+            // 
+            // labelWidth
+            // 
+            labelWidth.AutoSize = true;
+            labelWidth.Location = new Point(43, 395);
+            labelWidth.Name = "labelWidth";
+            labelWidth.Size = new Size(52, 20);
+            labelWidth.TabIndex = 11;
+            labelWidth.Text = "Width:";
+            // 
+            // labelSelectedRectangle
+            // 
+            labelSelectedRectangle.AutoSize = true;
+            labelSelectedRectangle.Location = new Point(31, 225);
+            labelSelectedRectangle.Name = "labelSelectedRectangle";
+            labelSelectedRectangle.Size = new Size(139, 20);
+            labelSelectedRectangle.TabIndex = 10;
+            labelSelectedRectangle.Text = "Selected Rectangle:";
+            // 
             // panel1
             // 
             panel1.Location = new Point(430, 21);
@@ -520,13 +582,14 @@ namespace Programming
             panel1.Size = new Size(406, 404);
             panel1.TabIndex = 9;
             // 
-            // listBox1
+            // listBoxRectangles
             // 
-            listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(31, 21);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(393, 184);
-            listBox1.TabIndex = 8;
+            listBoxRectangles.FormattingEnabled = true;
+            listBoxRectangles.Location = new Point(31, 21);
+            listBoxRectangles.Name = "listBoxRectangles";
+            listBoxRectangles.Size = new Size(393, 184);
+            listBoxRectangles.TabIndex = 8;
+            listBoxRectangles.SelectedIndexChanged += listBoxRectangles_SelectedIndexChanged;
             // 
             // labelID
             // 
@@ -555,19 +618,21 @@ namespace Programming
             labelCenterX.TabIndex = 5;
             labelCenterX.Text = "X:";
             // 
-            // textBox7
+            // textBoxLength
             // 
-            textBox7.Location = new Point(101, 392);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(125, 27);
-            textBox7.TabIndex = 4;
+            textBoxLength.Location = new Point(101, 362);
+            textBoxLength.Name = "textBoxLength";
+            textBoxLength.Size = new Size(125, 27);
+            textBoxLength.TabIndex = 4;
+            textBoxLength.TextChanged += textBoxLength_TextChanged;
             // 
-            // textBox6
+            // textBoxWidth
             // 
-            textBox6.Location = new Point(101, 359);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(125, 27);
-            textBox6.TabIndex = 3;
+            textBoxWidth.Location = new Point(101, 392);
+            textBoxWidth.Name = "textBoxWidth";
+            textBoxWidth.Size = new Size(125, 27);
+            textBoxWidth.TabIndex = 3;
+            textBoxWidth.TextChanged += textBoxWidth_TextChanged;
             // 
             // textBoxID
             // 
@@ -600,42 +665,6 @@ namespace Programming
             // errorProvider2
             // 
             errorProvider2.ContainerControl = this;
-            // 
-            // labelSelectedRectangle
-            // 
-            labelSelectedRectangle.AutoSize = true;
-            labelSelectedRectangle.Location = new Point(31, 225);
-            labelSelectedRectangle.Name = "labelSelectedRectangle";
-            labelSelectedRectangle.Size = new Size(139, 20);
-            labelSelectedRectangle.TabIndex = 10;
-            labelSelectedRectangle.Text = "Selected Rectangle:";
-            // 
-            // labelWidth
-            // 
-            labelWidth.AutoSize = true;
-            labelWidth.Location = new Point(43, 362);
-            labelWidth.Name = "labelWidth";
-            labelWidth.Size = new Size(52, 20);
-            labelWidth.TabIndex = 11;
-            labelWidth.Text = "Width:";
-            // 
-            // labelLength
-            // 
-            labelLength.AutoSize = true;
-            labelLength.Location = new Point(38, 395);
-            labelLength.Name = "labelLength";
-            labelLength.Size = new Size(57, 20);
-            labelLength.TabIndex = 12;
-            labelLength.Text = "Length:";
-            // 
-            // labelRectangles
-            // 
-            labelRectangles.AutoSize = true;
-            labelRectangles.Location = new Point(31, -2);
-            labelRectangles.Name = "labelRectangles";
-            labelRectangles.Size = new Size(84, 20);
-            labelRectangles.TabIndex = 13;
-            labelRectangles.Text = "Rectangles:";
             // 
             // Form1
             // 
@@ -708,8 +737,8 @@ namespace Programming
         private TextBox FilmClassesTextBoxGenre;
         private ComboBox ComboBoxSeason;
         private TabPage tabPageRectangles;
-        private TextBox textBox7;
-        private TextBox textBox6;
+        private TextBox textBoxLength;
+        private TextBox textBoxWidth;
         private TextBox textBoxID;
         private TextBox textBoxCenterY;
         private TextBox textBoxCenterX;
@@ -719,10 +748,12 @@ namespace Programming
         private Label labelCenterX;
         private Label labelID;
         private Panel panel1;
-        private ListBox listBox1;
+        private ListBox listBoxRectangles;
         private Label labelSelectedRectangle;
         private Label labelRectangles;
         private Label labelLength;
         private Label labelWidth;
+        private Button buttonRectanglesAdd;
+        private Button buttonRectanglesDelete;
     }
 }

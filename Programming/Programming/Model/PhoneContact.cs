@@ -43,11 +43,9 @@ namespace Programming.Model
             get => _phoneNumber;
             set
             {
-                // номер должен быть 11 цифр
                 if (value.ToString().Length != 11)
                 {
-                    MessageBox.Show("Ошибка. Введите верный номер (11 цифр).");
-                    // не присваиваем некорректное значение
+                    MessageBox.Show("Ошибка. Введите верный номер.");
                     return;
                 }
                 _phoneNumber = value;

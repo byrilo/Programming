@@ -14,47 +14,26 @@ namespace Programming.Model
 
         public int Hours // Свойство часа
         {
-            get 
-            { 
-                return _hours; 
-            } 
+            get => _hours;            
             set 
             { 
-                if (value < 0 && value > 23)
-                {
-                    MessageBox.Show("Ошибка. Неккоректное кол-во часов.");
-                    _hours = value;
-                }
+                Validator.AssertValueInRange(value, 0, 24, nameof(Hours));
             }
         }
         public int Minutes // Свойство минуты
         {
-            get
-            {
-                return _minutes;
-            }
+            get => _minutes;           
             set
             {
-                if (value < 0 && value > 60)
-                {
-                    MessageBox.Show("Ошибка. Неккоректное кол-во минут.");
-                    _minutes = value;
-                }
+                Validator.AssertValueInRange(value, 0, 60, nameof(Minutes));
             }
         }
         public int Seconds // Свойство секунды
         {
-            get
-            {
-                return _seconds;
-            }
+            get => _seconds;
             set
             {
-                if (value < 0 && value > 60)
-                {
-                    MessageBox.Show("Ошибка. Неккоректное кол-во секунд.");
-                    _seconds = value;
-                }
+                Validator.AssertValueInRange(value, 0, 60, nameof(Seconds));
             }
         }
         public Time() { } // Конструкторы

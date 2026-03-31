@@ -132,7 +132,7 @@ namespace Programming
         /// </summary>
         private void InitializeFilmsData()
         {
-            Random rnd = new Random();  
+            Random rnd = new Random();
             _films = new Programming.Model.Film[5];
 
             for (int i = 0; i < _films.Length; i++)
@@ -160,7 +160,7 @@ namespace Programming
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void FilmClassesListBox_SelectedIndexChanged(object sender, EventArgs e) 
+        private void FilmClassesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (FilmClassesListBox.SelectedIndex < 0) return; // Проверка на то, что элемент выбран
             _currentFilm = _films[FilmClassesListBox.SelectedIndex]; // Получение фильма по индексу
@@ -178,7 +178,7 @@ namespace Programming
         /// <summary>
         /// Функция инициализирует 5 прямоугольников в программу (Листбокс)
         /// </summary>
-        private void InitializeRectanglesData() 
+        private void InitializeRectanglesData()
         {
             Random rnd = new Random();
             _rectangles = new Programming.Model.Rectangle[5];
@@ -193,6 +193,7 @@ namespace Programming
                 _rectangles[i] = new Programming.Model.Rectangle(length, width, color, x, y);
                 _rectangles[i].Number = i + 1; // Устанавливаем номер
                 RectangleClassesListBox.Items.Add(_rectangles[i]);
+                listBoxRectangles.Items.Add(_rectangles[i]);
             }
         }
         /// <summary>
@@ -207,6 +208,8 @@ namespace Programming
             // Заполнение TextBox
             RectangleClassesTextBoxLenght.Text = _currentRectangle.Length.ToString();
             RectangleClassesTextBoxWidth.Text = _currentRectangle.Width.ToString();
+            textBoxWidth.Text = _currentRectangle.Width.ToString();
+            textBoxLength.Text = _currentRectangle.Length.ToString();
             RectangleClassesTextBoxColor.Text = _currentRectangle.Color;
             // Сброс цвета фона TextBox на белый при выборе нового элемента
             RectangleClassesTextBoxLenght.BackColor = Color.White;
@@ -337,13 +340,14 @@ namespace Programming
 
         private void FilmClassesTextBoxGenre_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void FilmClassesTextBoxRating_TextChanged(object sender, EventArgs e)
         {
             if (_currentFilm == null) return; // Проверка на то, что значение выбрано
-            try             {
+            try
+            {
                 double rating = double.Parse(FilmClassesTextBoxRating.Text);
                 _currentFilm.Rating = rating;
                 FilmClassesTextBoxRating.BackColor = Color.White;
@@ -353,6 +357,59 @@ namespace Programming
                 FilmClassesTextBoxRating.BackColor = Color.LightPink; // Розовый фон при ошибке
             }
         }
-        
+
+        private void textBoxLength_TextChanged(object sender, EventArgs e)
+        {
+            if (_currentRectangle == null) return; // Проверка на то, что значение выбрано
+            try
+            {
+                // Преобразование текста в число
+                double length = double.Parse(textBoxLength.Text);
+                // Присваивание через свойство
+                _currentRectangle.Length = length;
+                // Белый фон при успешном вводе
+                textBoxLength.BackColor = Color.White;
+            }
+            catch (Exception)
+            {
+                textBoxLength.BackColor = Color.LightPink; // Розовый фон при ошибке
+            }
+        }
+
+        private void listBoxRectangles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxRectangles.SelectedIndex < 0) return; // Проверка на то что элемент выбран
+            _currentRectangle = _rectangles[listBoxRectangles.SelectedIndex]; // Получение объекта по индексу
+                                                                              // Заполнение TextBox
+
+            textBoxWidth.Text = _currentRectangle.Width.ToString();
+            textBoxLength.Text = _currentRectangle.Length.ToString();
+            RectangleClassesTextBoxColor.Text = _currentRectangle.Color;
+            // Сброс цвета фона TextBox на белый при выборе нового элемента
+            RectangleClassesTextBoxLenght.BackColor = Color.White;
+            RectangleClassesTextBoxWidth.BackColor = Color.White;
+            RectangleClassesTextBoxColor.BackColor = Color.White;
+            textBoxCenterX.Text = _currentRectangle.Center.X.ToString();
+            textBoxCenterY.Text = _currentRectangle.Center.Y.ToString();
+            textBoxID.Text = _currentRectangle.Id.ToString();
+        }
+
+        private void textBoxWidth_TextChanged(object sender, EventArgs e)
+        {
+            if (_currentRectangle == null) return; // Проверка на то, что значение выбрано
+            try
+            {
+                // Преобразование текста в число
+                double width = double.Parse(textBoxWidth.Text);
+                // Присваивание через свойство
+                _currentRectangle.Width = width;
+                // Белый фон при успешном вводе
+                textBoxWidth.BackColor = Color.White;
+            }
+            catch (Exception)
+            {
+                textBoxWidth.BackColor = Color.LightPink; // Розовый фон при ошибке
+            }
+        }
     }
 }

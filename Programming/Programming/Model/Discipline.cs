@@ -15,62 +15,34 @@ namespace Programming.Model
 
         public string DisciplineName // Свойcтво названия дисциплины
         {
-            get
-            {
-                return _disciplineName;
-            }
+            get => _disciplineName;
             set
-            {
-                if (value.Length < 0)
-                {
-                    MessageBox.Show("Ошибка. Введите название дисциплины.");
-                    _disciplineName = value;
-                }
+            {                               
+                Validator.AssertOnPositiveValue(value.Length, nameof(DisciplineName));               
             }
         }
         public int Grade // Свойcтво оценки
         {
-            get
-            {
-                return _grade;
-            }
+            get => _grade;            
             set
             {
-                if (value < 0 && value > 5)
-                {
-                    MessageBox.Show("Ошибка. Введите корректное значение оценки.");
-                    _grade = value;
-                }
+                    Validator.AssertValueInRange(value, 0, 5, nameof(Grade));
             }
         }
         public string Teacher // Свойcтво имени преподавателя
         {
-            get
-            {
-                return _teacher;
-            }
+            get => _teacher;
             set
             {
-                if (value.Length < 0)
-                {
-                    MessageBox.Show("Ошибка. Введите имя преподавателя.");
-                    _teacher = value;
-                }
+                Validator.AssertOnPositiveValue(value.Length, nameof(Teacher));
             }
         }
         public int DisciplineHours // Свойcтво оценки
         {
-            get
-            {
-                return _disciplineHours;
-            }
+            get => _disciplineHours;           
             set
             {
-                if (value < 0)
-                {
-                    MessageBox.Show("Ошибка. Введите корректное значение часов дисциплины.");
-                    _disciplineHours = value;
-                }
+                Validator.AssertOnPositiveValue(value, nameof(DisciplineHours));
             }
         }
         public Discipline() { } // Конструкторы

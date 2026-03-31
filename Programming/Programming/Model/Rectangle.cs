@@ -41,7 +41,7 @@ namespace Programming.Model
             get { return _number; }
             set { _number = value; }
         }
-        public override string ToString() // Переписанный метод ToString для отображения информации о прямоугольнике
+        public override string ToString() // метод ToString для отображения информации о прямоугольнике
         {
             return $"Rectangle {Number}";
         }

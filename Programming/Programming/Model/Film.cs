@@ -27,16 +27,10 @@ namespace Programming.Model
         }
         public double Rating // Свойство рейтинга фильма
         {
-            get
-            {
-                return _rating;
-            }
+            get => _rating;
             set
             {
-                if (value < 0 && value > 10)
-                {
-                    throw new ArgumentException("Ошибка. Рейтинг может принимать значение от 0 до 10.");
-                }
+                Validator.AssertValueInRange(value, 0, 10, nameof(Rating));
                 _rating = value;
             }
         }
