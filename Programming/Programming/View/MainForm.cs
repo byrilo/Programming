@@ -399,19 +399,41 @@ namespace Programming
 
         private void textBoxLength_TextChanged(object sender, EventArgs e)
         {
-            if (_currentRectangle == null) return; // Проверка на то, что значение выбрано
+            if (_currentRectangle == null) return;
+
             try
             {
                 // Преобразование текста в число
                 double length = double.Parse(textBoxLength.Text);
-                // Присваивание через свойство
+
+                // Присваивание через свойство прямоугольника
                 _currentRectangle.Length = length;
+
                 // Белый фон при успешном вводе
                 textBoxLength.BackColor = Color.White;
+
+                // Обновляем панель на канве
+                int index = _rectangles.IndexOf(_currentRectangle);
+                if (index >= 0)
+                {                   
+                    _rectanglePanels[index].Height = (int)length;
+
+                    // Пересчитываем позицию Y для центрирования
+                    int newY = _currentRectangle.Center.Y - (int)length / 2;
+                    int currentX = _rectanglePanels[index].Location.X;
+                    _rectanglePanels[index].Location = new Point(currentX, newY);
+                }
+
+                UpdateRectanglesListBox();
+                FindCollisions();
             }
-            catch (Exception)
+            catch (ArgumentException ex)
             {
-                textBoxLength.BackColor = Color.LightPink; // Розовый фон при ошибке
+                textBoxLength.BackColor = Color.LightPink;
+            }
+            catch (FormatException)
+            {
+                textBoxLength.BackColor = Color.LightPink;
             }
         }
 
@@ -423,9 +445,9 @@ namespace Programming
                 return;
             }
             
-            UpdateRectangleInfo(_currentRectangle);
+            
             _currentRectangle = _rectangles[listBoxRectangles.SelectedIndex]; // Получение объекта по индексу
-                                                                              // Заполнение TextBox
+            UpdateRectangleInfo(_currentRectangle);  // Заполнение TextBox
 
             textBoxWidth.Text = _currentRectangle.Width.ToString();
             textBoxLength.Text = _currentRectangle.Length.ToString();
@@ -450,6 +472,17 @@ namespace Programming
                 _currentRectangle.Width = width;
                 // Белый фон при успешном вводе
                 textBoxWidth.BackColor = Color.White;
+                // Обновляем панель на канве
+                int index = _rectangles.IndexOf(_currentRectangle);
+                if (index >= 0)
+                {
+                    _rectanglePanels[index].Width = (int)width;
+                    // Пересчитываем позицию для центрирования
+                    int newX = _currentRectangle.Center.X - (int)width / 2;
+                    _rectanglePanels[index].Location = new Point(newX, _rectanglePanels[index].Location.Y);
+                }
+                UpdateRectanglesListBox();
+                FindCollisions();
             }
             catch (Exception)
             {
