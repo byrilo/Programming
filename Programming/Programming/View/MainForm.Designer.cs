@@ -28,7 +28,6 @@ namespace Programming
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             TabControlMain = new TabControl();
             tabPage1 = new TabPage();
             IntValueLabel = new Label();
@@ -75,7 +74,7 @@ namespace Programming
             labelLength = new Label();
             labelWidth = new Label();
             labelSelectedRectangle = new Label();
-            panel1 = new Panel();
+            CanvasPanel = new Panel();
             listBoxRectangles = new ListBox();
             labelID = new Label();
             labelCenterY = new Label();
@@ -85,8 +84,6 @@ namespace Programming
             textBoxID = new TextBox();
             textBoxCenterY = new TextBox();
             textBoxCenterX = new TextBox();
-            errorProvider1 = new ErrorProvider(components);
-            errorProvider2 = new ErrorProvider(components);
             TabControlMain.SuspendLayout();
             tabPage1.SuspendLayout();
             GroupBoxWeekParse.SuspendLayout();
@@ -96,8 +93,6 @@ namespace Programming
             FilmClassesGroupBox.SuspendLayout();
             RectangleClassesGroupBox.SuspendLayout();
             tabPageRectangles.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)errorProvider2).BeginInit();
             SuspendLayout();
             // 
             // TabControlMain
@@ -109,7 +104,7 @@ namespace Programming
             TabControlMain.Location = new Point(0, 0);
             TabControlMain.Name = "TabControlMain";
             TabControlMain.SelectedIndex = 0;
-            TabControlMain.Size = new Size(852, 530);
+            TabControlMain.Size = new Size(1177, 530);
             TabControlMain.TabIndex = 0;
             // 
             // tabPage1
@@ -122,7 +117,7 @@ namespace Programming
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(844, 497);
+            tabPage1.Size = new Size(1169, 497);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Enums";
             tabPage1.UseVisualStyleBackColor = true;
@@ -293,7 +288,7 @@ namespace Programming
             tabPageClasses.Location = new Point(4, 29);
             tabPageClasses.Name = "tabPageClasses";
             tabPageClasses.Padding = new Padding(3);
-            tabPageClasses.Size = new Size(844, 497);
+            tabPageClasses.Size = new Size(1169, 497);
             tabPageClasses.TabIndex = 1;
             tabPageClasses.Text = "Classes";
             tabPageClasses.UseVisualStyleBackColor = true;
@@ -499,7 +494,7 @@ namespace Programming
             tabPageRectangles.Controls.Add(labelLength);
             tabPageRectangles.Controls.Add(labelWidth);
             tabPageRectangles.Controls.Add(labelSelectedRectangle);
-            tabPageRectangles.Controls.Add(panel1);
+            tabPageRectangles.Controls.Add(CanvasPanel);
             tabPageRectangles.Controls.Add(listBoxRectangles);
             tabPageRectangles.Controls.Add(labelID);
             tabPageRectangles.Controls.Add(labelCenterY);
@@ -512,7 +507,7 @@ namespace Programming
             tabPageRectangles.Location = new Point(4, 29);
             tabPageRectangles.Name = "tabPageRectangles";
             tabPageRectangles.Padding = new Padding(3);
-            tabPageRectangles.Size = new Size(844, 497);
+            tabPageRectangles.Size = new Size(1169, 497);
             tabPageRectangles.TabIndex = 3;
             tabPageRectangles.Text = "Rectangles";
             tabPageRectangles.UseVisualStyleBackColor = true;
@@ -538,6 +533,7 @@ namespace Programming
             buttonRectanglesAdd.TabIndex = 14;
             buttonRectanglesAdd.Text = "Add";
             buttonRectanglesAdd.UseVisualStyleBackColor = true;
+            buttonRectanglesAdd.Click += buttonRectanglesAdd_Click;
             // 
             // labelRectangles
             // 
@@ -575,12 +571,13 @@ namespace Programming
             labelSelectedRectangle.TabIndex = 10;
             labelSelectedRectangle.Text = "Selected Rectangle:";
             // 
-            // panel1
+            // CanvasPanel
             // 
-            panel1.Location = new Point(430, 21);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(406, 404);
-            panel1.TabIndex = 9;
+            CanvasPanel.BorderStyle = BorderStyle.FixedSingle;
+            CanvasPanel.Location = new Point(430, 21);
+            CanvasPanel.Name = "CanvasPanel";
+            CanvasPanel.Size = new Size(731, 457);
+            CanvasPanel.TabIndex = 9;
             // 
             // listBoxRectangles
             // 
@@ -658,17 +655,9 @@ namespace Programming
             textBoxCenterX.Size = new Size(125, 27);
             textBoxCenterX.TabIndex = 0;
             // 
-            // errorProvider1
-            // 
-            errorProvider1.ContainerControl = this;
-            // 
-            // errorProvider2
-            // 
-            errorProvider2.ContainerControl = this;
-            // 
             // Form1
             // 
-            ClientSize = new Size(852, 530);
+            ClientSize = new Size(1177, 530);
             Controls.Add(TabControlMain);
             Name = "Form1";
             Text = "Programming";
@@ -689,8 +678,6 @@ namespace Programming
             RectangleClassesGroupBox.PerformLayout();
             tabPageRectangles.ResumeLayout(false);
             tabPageRectangles.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)errorProvider2).EndInit();
             ResumeLayout(false);
         }
 
@@ -742,12 +729,10 @@ namespace Programming
         private TextBox textBoxID;
         private TextBox textBoxCenterY;
         private TextBox textBoxCenterX;
-        private ErrorProvider errorProvider1;
-        private ErrorProvider errorProvider2;
         private Label labelCenterY;
         private Label labelCenterX;
         private Label labelID;
-        private Panel panel1;
+        private Panel CanvasPanel;
         private ListBox listBoxRectangles;
         private Label labelSelectedRectangle;
         private Label labelRectangles;

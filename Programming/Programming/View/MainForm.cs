@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Programming.Model;
+using ModelRectangle = Programming.Model.Rectangle;
 
 namespace Programming
 {
@@ -122,8 +123,10 @@ namespace Programming
         {
 
         }
-        private Programming.Model.Rectangle[] _rectangles; // Массив для хранения прямугольников
-        private Programming.Model.Rectangle _currentRectangle; // Переменная для хранения текущего выбранного прямоугольника
+        private List<ModelRectangle> _rectangles = new List<ModelRectangle>();
+        private ModelRectangle _currentRectangle;
+        private List<Panel> _rectanglePanels = new List<Panel>();
+        
 
         private Programming.Model.Film[] _films; // Массив для хранения фильмов
         private Programming.Model.Film _currentFilm; // Переменная для хранения текущего выбранного фильма
@@ -181,20 +184,51 @@ namespace Programming
         private void InitializeRectanglesData()
         {
             Random rnd = new Random();
-            _rectangles = new Programming.Model.Rectangle[5];
 
-            for (int i = 0; i < _rectangles.Length; i++)
+            for (int i = 0; i < 5; i++)
             {
-                int x = rnd.Next(0, 500);  // Случайная координата X центра
-                int y = rnd.Next(0, 500);  // Случайная координата Y центра
-                double length = rnd.Next(1, 100); // Случайная длина
-                double width = rnd.Next(1, 100); // Случайная ширина
-                string color = ((Colors)(rnd.Next(0, Enum.GetValues(typeof(Colors)).Length))).ToString(); // Случайный цвет 
-                _rectangles[i] = new Programming.Model.Rectangle(length, width, color, x, y);
-                _rectangles[i].Number = i + 1; // Устанавливаем номер
-                RectangleClassesListBox.Items.Add(_rectangles[i]);
-                listBoxRectangles.Items.Add(_rectangles[i]);
+                // Генерация координат 
+                int canvasWidth = CanvasPanel.ClientSize.Width;
+                int canvasHeight = CanvasPanel.ClientSize.Height;
+
+                int x = rnd.Next(15 + 75, canvasWidth - 15 - 75);  // +75 для учёта половины ширины
+                int y = rnd.Next(15 + 75, canvasHeight - 15 - 75); // +75 для учёта половины высоты
+                double length = rnd.Next(50, 150); // Случайная высота
+                double width = rnd.Next(50, 150);  // Случайная ширина
+                string color = ((Colors)rnd.Next(0, Enum.GetValues(typeof(Colors)).Length)).ToString();
+
+                // Создаём прямоугольник
+                ModelRectangle rect = new ModelRectangle(length, width, color, x, y);
+                rect.Number = i + 1;
+
+                // Добавляем прямоугольник в список
+                _rectangles.Add(rect);
+
+                // Создаём панель для отображения на канве
+                Panel panel = new Panel
+                {
+                    // Location — это верхний левый угол панели,
+                    // а у нас есть центр прямоугольника, поэтому вычитаем половину размера
+                    Location = new Point(x - (int)width / 2, y - (int)length / 2),
+                    Width = (int)width,
+                    Height = (int)length,
+                    BackColor = Color.FromArgb(127, 127, 255, 127), // Зелёный 
+                    BorderStyle = BorderStyle.FixedSingle
+                };
+
+                // Добавляем панель в список панелей
+                _rectanglePanels.Add(panel);
+
+                // Добавляем панель на канву
+                CanvasPanel.Controls.Add(panel);
+
+                // Добавляем в ListBox для отображения
+                RectangleClassesListBox.Items.Add(rect);
+                listBoxRectangles.Items.Add(rect);
             }
+
+            // проверяем пересечения
+            FindCollisions();
         }
         /// <summary>
         /// Функция, которая срабатывает при выборе прямоугольника, инициализируя данные в текстбоксы
@@ -265,19 +299,24 @@ namespace Programming
                 _currentRectangle.Color = RectangleClassesTextBoxColor.Text;
             }
         }
-        private int FindRectangleWithMaxWidth(Programming.Model.Rectangle[] rectangles)
+        private int FindRectangleWithMaxWidth(List<ModelRectangle> rectangles)
         {
-            int maxIndex = 0; // Индекс прямоугольника с максимальной шириной
-            double maxWidth = rectangles[0].Width; // Максимальная ширина, изначально - ширина первого прямоугольника
-            for (int i = 1; i < rectangles.Length; i++) // Проход по всем прямоугольникам
+            if (rectangles == null || rectangles.Count == 0)
+                return -1; // Защита от пустого списка
+
+            int maxIndex = 0;
+            double maxWidth = rectangles[0].Width;
+
+           
+            for (int i = 1; i < rectangles.Count; i++)
             {
-                if (rectangles[i].Width > maxWidth) // Если текущая ширина больше максимальной
+                if (rectangles[i].Width > maxWidth)
                 {
-                    maxWidth = rectangles[i].Width; // Обновляем максимальную ширину
-                    maxIndex = i; // Обновляем индекс
+                    maxWidth = rectangles[i].Width;
+                    maxIndex = i;
                 }
             }
-            return maxIndex; // Возвращаем индекс прямоугольника с максимальной шириной
+            return maxIndex;
         }
         private void RectangleClassesFindButton_Click(object sender, EventArgs e)
         {
@@ -411,5 +450,86 @@ namespace Programming
                 textBoxWidth.BackColor = Color.LightPink; // Розовый фон при ошибке
             }
         }
+        private void UpdateRectanglesListBox()
+        {
+            listBoxRectangles.Items.Clear();
+            foreach (var rect in _rectangles)
+            {
+                listBoxRectangles.Items.Add(
+                    $"Rectangle {rect.Id}"
+                );
+            }
+        }
+        private void FindCollisions()
+        {
+            // Если списки пусты выход
+            if (_rectangles.Count == 0)
+                return;
+
+            // Сначала все панели делаем зелёными
+            foreach (var panel in _rectanglePanels)
+            {
+                panel.BackColor = Color.FromArgb(127, 127, 255, 127);
+            }
+
+            // Проверяем все пары прямоугольников
+            for (int i = 0; i < _rectangles.Count; i++)
+            {
+                for (int j = 0; j < _rectangles.Count; j++)
+                {
+                    if (i == j)
+                        continue;
+
+                    if (CollisionManager.IsCollision(_rectangles[i], _rectangles[j]))
+                    {
+                        // Красим оба пересекающихся прямоугольника в красный
+                        _rectanglePanels[i].BackColor = Color.FromArgb(127, 255, 127, 127);
+                        _rectanglePanels[j].BackColor = Color.FromArgb(127, 255, 127, 127);
+                    }
+                }
+            }
+        }
+        
+        private void buttonRectanglesAdd_Click(object sender, EventArgs e)
+        {
+            // Получаем размеры канвы
+            int canvasWidth = CanvasPanel.ClientSize.Width;
+            int canvasHeight = CanvasPanel.ClientSize.Height;
+
+            // Создаём случайный прямоугольник
+            Random rnd = new Random();
+            int x = rnd.Next(15, canvasWidth - 15);
+            int y = rnd.Next(15, canvasHeight - 15);
+            double length = rnd.Next(50, 150);
+            double width = rnd.Next(50, 150);
+            string color = ((Colors)rnd.Next(0, Enum.GetValues(typeof(Colors)).Length)).ToString();
+
+            ModelRectangle rect = new ModelRectangle(length, width, color, x, y);
+            rect.Number = _rectangles.Count + 1;
+
+            // Добавляем в список прямоугольников
+            _rectangles.Add(rect);
+
+            // Создаём панель
+            Panel panel = new Panel
+            {
+                Location = new Point(x - (int)width / 2, y - (int)length / 2),
+                Width = (int)width,
+                Height = (int)length,
+                BackColor = Color.FromArgb(127, 127, 255, 127),
+                BorderStyle = BorderStyle.FixedSingle
+            };
+
+            // Добавляем панель  на канву и в список
+            _rectanglePanels.Add(panel);  
+            CanvasPanel.Controls.Add(panel);
+
+            // Обновляем ListBox
+            UpdateRectanglesListBox();
+
+            // Проверяем пересечения
+            FindCollisions();
+        }
+
     }
 }
