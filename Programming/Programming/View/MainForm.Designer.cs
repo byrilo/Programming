@@ -522,6 +522,7 @@ namespace Programming
             buttonRectanglesDelete.TabIndex = 15;
             buttonRectanglesDelete.Text = "Delete";
             buttonRectanglesDelete.UseVisualStyleBackColor = true;
+            buttonRectanglesDelete.Click += buttonRectanglesDelete_Click;
             // 
             // buttonRectanglesAdd
             // 

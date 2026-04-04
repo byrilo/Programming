@@ -126,7 +126,7 @@ namespace Programming
         private List<ModelRectangle> _rectangles = new List<ModelRectangle>();
         private ModelRectangle _currentRectangle;
         private List<Panel> _rectanglePanels = new List<Panel>();
-        
+
 
         private Programming.Model.Film[] _films; // Массив для хранения фильмов
         private Programming.Model.Film _currentFilm; // Переменная для хранения текущего выбранного фильма
@@ -307,7 +307,7 @@ namespace Programming
             int maxIndex = 0;
             double maxWidth = rectangles[0].Width;
 
-           
+
             for (int i = 1; i < rectangles.Count; i++)
             {
                 if (rectangles[i].Width > maxWidth)
@@ -417,7 +417,13 @@ namespace Programming
 
         private void listBoxRectangles_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBoxRectangles.SelectedIndex < 0) return; // Проверка на то что элемент выбран
+            if (listBoxRectangles.SelectedIndex < 0)
+            {
+                ClearRectangleInfo();
+                return;
+            }
+            
+            UpdateRectangleInfo(_currentRectangle);
             _currentRectangle = _rectangles[listBoxRectangles.SelectedIndex]; // Получение объекта по индексу
                                                                               // Заполнение TextBox
 
@@ -460,6 +466,37 @@ namespace Programming
                 );
             }
         }
+        /// <summary>
+        /// Очистка всех текстовых полей
+        /// </summary>
+        private void ClearRectangleInfo()
+        {
+            textBoxID.Text = "";
+            textBoxCenterX.Text = "";
+            textBoxCenterY.Text = "";
+            textBoxWidth.Text = "";
+            textBoxLength.Text = "";
+            RectangleClassesTextBoxColor.Text = "";
+        }
+        /// <summary>
+        /// Обновление данных в текстовых полях по указанному прямоугольнику
+        /// </summary>
+        private void UpdateRectangleInfo(ModelRectangle rectangle)
+        {
+            // если rectangle null, очищаем поля
+            if (rectangle == null)
+            {
+                ClearRectangleInfo();
+                return;
+            }
+
+            textBoxID.Text = rectangle.Id.ToString();
+            textBoxCenterX.Text = rectangle.Center.X.ToString();
+            textBoxCenterY.Text = rectangle.Center.Y.ToString();
+            textBoxWidth.Text = rectangle.Width.ToString();
+            textBoxLength.Text = rectangle.Length.ToString();
+            RectangleClassesTextBoxColor.Text = rectangle.Color;
+        }
         private void FindCollisions()
         {
             // Если списки пусты выход
@@ -489,7 +526,7 @@ namespace Programming
                 }
             }
         }
-        
+
         private void buttonRectanglesAdd_Click(object sender, EventArgs e)
         {
             // Получаем размеры канвы
@@ -521,7 +558,7 @@ namespace Programming
             };
 
             // Добавляем панель  на канву и в список
-            _rectanglePanels.Add(panel);  
+            _rectanglePanels.Add(panel);
             CanvasPanel.Controls.Add(panel);
 
             // Обновляем ListBox
@@ -531,5 +568,28 @@ namespace Programming
             FindCollisions();
         }
 
+        private void buttonRectanglesDelete_Click(object sender, EventArgs e)
+        {
+            if (listBoxRectangles.SelectedIndex == -1)
+                return;
+
+            int selectedIndex = listBoxRectangles.SelectedIndex;
+
+            // Удаляем панель с канвы
+            CanvasPanel.Controls.Remove(_rectanglePanels[selectedIndex]);
+
+            // Удаляем из списков
+            _rectanglePanels.RemoveAt(selectedIndex);
+            _rectangles.RemoveAt(selectedIndex);
+
+            // Обновляем ListBox
+            UpdateRectanglesListBox();
+
+            // Очищаем поля
+            ClearRectangleInfo();
+
+            // Проверяем пересечения
+            FindCollisions();
+        }
     }
 }
