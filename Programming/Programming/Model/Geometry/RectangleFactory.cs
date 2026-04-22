@@ -16,7 +16,7 @@ namespace Programming.Model
             double width = _rnd.Next(50, 150);
             string color = ((Colors)_rnd.Next(0, Enum.GetValues(typeof(Colors)).Length)).ToString();
 
-            // Генерация координат внутри канвы с отступом 15 пикселей
+            // Генерация координат 
             int x = _rnd.Next(15, maxX - 15);
             int y = _rnd.Next(15, maxY - 15);
 

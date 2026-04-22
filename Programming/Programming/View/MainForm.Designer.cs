@@ -68,22 +68,7 @@ namespace Programming
             RectangleClassesFindButton = new Button();
             RectangleClassesListBox = new ListBox();
             tabPageRectangles = new TabPage();
-            buttonRectanglesDelete = new Button();
-            buttonRectanglesAdd = new Button();
-            labelRectangles = new Label();
-            labelLength = new Label();
-            labelWidth = new Label();
-            labelSelectedRectangle = new Label();
-            CanvasPanel = new Panel();
-            listBoxRectangles = new ListBox();
-            labelID = new Label();
-            labelCenterY = new Label();
-            labelCenterX = new Label();
-            textBoxLength = new TextBox();
-            textBoxWidth = new TextBox();
-            textBoxID = new TextBox();
-            textBoxCenterY = new TextBox();
-            textBoxCenterX = new TextBox();
+            rectanglesCollisionControl1 = new Programming.Model.Controls.RectanglesCollisionControl();
             TabControlMain.SuspendLayout();
             tabPage1.SuspendLayout();
             GroupBoxWeekParse.SuspendLayout();
@@ -488,22 +473,7 @@ namespace Programming
             // 
             // tabPageRectangles
             // 
-            tabPageRectangles.Controls.Add(buttonRectanglesDelete);
-            tabPageRectangles.Controls.Add(buttonRectanglesAdd);
-            tabPageRectangles.Controls.Add(labelRectangles);
-            tabPageRectangles.Controls.Add(labelLength);
-            tabPageRectangles.Controls.Add(labelWidth);
-            tabPageRectangles.Controls.Add(labelSelectedRectangle);
-            tabPageRectangles.Controls.Add(CanvasPanel);
-            tabPageRectangles.Controls.Add(listBoxRectangles);
-            tabPageRectangles.Controls.Add(labelID);
-            tabPageRectangles.Controls.Add(labelCenterY);
-            tabPageRectangles.Controls.Add(labelCenterX);
-            tabPageRectangles.Controls.Add(textBoxLength);
-            tabPageRectangles.Controls.Add(textBoxWidth);
-            tabPageRectangles.Controls.Add(textBoxID);
-            tabPageRectangles.Controls.Add(textBoxCenterY);
-            tabPageRectangles.Controls.Add(textBoxCenterX);
+            tabPageRectangles.Controls.Add(rectanglesCollisionControl1);
             tabPageRectangles.Location = new Point(4, 29);
             tabPageRectangles.Name = "tabPageRectangles";
             tabPageRectangles.Padding = new Padding(3);
@@ -512,149 +482,12 @@ namespace Programming
             tabPageRectangles.Text = "Rectangles";
             tabPageRectangles.UseVisualStyleBackColor = true;
             // 
-            // buttonRectanglesDelete
+            // rectanglesCollisionControl1
             // 
-            buttonRectanglesDelete.FlatAppearance.BorderSize = 0;
-            buttonRectanglesDelete.FlatStyle = FlatStyle.Flat;
-            buttonRectanglesDelete.Location = new Point(359, 221);
-            buttonRectanglesDelete.Name = "buttonRectanglesDelete";
-            buttonRectanglesDelete.Size = new Size(65, 29);
-            buttonRectanglesDelete.TabIndex = 15;
-            buttonRectanglesDelete.Text = "Delete";
-            buttonRectanglesDelete.UseVisualStyleBackColor = true;
-            buttonRectanglesDelete.Click += buttonRectanglesDelete_Click;
-            // 
-            // buttonRectanglesAdd
-            // 
-            buttonRectanglesAdd.FlatAppearance.BorderSize = 0;
-            buttonRectanglesAdd.FlatStyle = FlatStyle.Flat;
-            buttonRectanglesAdd.Location = new Point(300, 221);
-            buttonRectanglesAdd.Name = "buttonRectanglesAdd";
-            buttonRectanglesAdd.Size = new Size(53, 29);
-            buttonRectanglesAdd.TabIndex = 14;
-            buttonRectanglesAdd.Text = "Add";
-            buttonRectanglesAdd.UseVisualStyleBackColor = true;
-            buttonRectanglesAdd.Click += buttonRectanglesAdd_Click;
-            // 
-            // labelRectangles
-            // 
-            labelRectangles.AutoSize = true;
-            labelRectangles.Location = new Point(31, -2);
-            labelRectangles.Name = "labelRectangles";
-            labelRectangles.Size = new Size(84, 20);
-            labelRectangles.TabIndex = 13;
-            labelRectangles.Text = "Rectangles:";
-            // 
-            // labelLength
-            // 
-            labelLength.AutoSize = true;
-            labelLength.Location = new Point(38, 365);
-            labelLength.Name = "labelLength";
-            labelLength.Size = new Size(57, 20);
-            labelLength.TabIndex = 12;
-            labelLength.Text = "Length:";
-            // 
-            // labelWidth
-            // 
-            labelWidth.AutoSize = true;
-            labelWidth.Location = new Point(43, 395);
-            labelWidth.Name = "labelWidth";
-            labelWidth.Size = new Size(52, 20);
-            labelWidth.TabIndex = 11;
-            labelWidth.Text = "Width:";
-            // 
-            // labelSelectedRectangle
-            // 
-            labelSelectedRectangle.AutoSize = true;
-            labelSelectedRectangle.Location = new Point(31, 225);
-            labelSelectedRectangle.Name = "labelSelectedRectangle";
-            labelSelectedRectangle.Size = new Size(139, 20);
-            labelSelectedRectangle.TabIndex = 10;
-            labelSelectedRectangle.Text = "Selected Rectangle:";
-            // 
-            // CanvasPanel
-            // 
-            CanvasPanel.BorderStyle = BorderStyle.FixedSingle;
-            CanvasPanel.Location = new Point(430, 21);
-            CanvasPanel.Name = "CanvasPanel";
-            CanvasPanel.Size = new Size(731, 457);
-            CanvasPanel.TabIndex = 9;
-            // 
-            // listBoxRectangles
-            // 
-            listBoxRectangles.FormattingEnabled = true;
-            listBoxRectangles.Location = new Point(31, 21);
-            listBoxRectangles.Name = "listBoxRectangles";
-            listBoxRectangles.Size = new Size(393, 184);
-            listBoxRectangles.TabIndex = 8;
-            listBoxRectangles.SelectedIndexChanged += listBoxRectangles_SelectedIndexChanged;
-            // 
-            // labelID
-            // 
-            labelID.AutoSize = true;
-            labelID.Location = new Point(71, 329);
-            labelID.Name = "labelID";
-            labelID.Size = new Size(27, 20);
-            labelID.TabIndex = 7;
-            labelID.Text = "ID:";
-            // 
-            // labelCenterY
-            // 
-            labelCenterY.AutoSize = true;
-            labelCenterY.Location = new Point(75, 296);
-            labelCenterY.Name = "labelCenterY";
-            labelCenterY.Size = new Size(20, 20);
-            labelCenterY.TabIndex = 6;
-            labelCenterY.Text = "Y:";
-            // 
-            // labelCenterX
-            // 
-            labelCenterX.AutoSize = true;
-            labelCenterX.Location = new Point(74, 267);
-            labelCenterX.Name = "labelCenterX";
-            labelCenterX.Size = new Size(21, 20);
-            labelCenterX.TabIndex = 5;
-            labelCenterX.Text = "X:";
-            // 
-            // textBoxLength
-            // 
-            textBoxLength.Location = new Point(101, 362);
-            textBoxLength.Name = "textBoxLength";
-            textBoxLength.Size = new Size(125, 27);
-            textBoxLength.TabIndex = 4;
-            textBoxLength.TextChanged += textBoxLength_TextChanged;
-            // 
-            // textBoxWidth
-            // 
-            textBoxWidth.Location = new Point(101, 392);
-            textBoxWidth.Name = "textBoxWidth";
-            textBoxWidth.Size = new Size(125, 27);
-            textBoxWidth.TabIndex = 3;
-            textBoxWidth.TextChanged += textBoxWidth_TextChanged;
-            // 
-            // textBoxID
-            // 
-            textBoxID.Location = new Point(101, 326);
-            textBoxID.Name = "textBoxID";
-            textBoxID.ReadOnly = true;
-            textBoxID.Size = new Size(125, 27);
-            textBoxID.TabIndex = 2;
-            // 
-            // textBoxCenterY
-            // 
-            textBoxCenterY.Location = new Point(101, 293);
-            textBoxCenterY.Name = "textBoxCenterY";
-            textBoxCenterY.ReadOnly = true;
-            textBoxCenterY.Size = new Size(125, 27);
-            textBoxCenterY.TabIndex = 1;
-            // 
-            // textBoxCenterX
-            // 
-            textBoxCenterX.Location = new Point(101, 260);
-            textBoxCenterX.Name = "textBoxCenterX";
-            textBoxCenterX.ReadOnly = true;
-            textBoxCenterX.Size = new Size(125, 27);
-            textBoxCenterX.TabIndex = 0;
+            rectanglesCollisionControl1.Location = new Point(0, 0);
+            rectanglesCollisionControl1.Name = "rectanglesCollisionControl1";
+            rectanglesCollisionControl1.Size = new Size(1169, 501);
+            rectanglesCollisionControl1.TabIndex = 0;
             // 
             // Form1
             // 
@@ -678,7 +511,6 @@ namespace Programming
             RectangleClassesGroupBox.ResumeLayout(false);
             RectangleClassesGroupBox.PerformLayout();
             tabPageRectangles.ResumeLayout(false);
-            tabPageRectangles.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -725,21 +557,6 @@ namespace Programming
         private TextBox FilmClassesTextBoxGenre;
         private ComboBox ComboBoxSeason;
         private TabPage tabPageRectangles;
-        private TextBox textBoxLength;
-        private TextBox textBoxWidth;
-        private TextBox textBoxID;
-        private TextBox textBoxCenterY;
-        private TextBox textBoxCenterX;
-        private Label labelCenterY;
-        private Label labelCenterX;
-        private Label labelID;
-        private Panel CanvasPanel;
-        private ListBox listBoxRectangles;
-        private Label labelSelectedRectangle;
-        private Label labelRectangles;
-        private Label labelLength;
-        private Label labelWidth;
-        private Button buttonRectanglesAdd;
-        private Button buttonRectanglesDelete;
+        private Model.Controls.RectanglesCollisionControl rectanglesCollisionControl1;
     }
 }

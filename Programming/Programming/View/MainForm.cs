@@ -17,7 +17,6 @@ namespace Programming
         public Form1()
         {
             InitializeComponent();
-            InitializeRectanglesData(); // Прямоугольники
             InitializeFilmsData(); // Фильмы
         }
 
@@ -178,58 +177,7 @@ namespace Programming
             FilmClassesTextBoxGenre.BackColor = Color.White;
             FilmClassesTextBoxRating.BackColor = Color.White;
         }
-        /// <summary>
-        /// Функция инициализирует 5 прямоугольников в программу (Листбокс)
-        /// </summary>
-        private void InitializeRectanglesData()
-        {
-            Random rnd = new Random();
-
-            for (int i = 0; i < 5; i++)
-            {
-                // Генерация координат 
-                int canvasWidth = CanvasPanel.ClientSize.Width;
-                int canvasHeight = CanvasPanel.ClientSize.Height;
-
-                int x = rnd.Next(15 + 75, canvasWidth - 15 - 75);  // +75 для учёта половины ширины
-                int y = rnd.Next(15 + 75, canvasHeight - 15 - 75); // +75 для учёта половины высоты
-                double length = rnd.Next(50, 150); // Случайная высота
-                double width = rnd.Next(50, 150);  // Случайная ширина
-                string color = ((Colors)rnd.Next(0, Enum.GetValues(typeof(Colors)).Length)).ToString();
-
-                // Создаём прямоугольник
-                ModelRectangle rect = new ModelRectangle(length, width, color, x, y);
-                rect.Number = i + 1;
-
-                // Добавляем прямоугольник в список
-                _rectangles.Add(rect);
-
-                // Создаём панель для отображения на канве
-                Panel panel = new Panel
-                {
-                    // Location — это верхний левый угол панели,
-                    // а у нас есть центр прямоугольника, поэтому вычитаем половину размера
-                    Location = new Point(x - (int)width / 2, y - (int)length / 2),
-                    Width = (int)width,
-                    Height = (int)length,
-                    BackColor = Color.FromArgb(127, 127, 255, 127), // Зелёный 
-                    BorderStyle = BorderStyle.FixedSingle
-                };
-
-                // Добавляем панель в список панелей
-                _rectanglePanels.Add(panel);
-
-                // Добавляем панель на канву
-                CanvasPanel.Controls.Add(panel);
-
-                // Добавляем в ListBox для отображения
-                RectangleClassesListBox.Items.Add(rect);
-                listBoxRectangles.Items.Add(rect);
-            }
-
-            // проверяем пересечения
-            FindCollisions();
-        }
+ 
         /// <summary>
         /// Функция, которая срабатывает при выборе прямоугольника, инициализируя данные в текстбоксы
         /// </summary>
@@ -242,16 +190,11 @@ namespace Programming
             // Заполнение TextBox
             RectangleClassesTextBoxLenght.Text = _currentRectangle.Length.ToString();
             RectangleClassesTextBoxWidth.Text = _currentRectangle.Width.ToString();
-            textBoxWidth.Text = _currentRectangle.Width.ToString();
-            textBoxLength.Text = _currentRectangle.Length.ToString();
             RectangleClassesTextBoxColor.Text = _currentRectangle.Color;
             // Сброс цвета фона TextBox на белый при выборе нового элемента
             RectangleClassesTextBoxLenght.BackColor = Color.White;
             RectangleClassesTextBoxWidth.BackColor = Color.White;
             RectangleClassesTextBoxColor.BackColor = Color.White;
-            textBoxCenterX.Text = _currentRectangle.Center.X.ToString();
-            textBoxCenterY.Text = _currentRectangle.Center.Y.ToString();
-            textBoxID.Text = _currentRectangle.Id.ToString();
         }
 
         private void RectangleClassesTextBoxLenght_TextChanged(object sender, EventArgs e)
@@ -396,153 +339,19 @@ namespace Programming
                 FilmClassesTextBoxRating.BackColor = Color.LightPink; // Розовый фон при ошибке
             }
         }
-
-        private void textBoxLength_TextChanged(object sender, EventArgs e)
-        {
-            if (_currentRectangle == null) return;
-
-            try
-            {
-                // Преобразование текста в число
-                double length = double.Parse(textBoxLength.Text);
-
-                // Присваивание через свойство прямоугольника
-                _currentRectangle.Length = length;
-
-                // Белый фон при успешном вводе
-                textBoxLength.BackColor = Color.White;
-
-                // Обновляем панель на канве
-                int index = _rectangles.IndexOf(_currentRectangle);
-                if (index >= 0)
-                {                   
-                    _rectanglePanels[index].Height = (int)length;
-
-                    // Пересчитываем позицию Y для центрирования
-                    int newY = _currentRectangle.Center.Y - (int)length / 2;
-                    int currentX = _rectanglePanels[index].Location.X;
-                    _rectanglePanels[index].Location = new Point(currentX, newY);
-                }
-
-                UpdateRectanglesListBox();
-                FindCollisions();
-            }
-            catch (ArgumentException ex)
-            {
-                textBoxLength.BackColor = Color.LightPink;
-            }
-            catch (FormatException)
-            {
-                textBoxLength.BackColor = Color.LightPink;
-            }
-        }
-
-        private void listBoxRectangles_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBoxRectangles.SelectedIndex < 0)
-            {
-                ClearRectangleInfo();
-                return;
-            }
-            
-            
-            _currentRectangle = _rectangles[listBoxRectangles.SelectedIndex]; // Получение объекта по индексу
-            UpdateRectangleInfo(_currentRectangle);  // Заполнение TextBox
-
-            textBoxWidth.Text = _currentRectangle.Width.ToString();
-            textBoxLength.Text = _currentRectangle.Length.ToString();
-            RectangleClassesTextBoxColor.Text = _currentRectangle.Color;
-            // Сброс цвета фона TextBox на белый при выборе нового элемента
-            RectangleClassesTextBoxLenght.BackColor = Color.White;
-            RectangleClassesTextBoxWidth.BackColor = Color.White;
-            RectangleClassesTextBoxColor.BackColor = Color.White;
-            textBoxCenterX.Text = _currentRectangle.Center.X.ToString();
-            textBoxCenterY.Text = _currentRectangle.Center.Y.ToString();
-            textBoxID.Text = _currentRectangle.Id.ToString();
-        }
-
-        private void textBoxWidth_TextChanged(object sender, EventArgs e)
-        {
-            if (_currentRectangle == null) return; // Проверка на то, что значение выбрано
-            try
-            {
-                // Преобразование текста в число
-                double width = double.Parse(textBoxWidth.Text);
-                // Присваивание через свойство
-                _currentRectangle.Width = width;
-                // Белый фон при успешном вводе
-                textBoxWidth.BackColor = Color.White;
-                // Обновляем панель на канве
-                int index = _rectangles.IndexOf(_currentRectangle);
-                if (index >= 0)
-                {
-                    _rectanglePanels[index].Width = (int)width;
-                    // Пересчитываем позицию для центрирования
-                    int newX = _currentRectangle.Center.X - (int)width / 2;
-                    _rectanglePanels[index].Location = new Point(newX, _rectanglePanels[index].Location.Y);
-                }
-                UpdateRectanglesListBox();
-                FindCollisions();
-            }
-            catch (Exception)
-            {
-                textBoxWidth.BackColor = Color.LightPink; // Розовый фон при ошибке
-            }
-        }
-        private void UpdateRectanglesListBox()
-        {
-            listBoxRectangles.Items.Clear();
-            foreach (var rect in _rectangles)
-            {
-                listBoxRectangles.Items.Add(
-                    $"Rectangle {rect.Id}"
-                );
-            }
-        }
-        /// <summary>
-        /// Очистка всех текстовых полей
-        /// </summary>
-        private void ClearRectangleInfo()
-        {
-            textBoxID.Text = "";
-            textBoxCenterX.Text = "";
-            textBoxCenterY.Text = "";
-            textBoxWidth.Text = "";
-            textBoxLength.Text = "";
-            RectangleClassesTextBoxColor.Text = "";
-        }
-        /// <summary>
-        /// Обновление данных в текстовых полях по указанному прямоугольнику
-        /// </summary>
-        private void UpdateRectangleInfo(ModelRectangle rectangle)
-        {
-            // если rectangle null, очищаем поля
-            if (rectangle == null)
-            {
-                ClearRectangleInfo();
-                return;
-            }
-
-            textBoxID.Text = rectangle.Id.ToString();
-            textBoxCenterX.Text = rectangle.Center.X.ToString();
-            textBoxCenterY.Text = rectangle.Center.Y.ToString();
-            textBoxWidth.Text = rectangle.Width.ToString();
-            textBoxLength.Text = rectangle.Length.ToString();
-            RectangleClassesTextBoxColor.Text = rectangle.Color;
-        }
         private void FindCollisions()
         {
             // Если списки пусты выход
             if (_rectangles.Count == 0)
                 return;
 
-            // Сначала все панели делаем зелёными
+            // Сначала все панели зелёные
             foreach (var panel in _rectanglePanels)
             {
                 panel.BackColor = Color.FromArgb(127, 127, 255, 127);
             }
 
-            // Проверяем все пары прямоугольников
+            // ПРоверка пар прямоугольников
             for (int i = 0; i < _rectangles.Count; i++)
             {
                 for (int j = 0; j < _rectangles.Count; j++)
@@ -552,7 +361,7 @@ namespace Programming
 
                     if (CollisionManager.IsCollision(_rectangles[i], _rectangles[j]))
                     {
-                        // Красим оба пересекающихся прямоугольника в красный
+                        // Красный цвет у столкнувшихся прямоугольников
                         _rectanglePanels[i].BackColor = Color.FromArgb(127, 255, 127, 127);
                         _rectanglePanels[j].BackColor = Color.FromArgb(127, 255, 127, 127);
                     }
@@ -560,69 +369,14 @@ namespace Programming
             }
         }
 
-        private void buttonRectanglesAdd_Click(object sender, EventArgs e)
+        private void CanvasPanel_Paint(object sender, PaintEventArgs e)
         {
-            // Получаем размеры канвы
-            int canvasWidth = CanvasPanel.ClientSize.Width;
-            int canvasHeight = CanvasPanel.ClientSize.Height;
 
-            // Создаём случайный прямоугольник
-            Random rnd = new Random();
-            int x = rnd.Next(15, canvasWidth - 15);
-            int y = rnd.Next(15, canvasHeight - 15);
-            double length = rnd.Next(50, 150);
-            double width = rnd.Next(50, 150);
-            string color = ((Colors)rnd.Next(0, Enum.GetValues(typeof(Colors)).Length)).ToString();
-
-            ModelRectangle rect = new ModelRectangle(length, width, color, x, y);
-            rect.Number = _rectangles.Count + 1;
-
-            // Добавляем в список прямоугольников
-            _rectangles.Add(rect);
-
-            // Создаём панель
-            Panel panel = new Panel
-            {
-                Location = new Point(x - (int)width / 2, y - (int)length / 2),
-                Width = (int)width,
-                Height = (int)length,
-                BackColor = Color.FromArgb(127, 127, 255, 127),
-                BorderStyle = BorderStyle.FixedSingle
-            };
-
-            // Добавляем панель  на канву и в список
-            _rectanglePanels.Add(panel);
-            CanvasPanel.Controls.Add(panel);
-
-            // Обновляем ListBox
-            UpdateRectanglesListBox();
-
-            // Проверяем пересечения
-            FindCollisions();
         }
 
-        private void buttonRectanglesDelete_Click(object sender, EventArgs e)
+        private void textBoxCenterX_TextChanged(object sender, EventArgs e)
         {
-            if (listBoxRectangles.SelectedIndex == -1)
-                return;
 
-            int selectedIndex = listBoxRectangles.SelectedIndex;
-
-            // Удаляем панель с канвы
-            CanvasPanel.Controls.Remove(_rectanglePanels[selectedIndex]);
-
-            // Удаляем из списков
-            _rectanglePanels.RemoveAt(selectedIndex);
-            _rectangles.RemoveAt(selectedIndex);
-
-            // Обновляем ListBox
-            UpdateRectanglesListBox();
-
-            // Очищаем поля
-            ClearRectangleInfo();
-
-            // Проверяем пересечения
-            FindCollisions();
         }
     }
 }
