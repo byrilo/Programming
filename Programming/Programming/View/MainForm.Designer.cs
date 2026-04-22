@@ -49,7 +49,8 @@ namespace Programming
             tabPageClasses = new TabPage();
             tabPageRectangles = new TabPage();
             rectanglesCollisionControl1 = new Programming.Model.Controls.RectanglesCollisionControl();
-            classesControl3 = new Programming.Model.Controls.ClassesControl();
+            filmClassesControl1 = new Programming.Model.Controls.FilmClassesControl();
+            rectanglesClassesControl1 = new Programming.Model.Controls.RectanglesClassesControl();
             TabControlMain.SuspendLayout();
             tabPage1.SuspendLayout();
             GroupBoxWeekParse.SuspendLayout();
@@ -247,7 +248,8 @@ namespace Programming
             // 
             // tabPageClasses
             // 
-            tabPageClasses.Controls.Add(classesControl3);
+            tabPageClasses.Controls.Add(rectanglesClassesControl1);
+            tabPageClasses.Controls.Add(filmClassesControl1);
             tabPageClasses.Location = new Point(4, 29);
             tabPageClasses.Name = "tabPageClasses";
             tabPageClasses.Padding = new Padding(3);
@@ -274,12 +276,19 @@ namespace Programming
             rectanglesCollisionControl1.Size = new Size(1169, 501);
             rectanglesCollisionControl1.TabIndex = 0;
             // 
-            // classesControl3
+            // filmClassesControl1
             // 
-            classesControl3.Location = new Point(0, 0);
-            classesControl3.Name = "classesControl3";
-            classesControl3.Size = new Size(1105, 631);
-            classesControl3.TabIndex = 0;
+            filmClassesControl1.Location = new Point(536, 6);
+            filmClassesControl1.Name = "filmClassesControl1";
+            filmClassesControl1.Size = new Size(564, 611);
+            filmClassesControl1.TabIndex = 0;
+            // 
+            // rectanglesClassesControl1
+            // 
+            rectanglesClassesControl1.Location = new Point(0, 3);
+            rectanglesClassesControl1.Name = "rectanglesClassesControl1";
+            rectanglesClassesControl1.Size = new Size(521, 621);
+            rectanglesClassesControl1.TabIndex = 1;
             // 
             // Form1
             // 
@@ -322,10 +331,11 @@ namespace Programming
         private ListBox ValuesListBox;
         private ListBox EnumsListBox;
         private Label IntValueLabel;
-        private TabPage tabPageClasses;
         private ComboBox ComboBoxSeason;
         private TabPage tabPageRectangles;
         private Model.Controls.RectanglesCollisionControl rectanglesCollisionControl1;
-        private Model.Controls.ClassesControl classesControl3;
+        private TabPage tabPageClasses;
+        private Model.Controls.RectanglesClassesControl rectanglesClassesControl1;
+        private Model.Controls.FilmClassesControl filmClassesControl1;
     }
 }
