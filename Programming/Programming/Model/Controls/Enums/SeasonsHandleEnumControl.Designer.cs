@@ -75,6 +75,7 @@
             GoButton.TabIndex = 1;
             GoButton.Text = "Go!";
             GoButton.UseVisualStyleBackColor = false;
+            GoButton.Click += GoButton_Click;
             // 
             // SeasonsHandleEnumControl
             // 

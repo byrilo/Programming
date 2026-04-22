@@ -23,28 +23,33 @@ namespace Programming.Model.Controls.Enums
         }
         private void GoButton_Click(object sender, EventArgs e)
         {
-            if (ComboBoxSeason.SelectedItem == null) // Проверка на то, что элемент выбран
+            if (ComboBoxSeason.SelectedItem == null)
             {
                 MessageBox.Show("Ошибка. Выберите сезон.");
                 return;
             }
-            string selectedText = ComboBoxSeason.SelectedItem.ToString(); // Получение текста выбранного элемента
-            Seasons SelectedSeasons = (Seasons)Enum.Parse(typeof(Seasons), selectedText); // Преобразование строки в тип seasons
-            switch (SelectedSeasons) // Различные действия для различных выборов
+
+            string selectedText = ComboBoxSeason.SelectedItem.ToString();
+            Seasons selectedSeason = (Seasons)Enum.Parse(typeof(Seasons), selectedText);
+
+            switch (selectedSeason)
             {
                 case Seasons.Summer:
                     MessageBox.Show("Астрологи объявляют месяц Лета! Население всех жилищ возросло.");
+                    this.BackColor = AppColors.ValidInput; // Или любой другой цвет
                     break;
+
                 case Seasons.Winter:
                     MessageBox.Show("Идём лепить снеговика!");
+                    this.BackColor = Color.LightBlue; // Цвет зимы
                     break;
+
                 case Seasons.Autumn:
-                    this.BackColor = ColorTranslator.FromHtml("#e29c45");
+                    this.BackColor = AppColors.SeasonAutumn; // Оранжевый цвет осени
                     break;
+
                 case Seasons.Spring:
-                    this.BackColor = ColorTranslator.FromHtml("#559c45");
-                    break;
-                default:
+                    this.BackColor = AppColors.SeasonSpring; // Зелёный цвет весны
                     break;
             }
         }

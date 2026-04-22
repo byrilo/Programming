@@ -106,7 +106,7 @@ namespace Programming.Model.Controls
             {
                 double length = double.Parse(textBoxLength.Text);
                 _currentRectangle.Length = length;
-                textBoxLength.BackColor = Color.White;
+                textBoxLength.BackColor = AppColors.ValidInput;
 
                 // Обновляем панель на канве
                 int index = _rectangles.IndexOf(_currentRectangle);
@@ -123,11 +123,11 @@ namespace Programming.Model.Controls
             }
             catch (ArgumentException)
             {
-                textBoxLength.BackColor = Color.LightPink;
+                textBoxLength.BackColor = AppColors.InvalidInput;
             }
             catch (FormatException)
             {
-                textBoxLength.BackColor = Color.LightPink;
+                textBoxLength.BackColor = AppColors.InvalidInput;
             }
         }
 
@@ -141,7 +141,7 @@ namespace Programming.Model.Controls
             {
                 double width = double.Parse(textBoxWidth.Text);
                 _currentRectangle.Width = width;
-                textBoxWidth.BackColor = Color.White;
+                textBoxWidth.BackColor = AppColors.ValidInput;
 
                 int index = _rectangles.IndexOf(_currentRectangle);
                 if (index >= 0)
@@ -155,7 +155,7 @@ namespace Programming.Model.Controls
             }
             catch (Exception)
             {
-                textBoxWidth.BackColor = Color.LightPink;
+                textBoxWidth.BackColor = AppColors.InvalidInput;
             }
         }
         /// <summary>
@@ -169,7 +169,7 @@ namespace Programming.Model.Controls
             // Сброс цвета всех панелей
             foreach (var panel in _rectanglePanels)
             {
-                panel.BackColor = Color.FromArgb(127, 127, 255, 127);
+                panel.BackColor = AppColors.RectangleNormal;
             }
 
             // Проверка всех пар
@@ -181,8 +181,8 @@ namespace Programming.Model.Controls
 
                     if (CollisionManager.IsCollision(_rectangles[i], _rectangles[j]))
                     {
-                        _rectanglePanels[i].BackColor = Color.FromArgb(127, 255, 127, 127);
-                        _rectanglePanels[j].BackColor = Color.FromArgb(127, 255, 127, 127);
+                        _rectanglePanels[i].BackColor = AppColors.RectangleCollision;
+                        _rectanglePanels[j].BackColor = AppColors.RectangleCollision;
                     }
                 }
             }
@@ -212,7 +212,7 @@ namespace Programming.Model.Controls
                 Location = new Point(x - (int)width / 2, y - (int)length / 2),
                 Width = (int)width,
                 Height = (int)length,
-                BackColor = Color.FromArgb(127, 127, 255, 127),
+                BackColor = AppColors.RectangleNormal,
                 BorderStyle = BorderStyle.FixedSingle
             };
 
