@@ -213,6 +213,7 @@
             Controls.Add(CanvasPanel);
             Name = "RectanglesCollisionControl";
             Size = new Size(1183, 551);
+            Load += RectanglesCollisionControl_Load;
             ResumeLayout(false);
             PerformLayout();
         }

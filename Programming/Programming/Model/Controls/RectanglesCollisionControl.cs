@@ -303,5 +303,10 @@ namespace Programming.Model.Controls
         {
             // Если потребуется логика изменения координаты X
         }
+
+        private void RectanglesCollisionControl_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
