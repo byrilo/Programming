@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Programming.Model.Other;
 
 namespace Programming.Model.Controls
 {
@@ -22,15 +23,15 @@ namespace Programming.Model.Controls
         {
 
         }
-        private Programming.Model.Film[] _films;
-        private Programming.Model.Film _currentFilm;
+        private Film[] _films;
+        private Film _currentFilm;
         /// <summary>
         /// Функция иницилизирующая 5 фильмов в программу
         /// </summary>
         private void InitializeFilmsData()
         {
             Random rnd = new Random();
-            _films = new Programming.Model.Film[5];
+            _films = new Film[5];
 
             for (int i = 0; i < _films.Length; i++)
             {
@@ -67,12 +68,12 @@ namespace Programming.Model.Controls
             FilmClassesTextBoxGenre.Text = _currentFilm.Genre.ToString();
             FilmClassesTextBoxRating.Text = _currentFilm.Rating.ToString();
             // Сброс цвета фона TextBox на белый при выборе нового элемента
-            FilmClassesTextBoxDuration.BackColor = Color.White;
-            FilmClassesTextBoxYear.BackColor = Color.White;
-            FilmClassesTextBoxGenre.BackColor = Color.White;
-            FilmClassesTextBoxRating.BackColor = Color.White;
+            FilmClassesTextBoxDuration.BackColor = AppColors.ValidInput;
+            FilmClassesTextBoxYear.BackColor = AppColors.ValidInput;
+            FilmClassesTextBoxGenre.BackColor = AppColors.ValidInput;
+            FilmClassesTextBoxRating.BackColor = AppColors.ValidInput;
         }
-        private int FindFilmWithMaxRating(Programming.Model.Film[] films)
+        private int FindFilmWithMaxRating(Film[] films)
         {
             int maxIndex = 0;              // Индекс фильма с максимальным рейтингом
             double maxRating = films[0].Rating;  // Максимальный рейтинг
@@ -103,11 +104,11 @@ namespace Programming.Model.Controls
                 // Присваивание через свойство
                 _currentFilm.MinutesDuration = minutesDuration;
                 // Белый фон при успешном вводе
-                FilmClassesTextBoxDuration.BackColor = Color.White;
+                FilmClassesTextBoxDuration.BackColor = AppColors.ValidInput;
             }
             catch (Exception)
             {
-                FilmClassesTextBoxDuration.BackColor = Color.LightPink; // Розовый фон при ошибке
+                FilmClassesTextBoxDuration.BackColor = AppColors.InvalidInput; // Розовый фон при ошибке
             }
         }
 
@@ -118,11 +119,11 @@ namespace Programming.Model.Controls
             {
                 int yearOfCreation = int.Parse(FilmClassesTextBoxYear.Text);
                 _currentFilm.YearOfCreation = yearOfCreation;
-                FilmClassesTextBoxYear.BackColor = Color.White;
+                FilmClassesTextBoxYear.BackColor = AppColors.ValidInput;
             }
             catch (Exception)
             {
-                FilmClassesTextBoxYear.BackColor = Color.LightPink; // Розовый фон при ошибке
+                FilmClassesTextBoxYear.BackColor = AppColors.InvalidInput; // Розовый фон при ошибке
             }
         }
 
@@ -138,12 +139,17 @@ namespace Programming.Model.Controls
             {
                 double rating = double.Parse(FilmClassesTextBoxRating.Text);
                 _currentFilm.Rating = rating;
-                FilmClassesTextBoxRating.BackColor = Color.White;
+                FilmClassesTextBoxRating.BackColor = AppColors.ValidInput;
             }
             catch (Exception)
             {
-                FilmClassesTextBoxRating.BackColor = Color.LightPink; // Розовый фон при ошибке
+                FilmClassesTextBoxRating.BackColor = AppColors.InvalidInput; // Розовый фон при ошибке
             }
+        }
+
+        private void FilmClassesGroupBox_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

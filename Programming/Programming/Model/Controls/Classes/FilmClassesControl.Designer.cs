@@ -60,6 +60,7 @@
             FilmClassesGroupBox.TabIndex = 11;
             FilmClassesGroupBox.TabStop = false;
             FilmClassesGroupBox.Text = "Film";
+            FilmClassesGroupBox.Enter += FilmClassesGroupBox_Enter;
             // 
             // FilmClassesLabelRating
             // 

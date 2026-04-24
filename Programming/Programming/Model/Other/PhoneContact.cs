@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Windows.Forms; // Для MessageBox
+using System.Windows.Forms;
 
-namespace Programming.Model
+namespace Programming.Model.Other
 {
     public class PhoneContact
     {

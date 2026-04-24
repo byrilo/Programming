@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Programming.Model
+namespace Programming.Model.Other
 {
     public class Flight
     {
