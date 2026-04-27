@@ -11,24 +11,42 @@ using Programming.Model.Other;
 
 namespace Programming.Model.Controls
 {
+    /// <summary>
+    /// Представляет пользовательский элемент управления для работы с перечислениями:
+    /// отображение значений перечислений и получение их числового представления.
+    /// </summary>
     public partial class EnumarationsEnumControl : UserControl
     {
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="EnumarationsEnumControl"/>.
+        /// </summary>
         public EnumarationsEnumControl()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обработчик события загрузки элемента управления.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void EnumarationsEnumControl_Load(object sender, EventArgs e)
         {
-
         }
+
+        /// <summary>
+        /// Обработчик события изменения выбранного элемента в списке перечислений.
+        /// Заполняет список значений выбранным перечислением.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ValuesListBox.Items.Clear(); // Очистка ValuesListBox после нового выбора в EnumsListBox
-            string selectedEnum = EnumsListBox.SelectedItem.ToString(); //Определение выбранной строки из EnumsListBox
-            Array enumValues; // Массив значений перечеслений
+            ValuesListBox.Items.Clear();
+            string selectedEnum = EnumsListBox.SelectedItem.ToString();
+            Array enumValues;
 
-            switch (selectedEnum) // значение - массив
+            switch (selectedEnum)
             {
                 case "Colors":
                     enumValues = Enum.GetValues(typeof(Colors));
@@ -51,19 +69,25 @@ namespace Programming.Model.Controls
                 default:
                     return;
             }
-            foreach (var value in enumValues) //добавление значений в ValuesListBox
+            foreach (var value in enumValues)
             {
                 ValuesListBox.Items.Add(value);
             }
         }
 
+        /// <summary>
+        /// Обработчик события изменения выбранного элемента в списке значений.
+        /// Отображает числовое представление выбранного значения перечисления.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ValuesListBox.SelectedItem != null) // Проверка на то, что действительно выбран элемент
+            if (ValuesListBox.SelectedItem != null)
             {
-                var selectedValue = ValuesListBox.SelectedItem; // Получение значения
-                int intValue = (int)selectedValue; // Преобразование в Int
-                IntValueTextBox.Text = intValue.ToString(); // Вывод значения
+                var selectedValue = ValuesListBox.SelectedItem;
+                int intValue = (int)selectedValue;
+                IntValueTextBox.Text = intValue.ToString();
             }
         }
     }
