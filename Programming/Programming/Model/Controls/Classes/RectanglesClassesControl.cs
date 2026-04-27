@@ -13,27 +13,57 @@ using ModelRectangle = Programming.Model.Rectangle;
 
 namespace Programming.Model.Controls
 {
+    /// <summary>
+    /// Представляет пользовательский элемент управления для работы с прямоугольниками:
+    /// отображение списка, редактирование параметров, поиск прямоугольника с максимальной шириной
+    /// и визуализация на канве.
+    /// </summary>
     public partial class RectanglesClassesControl : UserControl
     {
+        /// <summary>
+        /// Список всех прямоугольников, отображаемых в элементе управления.
+        /// </summary>
+        private List<ModelRectangle> _rectangles = new List<ModelRectangle>();
 
+        /// <summary>
+        /// Ссылка на текущий выбранный прямоугольник.
+        /// </summary>
+        private ModelRectangle _currentRectangle;
+
+        /// <summary>
+        /// Список панелей, визуализирующих прямоугольники на канве.
+        /// </summary>
+        private List<Panel> _rectanglePanels = new List<Panel>();
+
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="RectanglesClassesControl"/>.
+        /// </summary>
         public RectanglesClassesControl()
         {
             InitializeComponent();
             InitializeRectanglesData();
         }
 
+        /// <summary>
+        /// Обработчик события загрузки элемента управления.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void ClassesControl_Load(object sender, EventArgs e)
         {
-
         }
+
+        /// <summary>
+        /// Инициализирует данные о пяти прямоугольниках со случайными параметрами 
+        /// и добавляет их в список для отображения.
+        /// </summary>
         private void InitializeRectanglesData()
         {
             Random rnd = new Random();
 
             for (int i = 0; i < 5; i++)
             {
-                // Генерация координат
-                int canvasWidth = RectangleClassesListBox.ClientSize.Width; // или CanvasPanel, если есть
+                int canvasWidth = RectangleClassesListBox.ClientSize.Width;
                 int canvasHeight = RectangleClassesListBox.ClientSize.Height;
 
                 int x = rnd.Next(15 + 75, canvasWidth - 15 - 75);
@@ -43,7 +73,6 @@ namespace Programming.Model.Controls
                 double width = rnd.Next(50, 150);
                 string color = ((Colors)rnd.Next(0, Enum.GetValues(typeof(Colors)).Length)).ToString();
 
-                // Создаём прямоугольник с ВСЕМИ параметрами
                 ModelRectangle rect = new ModelRectangle(length, width, color, x, y);
                 rect.Number = i + 1;
 
@@ -51,81 +80,95 @@ namespace Programming.Model.Controls
                 RectangleClassesListBox.Items.Add(rect);
             }
         }
-        private List<ModelRectangle> _rectangles = new List<ModelRectangle>();
-        private ModelRectangle _currentRectangle;
-        private List<Panel> _rectanglePanels = new List<Panel>();
+
         /// <summary>
-        /// Функция, которая срабатывает при выборе прямоугольника, инициализируя данные в текстбоксы
+        /// Обработчик события изменения выбранного элемента в списке прямоугольников.
+        /// Заполняет текстовые поля данными выбранного прямоугольника и сбрасывает цвета валидации.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e) // Обработчик события изменения выбранного элемента в ListBox прямоугольников
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
+        private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (RectangleClassesListBox.SelectedIndex < 0) return; // Проверка на то что элемент выбран
-            _currentRectangle = _rectangles[RectangleClassesListBox.SelectedIndex]; // Получение объекта по индексу
-            // Заполнение TextBox
+            if (RectangleClassesListBox.SelectedIndex < 0) return;
+            _currentRectangle = _rectangles[RectangleClassesListBox.SelectedIndex];
+
             RectangleClassesTextBoxLenght.Text = _currentRectangle.Length.ToString();
             RectangleClassesTextBoxWidth.Text = _currentRectangle.Width.ToString();
             RectangleClassesTextBoxColor.Text = _currentRectangle.Color;
-            // Сброс цвета фона TextBox на белый при выборе нового элемента
-            RectangleClassesTextBoxLenght.BackColor = Color.White;
-            RectangleClassesTextBoxWidth.BackColor = Color.White;
-            RectangleClassesTextBoxColor.BackColor = Color.White;
+
+            RectangleClassesTextBoxLenght.BackColor = AppColors.ValidInput;
+            RectangleClassesTextBoxWidth.BackColor = AppColors.ValidInput;
+            RectangleClassesTextBoxColor.BackColor = AppColors.ValidInput;
         }
 
+        /// <summary>
+        /// Обработчик события изменения текста в поле длины прямоугольника.
+        /// Выполняет валидацию ввода и обновление данных текущего прямоугольника.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void RectangleClassesTextBoxLenght_TextChanged(object sender, EventArgs e)
         {
-            if (_currentRectangle == null) return; // Проверка на то, что значение выбрано
+            if (_currentRectangle == null) return;
             try
             {
-                // Преобразование текста в число
                 double length = double.Parse(RectangleClassesTextBoxLenght.Text);
-                // Присваивание через свойство
                 _currentRectangle.Length = length;
-                // Белый фон при успешном вводе
-                RectangleClassesTextBoxLenght.BackColor = Color.White;
+                RectangleClassesTextBoxLenght.BackColor = AppColors.ValidInput;
             }
             catch (Exception)
             {
-                RectangleClassesTextBoxLenght.BackColor = Color.LightPink; // Розовый фон при ошибке
+                RectangleClassesTextBoxLenght.BackColor = AppColors.InvalidInput;
             }
         }
 
+        /// <summary>
+        /// Обработчик события изменения текста в поле ширины прямоугольника.
+        /// Выполняет валидацию ввода и обновление данных текущего прямоугольника.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void RectangleClassesTextBoxWidth_TextChanged(object sender, EventArgs e)
         {
-            if (_currentRectangle == null) return; // Проверка на то, что значение выбрано
+            if (_currentRectangle == null) return;
             try
             {
-                // Преобразование текста в число
                 double width = double.Parse(RectangleClassesTextBoxWidth.Text);
-
-                // Присваивание через свойство
                 _currentRectangle.Width = width;
-
-                // Белый фон при успешном вводе
-                RectangleClassesTextBoxWidth.BackColor = Color.White;
+                RectangleClassesTextBoxWidth.BackColor = AppColors.ValidInput;
             }
             catch (Exception)
             {
-                RectangleClassesTextBoxWidth.BackColor = Color.LightPink; // Розовый фон при ошибке
+                RectangleClassesTextBoxWidth.BackColor = AppColors.InvalidInput;
             }
         }
 
+        /// <summary>
+        /// Обработчик события изменения текста в поле цвета прямоугольника.
+        /// Обновляет значение цвета текущего прямоугольника.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void RectangleClassesTextBoxColor_TextChanged(object sender, EventArgs e)
         {
-            if (_currentRectangle != null) // Проверка на то, что значение выбрано
+            if (_currentRectangle != null)
             {
                 _currentRectangle.Color = RectangleClassesTextBoxColor.Text;
             }
         }
+
+        /// <summary>
+        /// Находит индекс прямоугольника с максимальной шириной в списке.
+        /// </summary>
+        /// <param name="rectangles">Список прямоугольников для поиска.</param>
+        /// <returns>Возвращает индекс прямоугольника с максимальной шириной, или -1 если список пуст.</returns>
         private int FindRectangleWithMaxWidth(List<ModelRectangle> rectangles)
         {
             if (rectangles == null || rectangles.Count == 0)
-                return -1; // Защита от пустого списка
+                return -1;
 
             int maxIndex = 0;
             double maxWidth = rectangles[0].Width;
-
 
             for (int i = 1; i < rectangles.Count; i++)
             {
@@ -137,11 +180,17 @@ namespace Programming.Model.Controls
             }
             return maxIndex;
         }
+
+        /// <summary>
+        /// Обработчик события нажатия кнопки поиска прямоугольника с максимальной шириной.
+        /// Выбирает найденный прямоугольник в списке.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void RectangleClassesFindButton_Click(object sender, EventArgs e)
         {
             int index = FindRectangleWithMaxWidth(_rectangles);
             RectangleClassesListBox.SelectedIndex = index;
         }
-        
     }
 }
