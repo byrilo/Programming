@@ -7,11 +7,25 @@ using Programming.Model.Other;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Представляет кольцо с внутренним и внешним радиусом, имеющее центр в точке 2D.
+    /// </summary>
     public class Ring
     {
+        /// <summary>
+        /// Возвращает и задаёт центр кольца в двумерном пространстве.
+        /// </summary>
         public Point2D Center { get; set; }
 
+        /// <summary>
+        /// Поле для хранения значения внутреннего радиуса.
+        /// </summary>
         private double _innerRadius;
+
+        /// <summary>
+        /// Возвращает и задаёт значение внутреннего радиуса кольца.
+        /// Должен быть положительным и меньше внешнего радиуса.
+        /// </summary>
         public double InnerRadius
         {
             get => _innerRadius;
@@ -19,7 +33,6 @@ namespace Programming.Model
             {
                 Validator.AssertOnPositiveValue(value, nameof(InnerRadius));
 
-                // Взаимозависимость 
                 if (_outerRadius > 0 && value >= _outerRadius)
                 {
                     throw new ArgumentException("Внутренний радиус должен быть меньше внешнего.");
@@ -28,7 +41,15 @@ namespace Programming.Model
             }
         }
 
+        /// <summary>
+        /// Поле для хранения значения внешнего радиуса.
+        /// </summary>
         private double _outerRadius;
+
+        /// <summary>
+        /// Возвращает и задаёт значение внешнего радиуса кольца.
+        /// Должен быть положительным и больше внутреннего радиуса.
+        /// </summary>
         public double OuterRadius
         {
             get => _outerRadius;
@@ -36,7 +57,6 @@ namespace Programming.Model
             {
                 Validator.AssertOnPositiveValue(value, nameof(OuterRadius));
 
-                // Взаимозависимость
                 if (_innerRadius > 0 && value <= _innerRadius)
                 {
                     throw new ArgumentException("Внешний радиус должен быть больше внутреннего.");
@@ -45,7 +65,9 @@ namespace Programming.Model
             }
         }
 
-        // Вычисляемое свойство
+        /// <summary>
+        /// Возвращает площадь кольца, вычисленную как разность площадей внешнего и внутреннего кругов.
+        /// </summary>
         public double Area
         {
             get
@@ -54,10 +76,15 @@ namespace Programming.Model
             }
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Ring"/> с указанными параметрами.
+        /// </summary>
+        /// <param name="center">Центр кольца в двумерном пространстве.</param>
+        /// <param name="innerRadius">Внутренний радиус кольца. Должен быть положительным.</param>
+        /// <param name="outerRadius">Внешний радиус кольца. Должен быть больше внутреннего радиуса.</param>
         public Ring(Point2D center, double innerRadius, double outerRadius)
         {
             Center = center;
-            // Присвоение через свойства для запуска валидации
             InnerRadius = innerRadius;
             OuterRadius = outerRadius;
         }

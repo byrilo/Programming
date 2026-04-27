@@ -7,15 +7,40 @@ using Programming.Model.Other;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Представляет прямоугольник с заданными размерами, цветом и позицией центра.
+    /// </summary>
     public class Rectangle
     {
+        /// <summary>
+        /// Поле для хранения значения длины прямоугольника.
+        /// </summary>
         private double _length;
-        private double _width;
-        private string _color;
-        private int _number; // Для отображения порядкового номера прямоугольника
-        private static int _allRectanglesCount = 0; // Статическое поле для подсчета всех созданных прямоугольников
 
-        public double Length // Свойcтво длины
+        /// <summary>
+        /// Поле для хранения значения ширины прямоугольника.
+        /// </summary>
+        private double _width;
+
+        /// <summary>
+        /// Поле для хранения значения цвета прямоугольника.
+        /// </summary>
+        private string _color;
+
+        /// <summary>
+        /// Поле для хранения порядкового номера прямоугольника.
+        /// </summary>
+        private int _number;
+
+        /// <summary>
+        /// Статическое поле для подсчёта всех созданных прямоугольников.
+        /// </summary>
+        private static int _allRectanglesCount = 0;
+
+        /// <summary>
+        /// Возвращает и задаёт значение длины прямоугольника. Должно быть положительным.
+        /// </summary>
+        public double Length
         {
             get => _length;
             set
@@ -24,7 +49,11 @@ namespace Programming.Model
                 _length = value;
             }
         }
-        public double Width // Свойство ширины
+
+        /// <summary>
+        /// Возвращает и задаёт значение ширины прямоугольника. Должно быть положительным.
+        /// </summary>
+        public double Width
         {
             get => _width;
             set
@@ -33,27 +62,56 @@ namespace Programming.Model
                 _width = value;
             }
         }
-        public static int AllRectanglesCount => _allRectanglesCount; // Статическое свойство для получения количества всех созданных прямоугольников
-        public int Id { get; private set; } // Уникальный ID
-        public Point2D Center { get; set; } // Свойство центра прямоугольника
-        public string Color { get; set; } // Автосвойство
-        public int Number // Cвойство порядкового номера
+
+        /// <summary>
+        /// Возвращает общее количество всех созданных прямоугольников.
+        /// </summary>
+        public static int AllRectanglesCount => _allRectanglesCount;
+
+        /// <summary>
+        /// Возвращает уникальный идентификатор прямоугольника. Доступен только для чтения.
+        /// </summary>
+        public int Id { get; private set; }
+
+        /// <summary>
+        /// Возвращает и задаёт координаты центра прямоугольника в двумерном пространстве.
+        /// </summary>
+        public Point2D Center { get; set; }
+
+        /// <summary>
+        /// Возвращает и задаёт значение цвета прямоугольника.
+        /// </summary>
+        public string Color { get; set; }
+
+        /// <summary>
+        /// Возвращает и задаёт порядковый номер прямоугольника.
+        /// </summary>
+        public int Number
         {
             get { return _number; }
             set { _number = value; }
         }
-        public override string ToString() // метод ToString для отображения информации о прямоугольнике
+
+        /// <summary>
+        /// Возвращает строковое представление прямоугольника с его порядковым номером.
+        /// </summary>
+        /// <returns>Возвращает строку формата "Rectangle {Number}".</returns>
+        public override string ToString()
         {
             return $"Rectangle {Number}";
         }
-   
 
-        // Конструктор
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Rectangle"/> с указанными параметрами.
+        /// </summary>
+        /// <param name="length">Длина прямоугольника. Должна быть положительной.</param>
+        /// <param name="width">Ширина прямоугольника. Должна быть положительной.</param>
+        /// <param name="color">Цвет прямоугольника в виде строки.</param>
+        /// <param name="x">Координата X центра прямоугольника.</param>
+        /// <param name="y">Координата Y центра прямоугольника.</param>
         public Rectangle(double length, double width, string color, int x, int y)
         {
-            // Увеличение счетчика
             _allRectanglesCount++;
-            // Присвоение уникального ID
             Id = _allRectanglesCount;
             Length = length;
             Width = width;
