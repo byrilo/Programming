@@ -10,17 +10,36 @@ using System.Windows.Forms;
 
 namespace Programming.Model.Controls.Enums
 {
+    /// <summary>
+    /// Представляет пользовательский элемент управления для обработки выбора времени года:
+    /// отображение сообщений и изменение визуального оформления в зависимости от выбранного сезона.
+    /// </summary>
     public partial class SeasonsHandleEnumControl : UserControl
     {
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="SeasonsHandleEnumControl"/>.
+        /// </summary>
         public SeasonsHandleEnumControl()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обработчик события загрузки элемента управления.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void SeasonsHandleEnumControl_Load(object sender, EventArgs e)
         {
-
         }
+
+        /// <summary>
+        /// Обработчик события нажатия кнопки подтверждения выбора сезона.
+        /// Отображает сообщение, соответствующее выбранному времени года, 
+        /// и изменяет фон элемента управления.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void GoButton_Click(object sender, EventArgs e)
         {
             if (ComboBoxSeason.SelectedItem == null)
@@ -36,20 +55,20 @@ namespace Programming.Model.Controls.Enums
             {
                 case Seasons.Summer:
                     MessageBox.Show("Астрологи объявляют месяц Лета! Население всех жилищ возросло.");
-                    this.BackColor = AppColors.ValidInput; // Или любой другой цвет
+                    this.BackColor = AppColors.ValidInput;
                     break;
 
                 case Seasons.Winter:
                     MessageBox.Show("Идём лепить снеговика!");
-                    this.BackColor = Color.LightBlue; // Цвет зимы
+                    this.BackColor = Color.LightBlue;
                     break;
 
                 case Seasons.Autumn:
-                    this.BackColor = AppColors.SeasonAutumn; // Оранжевый цвет осени
+                    this.BackColor = AppColors.SeasonAutumn;
                     break;
 
                 case Seasons.Spring:
-                    this.BackColor = AppColors.SeasonSpring; // Зелёный цвет весны
+                    this.BackColor = AppColors.SeasonSpring;
                     break;
             }
         }
