@@ -8,14 +8,34 @@ using System.Windows.Forms;
 
 namespace Programming.Model.Other
 {
+    /// <summary>
+    /// Представляет контактную информацию человека: имя, фамилию, номер телефона и адрес.
+    /// </summary>
     public class PhoneContact
     {
+        /// <summary>
+        /// Поле для хранения имени контакта.
+        /// </summary>
         private string _contactName;
+
+        /// <summary>
+        /// Поле для хранения фамилии контакта.
+        /// </summary>
         private string _contactSurname;
+
+        /// <summary>
+        /// Поле для хранения номера телефона.
+        /// </summary>
         private int _phoneNumber;
+
+        /// <summary>
+        /// Поле для хранения адреса контакта.
+        /// </summary>
         private string _adress;
 
-        // Свойство имени контакта с валидацией
+        /// <summary>
+        /// Возвращает и задаёт имя контакта. Должно содержать только буквы английского алфавита.
+        /// </summary>
         public string ContactName
         {
             get => _contactName;
@@ -26,7 +46,9 @@ namespace Programming.Model.Other
             }
         }
 
-        // Свойство фамилии контакта с валидацией
+        /// <summary>
+        /// Возвращает и задаёт фамилию контакта. Должна содержать только буквы английского алфавита.
+        /// </summary>
         public string ContactSurname
         {
             get => _contactSurname;
@@ -37,7 +59,9 @@ namespace Programming.Model.Other
             }
         }
 
-        // Свойство номера телефона
+        /// <summary>
+        /// Возвращает и задаёт номер телефона. Должен содержать ровно 11 цифр.
+        /// </summary>
         public int PhoneNumber
         {
             get => _phoneNumber;
@@ -52,37 +76,48 @@ namespace Programming.Model.Other
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт адрес контакта.
+        /// </summary>
         public string Adress { get; set; }
 
         /// <summary>
         /// Проверяет, что строка содержит только символы английского алфавита.
         /// </summary>
+        /// <param name="value">Проверяемая строка.</param>
+        /// <param name="propertyName">Имя свойства для сообщения об ошибке.</param>
+        /// <exception cref="ArgumentException">Выбрасывается, если строка пустая или содержит недопустимые символы.</exception>
         private void AssertStringContainsOnlyLetters(string value, string propertyName)
         {
-            // Проверка на пустоту
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentException($"Значение не может быть пустым", propertyName);
             }
 
-            // Проверка через регулярное выражение: только буквы A-Z и a-z
             if (!Regex.IsMatch(value, @"^[a-zA-Z]+$"))
             {
-                // Текст исключения свойство
                 throw new ArgumentException($"Некорректное значение в свойстве {propertyName}", propertyName);
             }
         }
 
-        // Конструкторы
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="PhoneContact"/> со значениями по умолчанию.
+        /// </summary>
         public PhoneContact() { }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="PhoneContact"/> с указанными параметрами.
+        /// </summary>
+        /// <param name="contactname">Имя контакта. Должно содержать только буквы.</param>
+        /// <param name="phonenumber">Номер телефона. Должен содержать 11 цифр.</param>
+        /// <param name="adress">Адрес контакта.</param>
+        /// <param name="contactsurname">Фамилия контакта. Должна содержать только буквы.</param>
         public PhoneContact(string contactname, int phonenumber, string adress, string contactsurname)
         {
-            // Используем свойства, чтобы сработала валидация
             ContactName = contactname;
             PhoneNumber = phonenumber;
             Adress = adress;
-            ContactSurname = contactsurname; // ✅ Исправлено: было contactname
+            ContactSurname = contactsurname;
         }
     }
 }
