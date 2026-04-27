@@ -13,14 +13,31 @@ using ModelRectangle = Programming.Model.Rectangle;
 
 namespace Programming.Model.Controls
 {
-
+    /// <summary>
+    /// Представляет пользовательский элемент управления для работы с прямоугольниками:
+    /// отображение списка, редактирование параметров, добавление, удаление и визуализация
+    /// пересечений на канве.
+    /// </summary>
     public partial class RectanglesCollisionControl : UserControl
     {
-        // Поля для хранения данных о прямоугольниках
+        /// <summary>
+        /// Список всех прямоугольников, отображаемых в элементе управления.
+        /// </summary>
         private List<ModelRectangle> _rectangles = new List<ModelRectangle>();
+
+        /// <summary>
+        /// Ссылка на текущий выбранный прямоугольник.
+        /// </summary>
         private ModelRectangle _currentRectangle;
+
+        /// <summary>
+        /// Список панелей, визуализирующих прямоугольники на канве.
+        /// </summary>
         private List<Panel> _rectanglePanels = new List<Panel>();
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="RectanglesCollisionControl"/>.
+        /// </summary>
         public RectanglesCollisionControl()
         {
             InitializeComponent();
@@ -28,7 +45,8 @@ namespace Programming.Model.Controls
         }
 
         /// <summary>
-        /// Инициализирует 5 прямоугольников в программу
+        /// Инициализирует данные о пяти прямоугольниках со случайными параметрами 
+        /// и добавляет их в список для отображения.
         /// </summary>
         private void InitializeRectanglesData()
         {
@@ -36,7 +54,6 @@ namespace Programming.Model.Controls
 
             for (int i = 0; i < 5; i++)
             {
-                // Генерация координат с учётом размеров CanvasPanel
                 int canvasWidth = CanvasPanel.ClientSize.Width;
                 int canvasHeight = CanvasPanel.ClientSize.Height;
 
@@ -46,35 +63,34 @@ namespace Programming.Model.Controls
                 double width = rnd.Next(50, 150);
                 string color = ((Colors)rnd.Next(0, Enum.GetValues(typeof(Colors)).Length)).ToString();
 
-                // Создаём прямоугольник
                 ModelRectangle rect = new ModelRectangle(length, width, color, x, y);
                 rect.Number = i + 1;
 
-                // Добавляем в список
                 _rectangles.Add(rect);
 
-                // Создаём панель для отображения на канве
                 Panel panel = new Panel
                 {
                     Location = new Point(x - (int)width / 2, y - (int)length / 2),
                     Width = (int)width,
                     Height = (int)length,
-                    BackColor = Color.FromArgb(127, 127, 255, 127),
+                    BackColor = AppColors.RectangleNormal,
                     BorderStyle = BorderStyle.FixedSingle
                 };
 
                 _rectanglePanels.Add(panel);
                 CanvasPanel.Controls.Add(panel);
-
-                // Добавляем в ListBox
                 listBoxRectangles.Items.Add(rect);
             }
 
             FindCollisions();
         }
+
         /// <summary>
-        /// Обработчик выбора прямоугольника в listBoxRectangles
+        /// Обработчик события изменения выбранного элемента в списке прямоугольников.
+        /// Заполняет текстовые поля данными выбранного прямоугольника.
         /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void listBoxRectangles_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBoxRectangles.SelectedIndex < 0)
@@ -88,16 +104,17 @@ namespace Programming.Model.Controls
 
             textBoxWidth.Text = _currentRectangle.Width.ToString();
             textBoxLength.Text = _currentRectangle.Length.ToString();
-
-
-
             textBoxCenterX.Text = _currentRectangle.Center.X.ToString();
             textBoxCenterY.Text = _currentRectangle.Center.Y.ToString();
             textBoxID.Text = _currentRectangle.Id.ToString();
         }
+
         /// <summary>
-        /// Валидация и обновление длины с перерисовкой канвы
+        /// Обработчик события изменения текста в поле длины прямоугольника.
+        /// Выполняет валидацию ввода, обновление данных и перерисовку канвы.
         /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void textBoxLength_TextChanged(object sender, EventArgs e)
         {
             if (_currentRectangle == null) return;
@@ -108,7 +125,6 @@ namespace Programming.Model.Controls
                 _currentRectangle.Length = length;
                 textBoxLength.BackColor = AppColors.ValidInput;
 
-                // Обновляем панель на канве
                 int index = _rectangles.IndexOf(_currentRectangle);
                 if (index >= 0)
                 {
@@ -132,8 +148,11 @@ namespace Programming.Model.Controls
         }
 
         /// <summary>
-        /// Валидация и обновление ширины с перерисовкой канвы
+        /// Обработчик события изменения текста в поле ширины прямоугольника.
+        /// Выполняет валидацию ввода, обновление данных и перерисовку канвы.
         /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void textBoxWidth_TextChanged(object sender, EventArgs e)
         {
             if (_currentRectangle == null) return;
@@ -158,21 +177,20 @@ namespace Programming.Model.Controls
                 textBoxWidth.BackColor = AppColors.InvalidInput;
             }
         }
+
         /// <summary>
-        /// Проверка пересечений прямоугольников и подсветка
+        /// Проверяет пересечения всех прямоугольников и подсвечивает столкнувшиеся.
         /// </summary>
         private void FindCollisions()
         {
             if (_rectangles.Count == 0)
                 return;
 
-            // Сброс цвета всех панелей
             foreach (var panel in _rectanglePanels)
             {
                 panel.BackColor = AppColors.RectangleNormal;
             }
 
-            // Проверка всех пар
             for (int i = 0; i < _rectangles.Count; i++)
             {
                 for (int j = 0; j < _rectangles.Count; j++)
@@ -187,9 +205,13 @@ namespace Programming.Model.Controls
                 }
             }
         }
+
         /// <summary>
-        /// Добавление нового прямоугольника
+        /// Обработчик события нажатия кнопки добавления нового прямоугольника.
+        /// Генерирует прямоугольник со случайными параметрами и добавляет его на канву.
         /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void buttonRectanglesAdd_Click(object sender, EventArgs e)
         {
             int canvasWidth = CanvasPanel.ClientSize.Width;
@@ -224,8 +246,11 @@ namespace Programming.Model.Controls
         }
 
         /// <summary>
-        /// Удаление выбранного прямоугольника
+        /// Обработчик события нажатия кнопки удаления выбранного прямоугольника.
+        /// Удаляет прямоугольник из списка, с канвы и из списка отображения.
         /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void buttonRectanglesDelete_Click(object sender, EventArgs e)
         {
             if (listBoxRectangles.SelectedIndex == -1)
@@ -239,13 +264,12 @@ namespace Programming.Model.Controls
             _rectangles.RemoveAt(selectedIndex);
             listBoxRectangles.Items.RemoveAt(selectedIndex);
 
-
             ClearRectangleInfo();
             FindCollisions();
         }
 
         /// <summary>
-        /// Обновление списка listBoxRectangles
+        /// Обновляет содержимое списка listBoxRectangles текущими данными о прямоугольниках.
         /// </summary>
         private void UpdateRectanglesListBox()
         {
@@ -257,7 +281,7 @@ namespace Programming.Model.Controls
         }
 
         /// <summary>
-        /// Очистка всех текстовых полей
+        /// Очищает все текстовые поля, отображающие данные о прямоугольнике.
         /// </summary>
         private void ClearRectangleInfo()
         {
@@ -266,12 +290,12 @@ namespace Programming.Model.Controls
             textBoxCenterY.Text = "";
             textBoxWidth.Text = "";
             textBoxLength.Text = "";
-
         }
 
         /// <summary>
-        /// Заполнение полей данными прямоугольника
+        /// Заполняет текстовые поля данными указанного прямоугольника.
         /// </summary>
+        /// <param name="rectangle">Прямоугольник, данные которого необходимо отобразить.</param>
         private void UpdateRectangleInfo(ModelRectangle rectangle)
         {
             if (rectangle == null)
@@ -285,28 +309,35 @@ namespace Programming.Model.Controls
             textBoxCenterY.Text = rectangle.Center.Y.ToString();
             textBoxWidth.Text = rectangle.Width.ToString();
             textBoxLength.Text = rectangle.Length.ToString();
-
         }
 
         /// <summary>
-        /// Обработчик Paint для CanvasPanel (если нужен)
+        /// Обработчик события отрисовки панели CanvasPanel.
         /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события, содержащие данные для отрисовки.</param>
         private void CanvasPanel_Paint(object sender, PaintEventArgs e)
         {
             // Можно добавить дополнительную отрисовку, если потребуется
         }
 
         /// <summary>
-        /// Пустой обработчик для textBoxCenterX (заглушка)
+        /// Обработчик события изменения текста в поле координаты X центра прямоугольника.
         /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void textBoxCenterX_TextChanged(object sender, EventArgs e)
         {
             // Если потребуется логика изменения координаты X
         }
 
+        /// <summary>
+        /// Обработчик события загрузки элемента управления.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void RectanglesCollisionControl_Load(object sender, EventArgs e)
         {
-
         }
     }
 }
