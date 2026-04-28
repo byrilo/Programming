@@ -24,16 +24,6 @@ namespace Programming.Model.Controls
         {
             InitializeComponent();
         }
-
-        /// <summary>
-        /// Обработчик события загрузки элемента управления.
-        /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="e">Аргументы события.</param>
-        private void EnumarationsEnumControl_Load(object sender, EventArgs e)
-        {
-        }
-
         /// <summary>
         /// Обработчик события изменения выбранного элемента в списке перечислений.
         /// Заполняет список значений выбранным перечислением.

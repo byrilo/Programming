@@ -84,7 +84,6 @@
             Controls.Add(GroupBoxSeason);
             Name = "SeasonsHandleEnumControl";
             Size = new Size(405, 163);
-            Load += SeasonsHandleEnumControl_Load;
             GroupBoxSeason.ResumeLayout(false);
             GroupBoxSeason.PerformLayout();
             ResumeLayout(false);

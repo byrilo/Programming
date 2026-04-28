@@ -92,7 +92,6 @@
             Controls.Add(GroupBoxWeekParse);
             Name = "WeekdayParsingEnumControl";
             Size = new Size(397, 162);
-            Load += WeekdayParsingEnumControl_Load;
             GroupBoxWeekParse.ResumeLayout(false);
             GroupBoxWeekParse.PerformLayout();
             ResumeLayout(false);

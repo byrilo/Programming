@@ -43,16 +43,6 @@ namespace Programming.Model.Controls
             InitializeComponent();
             InitializeRectanglesData();
         }
-
-        /// <summary>
-        /// Обработчик события загрузки элемента управления.
-        /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="e">Аргументы события.</param>
-        private void ClassesControl_Load(object sender, EventArgs e)
-        {
-        }
-
         /// <summary>
         /// Инициализирует данные о пяти прямоугольниках со случайными параметрами 
         /// и добавляет их в список для отображения.

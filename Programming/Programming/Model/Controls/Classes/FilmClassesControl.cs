@@ -166,16 +166,6 @@ namespace Programming.Model.Controls
                 FilmClassesTextBoxYear.BackColor = AppColors.InvalidInput;
             }
         }
-
-        /// <summary>
-        /// Обработчик события изменения текста в поле жанра фильма.
-        /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="e">Аргументы события.</param>
-        private void FilmClassesTextBoxGenre_TextChanged(object sender, EventArgs e)
-        {
-        }
-
         /// <summary>
         /// Обработчик события изменения текста в поле рейтинга фильма.
         /// Выполняет валидацию ввода и обновление данных текущего фильма.
@@ -195,15 +185,6 @@ namespace Programming.Model.Controls
             {
                 FilmClassesTextBoxRating.BackColor = AppColors.InvalidInput;
             }
-        }
-
-        /// <summary>
-        /// Обработчик события входа фокуса в GroupBox фильмов.
-        /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="e">Аргументы события.</param>
-        private void FilmClassesGroupBox_Enter(object sender, EventArgs e)
-        {
         }
     }
 }

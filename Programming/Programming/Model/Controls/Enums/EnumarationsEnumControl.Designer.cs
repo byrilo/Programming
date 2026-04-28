@@ -114,7 +114,6 @@
             Controls.Add(GroupBoxListBox);
             Name = "EnumarationsEnumControl";
             Size = new Size(683, 362);
-            Load += EnumarationsEnumControl_Load;
             GroupBoxListBox.ResumeLayout(false);
             GroupBoxListBox.PerformLayout();
             ResumeLayout(false);

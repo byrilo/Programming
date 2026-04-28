@@ -135,7 +135,6 @@
             Controls.Add(RectangleClassesGroupBox);
             Name = "RectanglesClassesControl";
             Size = new Size(417, 497);
-            Load += ClassesControl_Load;
             RectangleClassesGroupBox.ResumeLayout(false);
             RectangleClassesGroupBox.PerformLayout();
             ResumeLayout(false);

@@ -310,34 +310,5 @@ namespace Programming.Model.Controls
             textBoxWidth.Text = rectangle.Width.ToString();
             textBoxLength.Text = rectangle.Length.ToString();
         }
-
-        /// <summary>
-        /// Обработчик события отрисовки панели CanvasPanel.
-        /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="e">Аргументы события, содержащие данные для отрисовки.</param>
-        private void CanvasPanel_Paint(object sender, PaintEventArgs e)
-        {
-            // Можно добавить дополнительную отрисовку, если потребуется
-        }
-
-        /// <summary>
-        /// Обработчик события изменения текста в поле координаты X центра прямоугольника.
-        /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="e">Аргументы события.</param>
-        private void textBoxCenterX_TextChanged(object sender, EventArgs e)
-        {
-            // Если потребуется логика изменения координаты X
-        }
-
-        /// <summary>
-        /// Обработчик события загрузки элемента управления.
-        /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="e">Аргументы события.</param>
-        private void RectanglesCollisionControl_Load(object sender, EventArgs e)
-        {
-        }
     }
 }

@@ -23,16 +23,6 @@ namespace Programming.Model.Controls.Enums
         {
             InitializeComponent();
         }
-
-        /// <summary>
-        /// Обработчик события загрузки элемента управления.
-        /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="e">Аргументы события.</param>
-        private void SeasonsHandleEnumControl_Load(object sender, EventArgs e)
-        {
-        }
-
         /// <summary>
         /// Обработчик события нажатия кнопки подтверждения выбора сезона.
         /// Отображает сообщение, соответствующее выбранному времени года, 

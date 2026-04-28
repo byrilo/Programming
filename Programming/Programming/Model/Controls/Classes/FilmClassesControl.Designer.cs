@@ -60,7 +60,6 @@
             FilmClassesGroupBox.TabIndex = 11;
             FilmClassesGroupBox.TabStop = false;
             FilmClassesGroupBox.Text = "Film";
-            FilmClassesGroupBox.Enter += FilmClassesGroupBox_Enter;
             // 
             // FilmClassesLabelRating
             // 
@@ -94,7 +93,6 @@
             FilmClassesTextBoxGenre.Name = "FilmClassesTextBoxGenre";
             FilmClassesTextBoxGenre.Size = new Size(125, 27);
             FilmClassesTextBoxGenre.TabIndex = 9;
-            FilmClassesTextBoxGenre.TextChanged += FilmClassesTextBoxGenre_TextChanged;
             // 
             // FilmClassesLabelYear
             // 

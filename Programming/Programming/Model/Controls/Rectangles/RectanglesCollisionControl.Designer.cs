@@ -165,7 +165,6 @@
             textBoxCenterX.ReadOnly = true;
             textBoxCenterX.Size = new Size(125, 27);
             textBoxCenterX.TabIndex = 21;
-            textBoxCenterX.TextChanged += textBoxCenterX_TextChanged;
             // 
             // buttonRectanglesDelete
             // 
@@ -213,7 +212,6 @@
             Controls.Add(CanvasPanel);
             Name = "RectanglesCollisionControl";
             Size = new Size(1183, 551);
-            Load += RectanglesCollisionControl_Load;
             ResumeLayout(false);
             PerformLayout();
         }

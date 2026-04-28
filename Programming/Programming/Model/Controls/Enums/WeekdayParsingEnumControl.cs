@@ -23,16 +23,6 @@ namespace Programming.Model.Controls.Enums
         {
             InitializeComponent();
         }
-
-        /// <summary>
-        /// Обработчик события загрузки элемента управления.
-        /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="e">Аргументы события.</param>
-        private void WeekdayParsingEnumControl_Load(object sender, EventArgs e)
-        {
-        }
-
         /// <summary>
         /// Обработчик события нажатия кнопки парсинга.
         /// Пытается преобразовать введённую строку в значение перечисления <see cref="Weekday"/> 

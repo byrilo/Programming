@@ -8,22 +8,39 @@ using System.Drawing;
 namespace Programming.Model
 {
     /// <summary>
-    /// Статический класс для хранения всех цветов приложения
+    /// Статический класс для хранения всех цветов приложения, используемых для валидации, 
+    /// индикации пересечений и визуального оформления элементов управления.
     /// </summary>
     public static class AppColors
     {
-        // Цвета для валидации
+        /// <summary>
+        /// Возвращает цвет фона для поля с корректно введёнными данными.
+        /// </summary>
         public static Color ValidInput => Color.White;
+
+        /// <summary>
+        /// Возвращает цвет фона для поля с ошибкой валидации.
+        /// </summary>
         public static Color InvalidInput => Color.LightPink;
 
-        // Цвета для прямоугольников
-        public static Color RectangleNormal => Color.FromArgb(127, 127, 255, 127); // Зелёный полупрозрачный
-        public static Color RectangleCollision => Color.FromArgb(127, 255, 127, 127); // Красный полупрозрачный
+        /// <summary>
+        /// Возвращает цвет фона для прямоугольника, не имеющего пересечений с другими.
+        /// </summary>
+        public static Color RectangleNormal => Color.FromArgb(127, 127, 255, 127);
 
-        // Цвета для сезонов
+        /// <summary>
+        /// Возвращает цвет фона для прямоугольника, имеющего пересечение с другим прямоугольником.
+        /// </summary>
+        public static Color RectangleCollision => Color.FromArgb(127, 255, 127, 127);
+
+        /// <summary>
+        /// Возвращает цвет фона, соответствующий осеннему сезону.
+        /// </summary>
         public static Color SeasonAutumn => ColorTranslator.FromHtml("#e29c45");
-        public static Color SeasonSpring => ColorTranslator.FromHtml("#559c45");
 
-        // Можно добавить другие цвета по необходимости
+        /// <summary>
+        /// Возвращает цвет фона, соответствующий весеннему сезону.
+        /// </summary>
+        public static Color SeasonSpring => ColorTranslator.FromHtml("#559c45");
     }
 }
