@@ -61,6 +61,7 @@
             _itemsListBox.Name = "_itemsListBox";
             _itemsListBox.Size = new Size(340, 504);
             _itemsListBox.TabIndex = 1;
+            _itemsListBox.SelectedIndexChanged += _itemsListBox_SelectedIndexChanged;
             // 
             // _addButton
             // 
@@ -82,7 +83,7 @@
             _removeButton.TabIndex = 3;
             _removeButton.Text = "Remove";
             _removeButton.UseVisualStyleBackColor = true;
-            _removeButton.Click += this._removeButton_Click;
+            _removeButton.Click += _removeButton_Click;
             // 
             // _itemGroupBox
             // 
@@ -110,6 +111,7 @@
             _descriptionTextBox.Name = "_descriptionTextBox";
             _descriptionTextBox.Size = new Size(486, 202);
             _descriptionTextBox.TabIndex = 7;
+            _descriptionTextBox.TextChanged += _descriptionTextBox_TextChanged;
             // 
             // _nameTextBox
             // 
@@ -119,6 +121,7 @@
             _nameTextBox.Name = "_nameTextBox";
             _nameTextBox.Size = new Size(486, 115);
             _nameTextBox.TabIndex = 6;
+            _nameTextBox.TextChanged += _nameTextBox_TextChanged;
             // 
             // _descriptionLabel
             // 
@@ -144,6 +147,7 @@
             _costTextBox.Name = "_costTextBox";
             _costTextBox.Size = new Size(125, 27);
             _costTextBox.TabIndex = 3;
+            _costTextBox.TextChanged += _costTextBox_TextChanged;
             // 
             // _idTextBox
             // 
