@@ -143,6 +143,7 @@
             // 
             // _costTextBox
             // 
+            _costTextBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             _costTextBox.Location = new Point(50, 83);
             _costTextBox.Name = "_costTextBox";
             _costTextBox.Size = new Size(125, 27);

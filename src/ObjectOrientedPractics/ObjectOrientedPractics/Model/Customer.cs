@@ -70,5 +70,13 @@ namespace ObjectOrientedPractics.Model
             Fullname = fullname;
             Address = address;
         }
+        /// <summary>
+        /// Возвращает строковое представление объекта <see cref="Customer"/>.
+        /// </summary>
+        /// <returns>Имя пользователя.</returns>
+        public override string ToString()
+        {
+            return Fullname;
+        }
     }
 }
