@@ -1,6 +1,6 @@
 ﻿namespace ObjectOrientedPractics.View.Tabs
 {
-    partial class ItemTabs
+    partial class ItemsTab
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -71,6 +71,7 @@
             _addButton.TabIndex = 2;
             _addButton.Text = "Add";
             _addButton.UseVisualStyleBackColor = true;
+            _addButton.Click += _addButton_Click;
             // 
             // _removeButton
             // 
@@ -81,6 +82,7 @@
             _removeButton.TabIndex = 3;
             _removeButton.Text = "Remove";
             _removeButton.UseVisualStyleBackColor = true;
+            _removeButton.Click += this._removeButton_Click;
             // 
             // _itemGroupBox
             // 
@@ -169,7 +171,7 @@
             _idLabel.TabIndex = 0;
             _idLabel.Text = "ID:";
             // 
-            // ItemTabs
+            // ItemsTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -178,7 +180,7 @@
             Controls.Add(_addButton);
             Controls.Add(_itemsListBox);
             Controls.Add(_itemsLabel);
-            Name = "ItemTabs";
+            Name = "ItemsTab";
             Size = new Size(907, 639);
             _itemGroupBox.ResumeLayout(false);
             _itemGroupBox.PerformLayout();

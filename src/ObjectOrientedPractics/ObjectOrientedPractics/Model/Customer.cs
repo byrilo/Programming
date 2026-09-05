@@ -20,11 +20,11 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Полное имя покупателя.
         /// </summary>
-        private string _fullname;
+        private string _fullname = string.Empty;
         /// <summary>
         /// Адрес покупателя.
         /// </summary>
-        private string _address;
+        private string _address = string.Empty;
 
         /// <summary>
         /// Возвращает уникальный идентификатор покупателя.

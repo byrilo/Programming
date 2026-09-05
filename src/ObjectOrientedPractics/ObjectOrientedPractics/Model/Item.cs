@@ -20,12 +20,12 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Название товара.
         /// </summary>
-        private string _name;
+        private string _name = string.Empty;
 
         /// <summary>
         /// Описание товара.
         /// </summary>
-        private string _info;
+        private string _info = string.Empty;
 
         /// <summary>
         /// Стоимость товара.
@@ -93,6 +93,15 @@ namespace ObjectOrientedPractics.Model
             Name = name;
             Info = info;
             Cost = cost;            
+        }
+
+        /// <summary>
+        /// Возвращает строковое представление объекта <see cref="Item"/>.
+        /// </summary>
+        /// <returns>Название товара</returns>
+        public override string ToString()
+        {
+            return Name;
         }
 
     }
