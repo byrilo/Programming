@@ -41,6 +41,7 @@
             _idTextBox = new TextBox();
             _costLabel = new Label();
             _idLabel = new Label();
+            _itemsRandomButton = new Button();
             _itemGroupBox.SuspendLayout();
             SuspendLayout();
             // 
@@ -77,7 +78,7 @@
             // _removeButton
             // 
             _removeButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            _removeButton.Location = new Point(138, 558);
+            _removeButton.Location = new Point(129, 558);
             _removeButton.Name = "_removeButton";
             _removeButton.Size = new Size(106, 53);
             _removeButton.TabIndex = 3;
@@ -176,10 +177,22 @@
             _idLabel.TabIndex = 0;
             _idLabel.Text = "ID:";
             // 
+            // _itemsRandomButton
+            // 
+            _itemsRandomButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            _itemsRandomButton.Location = new Point(246, 558);
+            _itemsRandomButton.Name = "_itemsRandomButton";
+            _itemsRandomButton.Size = new Size(106, 53);
+            _itemsRandomButton.TabIndex = 5;
+            _itemsRandomButton.Text = "Random";
+            _itemsRandomButton.UseVisualStyleBackColor = true;
+            _itemsRandomButton.Click += this._itemsRandomButton_Click;
+            // 
             // ItemsTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(_itemsRandomButton);
             Controls.Add(_itemGroupBox);
             Controls.Add(_removeButton);
             Controls.Add(_addButton);
@@ -208,5 +221,6 @@
         private TextBox _nameTextBox;
         private Label _descriptionLabel;
         private Label _nameLabel;
+        private Button _itemsRandomButton;
     }
 }
