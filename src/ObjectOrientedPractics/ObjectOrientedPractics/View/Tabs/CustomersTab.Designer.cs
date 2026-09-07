@@ -40,6 +40,7 @@
             _customersFullNameTextBox = new TextBox();
             _customersAddressTextBox = new TextBox();
             _customersPanel = new Panel();
+            _customersRandomButton = new Button();
             _customersGroupBox.SuspendLayout();
             SuspendLayout();
             // 
@@ -76,7 +77,7 @@
             // _customersRemoveButton
             // 
             _customersRemoveButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            _customersRemoveButton.Location = new Point(139, 526);
+            _customersRemoveButton.Location = new Point(121, 526);
             _customersRemoveButton.Name = "_customersRemoveButton";
             _customersRemoveButton.Size = new Size(114, 59);
             _customersRemoveButton.TabIndex = 3;
@@ -161,10 +162,22 @@
             _customersPanel.Size = new Size(482, 288);
             _customersPanel.TabIndex = 5;
             // 
+            // _customersRandomButton
+            // 
+            _customersRandomButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            _customersRandomButton.Location = new Point(239, 526);
+            _customersRandomButton.Name = "_customersRandomButton";
+            _customersRandomButton.Size = new Size(114, 59);
+            _customersRandomButton.TabIndex = 5;
+            _customersRandomButton.Text = "Random";
+            _customersRandomButton.UseVisualStyleBackColor = true;
+            _customersRandomButton.Click += _customersRandomButton_Click;
+            // 
             // CustomersTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(_customersRandomButton);
             Controls.Add(_customersGroupBox);
             Controls.Add(_customersRemoveButton);
             Controls.Add(_customersAddButton);
@@ -192,5 +205,6 @@
         private TextBox _customersFullNameTextBox;
         private TextBox _customersAddressTextBox;
         private Panel _customersPanel;
+        private Button _customersRandomButton;
     }
 }

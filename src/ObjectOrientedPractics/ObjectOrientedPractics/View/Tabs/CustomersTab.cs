@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -94,6 +95,14 @@ namespace ObjectOrientedPractics.View.Tabs
                     _customersFullNameTextBox.BackColor = Color.Red;
                 }
             }
+        }
+
+        private void _customersRandomButton_Click(object sender, EventArgs e)
+        {
+            var customer = CustomerFactory.GetRandomCustomer();
+            _customers.Add(customer);
+            _customersListBox.Items.Add(customer);
+            _customersListBox.SelectedItem = customer;
         }
     }
 }
