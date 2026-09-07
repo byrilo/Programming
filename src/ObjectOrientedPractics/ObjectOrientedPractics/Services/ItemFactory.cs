@@ -7,8 +7,14 @@ using ObjectOrientedPractics.Model;
 
 namespace ObjectOrientedPractics.Services
 {
+    /// <summary>
+    /// Предоставляет метод для генерации случайных товаров
+    /// </summary>
     public static class ItemFactory
     {
+        /// <summary>
+        /// Возможные названия товаров
+        /// </summary>
         private static readonly string[] _names = 
         {
             "Беспроводные наушники",
@@ -20,6 +26,9 @@ namespace ObjectOrientedPractics.Services
             "Клавиатура механическая",
             "Веб-камера"
         };
+        /// <summary>
+        /// Возможные описания товаров
+        /// </summary>
         private static readonly string[] _infos =
         {
             "Качественный товар с гарантией производителя 12 месяцев.",
@@ -29,8 +38,15 @@ namespace ObjectOrientedPractics.Services
             "Совместим с большинством современных устройств."
         };
 
+        /// <summary>
+        /// Генератор случайных чисел
+        /// </summary>
         private static readonly Random _random = new Random();
 
+        /// <summary>
+        /// Возвращает случайно сгенерированный товар
+        /// </summary>
+        /// <returns></returns>
         public static Item GetRandomItem()
         {
             string name = _names[_random.Next(_names.Length)];

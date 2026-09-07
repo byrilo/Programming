@@ -7,8 +7,14 @@ using ObjectOrientedPractics.Model;
 
 namespace ObjectOrientedPractics.Services
 {
+    /// <summary>
+    /// Предоставляет метод для генеорации случайных товаров
+    /// </summary>
     public static class CustomerFactory
     {
+        /// <summary>
+        /// Возможные имена покупателей
+        /// </summary>
         private static readonly string[] _fullnames =
         {
             "Иванов Пётр Сергеевич",
@@ -20,6 +26,9 @@ namespace ObjectOrientedPractics.Services
             "Морозов Артём Олегович",
             "Новикова Дарья Андреевна"
         };
+        /// <summary>
+        /// Возможные адреса покупателей
+        /// </summary>
         private static readonly string[] _addresses =
         {
             "г. Москва, ул. Тверская, д. 12, кв. 45",
@@ -29,9 +38,15 @@ namespace ObjectOrientedPractics.Services
             "г. Екатеринбург, ул. Малышева, д. 31",
             "г. Нижний Новгород, ул. Большая Покровская, д. 9, кв. 3"
         }; 
-
+        /// <summary>
+        /// Генератор случайных чисел
+        /// </summary>
         private static readonly Random _random = new Random();
 
+        /// <summary>
+        /// Возвращает случайно сгенерированный товар
+        /// </summary>
+        /// <returns></returns>
         public static Customer GetRandomCustomer()
         {
             string fullname = _fullnames[_random.Next(_fullnames.Length)];
