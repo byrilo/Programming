@@ -14,14 +14,25 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class CustomersTab : UserControl
     {
+        /// <summary>
+        /// Список покупателей
+        /// </summary>
         private List<Customer> _customers = new();
 
+        /// <summary>
+        /// Признак того, что список элементов обновляется программно
+        /// (используется, чтобы избежать зацикливания событий).
+        /// </summary>
         private bool _IsRefreshingListBox = false;
         public CustomersTab()
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Обрабатывает выбранного покупателя в списке
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
         private void _customersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_IsRefreshingListBox)
@@ -41,7 +52,11 @@ namespace ObjectOrientedPractics.View.Tabs
                 _customersAddressTextBox.Text = string.Empty;
             }
         }
-
+        /// <summary>
+        /// Обрабатывает нажатие кнопки добавления покупателя
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
         private void _customersAddButton_Click(object sender, EventArgs e)
         {
             var customer = new Customer("Full Name", "Address");
@@ -49,7 +64,11 @@ namespace ObjectOrientedPractics.View.Tabs
             _customersListBox.Items.Add(customer);
             _customersListBox.SelectedItem = customer;
         }
-
+        /// <summary>
+        /// Обрабатывает нажатие кнопки удаления покупателя
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
         private void _customersRemoveButton_Click(object sender, EventArgs e)
         {
             if (_customersListBox.SelectedItem is Customer selectedCustomer)
@@ -58,7 +77,11 @@ namespace ObjectOrientedPractics.View.Tabs
                 _customersListBox.Items.Remove(selectedCustomer);
             }
         }
-
+        /// <summary>
+        /// Обрабатывает измененеие адресса покупателя
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
         private void _customersAddressTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_customersListBox.SelectedItem is Customer selectedCustomer)
@@ -74,7 +97,11 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
             }
         }
-
+        /// <summary>
+        /// Обрабатывает изменение полного имени покупателя
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
         private void _customersFullNameTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_customersListBox.SelectedItem is Customer selectedCustomer)
@@ -96,7 +123,11 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
             }
         }
-
+        /// <summary>
+        /// Обрабатывает нажатие кнопки генерации случайных покупателей
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
         private void _customersRandomButton_Click(object sender, EventArgs e)
         {
             var customer = CustomerFactory.GetRandomCustomer();
