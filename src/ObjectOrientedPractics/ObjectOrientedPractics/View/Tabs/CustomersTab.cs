@@ -16,7 +16,7 @@ namespace ObjectOrientedPractics.View.Tabs
     {
         private List<Customer> _customers = new();
 
-        private bool _IsRefresingListBox = false;
+        private bool _IsRefreshingListBox = false;
         public CustomersTab()
         {
             InitializeComponent();
@@ -24,7 +24,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void _customersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_IsRefresingListBox)
+            if (_IsRefreshingListBox)
             {
                 return;
             }
@@ -83,12 +83,12 @@ namespace ObjectOrientedPractics.View.Tabs
                 {
                     selectedCustomer.Fullname = _customersFullNameTextBox.Text;
                     _customersFullNameTextBox.BackColor = SystemColors.Window;
-                    _IsRefresingListBox = true;
+                    _IsRefreshingListBox = true;
                     int index = _customersListBox.SelectedIndex;
                     _customersListBox.Items.RemoveAt(index);
                     _customersListBox.Items.Insert(index, selectedCustomer);
                     _customersListBox.SelectedIndex = index;
-                    _IsRefresingListBox = false;
+                    _IsRefreshingListBox = false;
                 }
                 catch (ArgumentException)
                 {

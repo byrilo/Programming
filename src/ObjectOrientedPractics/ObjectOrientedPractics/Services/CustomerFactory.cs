@@ -7,7 +7,7 @@ using ObjectOrientedPractics.Model;
 
 namespace ObjectOrientedPractics.Services
 {
-    internal class CustomerFactory
+    public static class CustomerFactory
     {
         private static readonly string[] _fullnames =
         {

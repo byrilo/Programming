@@ -31,6 +31,11 @@ namespace ObjectOrientedPractics.View.Tabs
             InitializeComponent();
 
         }
+        /// <summary>
+        /// Обрабатывает нажатие кнопки добавления товара
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
         private void _addButton_Click(object sender, EventArgs e)
         {
             var item = new Item("Item", "", 0);
@@ -38,6 +43,11 @@ namespace ObjectOrientedPractics.View.Tabs
             _itemsListBox.Items.Add(item);
             _itemsListBox.SelectedItem = item;
         }
+        /// <summary>
+        /// Обрабатывает нажатие кнопки удаления товара
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
         private void _removeButton_Click(object sender, EventArgs e)
         {
             if (_itemsListBox.SelectedItem is Item selectedItem)
@@ -46,6 +56,11 @@ namespace ObjectOrientedPractics.View.Tabs
                 _itemsListBox.Items.Remove(selectedItem);
             }
         }
+        /// <summary>
+        /// Обрабатывает выбранный товар
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
         private void _itemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_isRefreshingListBox)
@@ -68,6 +83,11 @@ namespace ObjectOrientedPractics.View.Tabs
                 _costTextBox.Clear();
             }
         }
+        /// <summary>
+        /// Обрабатывает изменения наименования товара
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
         private void _nameTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_itemsListBox.SelectedItem is Item selectedItem)
@@ -90,6 +110,11 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
             }
         }
+        /// <summary>
+        /// Обрабатывает изменение описания товара
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
         private void _descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_itemsListBox.SelectedItem is Item selectedItem)
@@ -105,6 +130,11 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
             }
         }
+        /// <summary>
+        /// Обрабатывает изменение цены товара
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
         private void _costTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_itemsListBox.SelectedItem is Item selectedItem)
@@ -127,6 +157,11 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
             }
         }
+        /// <summary>
+        /// Обрабатывает нажатие кнопки случайных значений товара
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
         private void _itemsRandomButton_Click(object sender, EventArgs e)
         {
             var item = ItemFactory.GetRandomItem();
