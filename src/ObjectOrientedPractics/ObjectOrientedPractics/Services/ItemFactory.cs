@@ -44,15 +44,16 @@ namespace ObjectOrientedPractics.Services
         private static readonly Random _random = new Random();
 
         /// <summary>
-        /// Возвращает случайно сгенерированный товар
+        /// Возвращает случайно сгенерированный товар.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Случайно сгенерированный товар</returns>
         public static Item GetRandomItem()
         {
             string name = _names[_random.Next(_names.Length)];
             string info = _infos[_random.Next(_infos.Length)];
             double cost = _random.Next(0, 100000);
-            return new Item(name, info, cost);
+            Category category = (Category)_random.Next(Enum.GetValues(typeof(Category)).Length);
+            return new Item(name, info, cost, category);
         }
     }
 }

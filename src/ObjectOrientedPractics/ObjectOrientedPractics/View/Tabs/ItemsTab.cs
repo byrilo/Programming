@@ -38,7 +38,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e">Данные события</param>
         private void _addButton_Click(object sender, EventArgs e)
         {
-            var item = new Item("Item", "", 0);
+            var item = new Item("Item", "", 0, Category.Other);
             _items.Add(item);
             _itemsListBox.Items.Add(item);
             _itemsListBox.SelectedItem = item;
