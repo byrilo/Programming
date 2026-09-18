@@ -34,7 +34,7 @@
             _streetLabel = new Label();
             _buildingLabel = new Label();
             _cityLabel = new Label();
-            _apartamentLabel = new Label();
+            _apartmentLabel = new Label();
             _postIndexTextBox = new TextBox();
             _countryTextBox = new TextBox();
             _streetTextBox = new TextBox();
@@ -99,14 +99,14 @@
             _cityLabel.TabIndex = 5;
             _cityLabel.Text = "City:";
             // 
-            // _apartamentLabel
+            // _apartmentLabel
             // 
-            _apartamentLabel.AutoSize = true;
-            _apartamentLabel.Location = new Point(247, 217);
-            _apartamentLabel.Name = "_apartamentLabel";
-            _apartamentLabel.Size = new Size(91, 20);
-            _apartamentLabel.TabIndex = 6;
-            _apartamentLabel.Text = "Apartament:";
+            _apartmentLabel.AutoSize = true;
+            _apartmentLabel.Location = new Point(247, 217);
+            _apartmentLabel.Name = "_apartmentLabel";
+            _apartmentLabel.Size = new Size(83, 20);
+            _apartmentLabel.TabIndex = 6;
+            _apartmentLabel.Text = "Apartment:";
             // 
             // _postIndexTextBox
             // 
@@ -160,7 +160,7 @@
             Controls.Add(_streetTextBox);
             Controls.Add(_countryTextBox);
             Controls.Add(_postIndexTextBox);
-            Controls.Add(_apartamentLabel);
+            Controls.Add(_apartmentLabel);
             Controls.Add(_cityLabel);
             Controls.Add(_buildingLabel);
             Controls.Add(_streetLabel);
@@ -181,7 +181,7 @@
         private Label _streetLabel;
         private Label _buildingLabel;
         private Label _cityLabel;
-        private Label _apartamentLabel;
+        private Label _apartmentLabel;
         private TextBox _postIndexTextBox;
         private TextBox _countryTextBox;
         private TextBox _streetTextBox;
