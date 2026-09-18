@@ -40,7 +40,7 @@
             _streetTextBox = new TextBox();
             _cityTextBox = new TextBox();
             _buildingTextBox = new TextBox();
-            _apartamentTextBox = new TextBox();
+            _apartmentTextBox = new TextBox();
             SuspendLayout();
             // 
             // _addressMainLabel
@@ -52,7 +52,6 @@
             _addressMainLabel.Size = new Size(135, 20);
             _addressMainLabel.TabIndex = 0;
             _addressMainLabel.Text = "Delivery Address";
-            _addressMainLabel.Click += label1_Click;
             // 
             // _postIndexLabel
             // 
@@ -143,18 +142,18 @@
             _buildingTextBox.Size = new Size(125, 27);
             _buildingTextBox.TabIndex = 11;
             // 
-            // _apartamentTextBox
+            // _apartmentTextBox
             // 
-            _apartamentTextBox.Location = new Point(344, 217);
-            _apartamentTextBox.Name = "_apartamentTextBox";
-            _apartamentTextBox.Size = new Size(125, 27);
-            _apartamentTextBox.TabIndex = 12;
+            _apartmentTextBox.Location = new Point(344, 217);
+            _apartmentTextBox.Name = "_apartmentTextBox";
+            _apartmentTextBox.Size = new Size(125, 27);
+            _apartmentTextBox.TabIndex = 12;
             // 
             // AddressControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(_apartamentTextBox);
+            Controls.Add(_apartmentTextBox);
             Controls.Add(_buildingTextBox);
             Controls.Add(_cityTextBox);
             Controls.Add(_streetTextBox);
@@ -187,6 +186,6 @@
         private TextBox _streetTextBox;
         private TextBox _cityTextBox;
         private TextBox _buildingTextBox;
-        private TextBox _apartamentTextBox;
+        private TextBox _apartmentTextBox;
     }
 }
