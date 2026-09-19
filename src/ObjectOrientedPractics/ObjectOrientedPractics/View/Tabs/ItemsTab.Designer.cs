@@ -29,14 +29,9 @@ namespace ObjectOrientedPractics.View.Tabs
         private void InitializeComponent()
         {
             _itemsRootTableLayoutPanel = new TableLayoutPanel();
-            _itemsLeftTableLayoutPanel = new TableLayoutPanel();
-            _itemsLabel = new Label();
-            _itemsListBox = new ListBox();
-            _itemsButtonsFlowPanel = new FlowLayoutPanel();
-            _addButton = new Button();
-            _removeButton = new Button();
-            _itemsRandomButton = new Button();
             _itemGroupBox = new GroupBox();
+            _itemsCategoryComboBox = new ComboBox();
+            _categoryLabel = new Label();
             _descriptionTextBox = new TextBox();
             _nameTextBox = new TextBox();
             _descriptionLabel = new Label();
@@ -45,10 +40,17 @@ namespace ObjectOrientedPractics.View.Tabs
             _idTextBox = new TextBox();
             _costLabel = new Label();
             _idLabel = new Label();
+            _itemsLeftTableLayoutPanel = new TableLayoutPanel();
+            _itemsLabel = new Label();
+            _itemsListBox = new ListBox();
+            _itemsButtonsFlowPanel = new FlowLayoutPanel();
+            _addButton = new Button();
+            _removeButton = new Button();
+            _itemsRandomButton = new Button();
             _itemsRootTableLayoutPanel.SuspendLayout();
+            _itemGroupBox.SuspendLayout();
             _itemsLeftTableLayoutPanel.SuspendLayout();
             _itemsButtonsFlowPanel.SuspendLayout();
-            _itemGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // _itemsRootTableLayoutPanel
@@ -56,8 +58,8 @@ namespace ObjectOrientedPractics.View.Tabs
             _itemsRootTableLayoutPanel.ColumnCount = 2;
             _itemsRootTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
             _itemsRootTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
-            _itemsRootTableLayoutPanel.Controls.Add(_itemsLeftTableLayoutPanel, 0, 0);
             _itemsRootTableLayoutPanel.Controls.Add(_itemGroupBox, 1, 0);
+            _itemsRootTableLayoutPanel.Controls.Add(_itemsLeftTableLayoutPanel, 0, 0);
             _itemsRootTableLayoutPanel.Dock = DockStyle.Fill;
             _itemsRootTableLayoutPanel.Location = new Point(0, 0);
             _itemsRootTableLayoutPanel.Name = "_itemsRootTableLayoutPanel";
@@ -66,6 +68,118 @@ namespace ObjectOrientedPractics.View.Tabs
             _itemsRootTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             _itemsRootTableLayoutPanel.Size = new Size(907, 639);
             _itemsRootTableLayoutPanel.TabIndex = 0;
+            // 
+            // _itemGroupBox
+            // 
+            _itemGroupBox.Controls.Add(_itemsCategoryComboBox);
+            _itemGroupBox.Controls.Add(_categoryLabel);
+            _itemGroupBox.Controls.Add(_descriptionTextBox);
+            _itemGroupBox.Controls.Add(_nameTextBox);
+            _itemGroupBox.Controls.Add(_descriptionLabel);
+            _itemGroupBox.Controls.Add(_nameLabel);
+            _itemGroupBox.Controls.Add(_costTextBox);
+            _itemGroupBox.Controls.Add(_idTextBox);
+            _itemGroupBox.Controls.Add(_costLabel);
+            _itemGroupBox.Controls.Add(_idLabel);
+            _itemGroupBox.Dock = DockStyle.Fill;
+            _itemGroupBox.Location = new Point(377, 15);
+            _itemGroupBox.Margin = new Padding(12, 3, 3, 3);
+            _itemGroupBox.Name = "_itemGroupBox";
+            _itemGroupBox.Size = new Size(515, 609);
+            _itemGroupBox.TabIndex = 1;
+            _itemGroupBox.TabStop = false;
+            _itemGroupBox.Text = "Selected Item";
+            // 
+            // _itemsCategoryComboBox
+            // 
+            _itemsCategoryComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            _itemsCategoryComboBox.FormattingEnabled = true;
+            _itemsCategoryComboBox.Location = new Point(86, 119);
+            _itemsCategoryComboBox.Name = "_itemsCategoryComboBox";
+            _itemsCategoryComboBox.Size = new Size(125, 28);
+            _itemsCategoryComboBox.TabIndex = 9;
+            _itemsCategoryComboBox.SelectedIndexChanged += _itemsCategoryComboBox_SelectedIndexChanged;
+            // 
+            // _categoryLabel
+            // 
+            _categoryLabel.AutoSize = true;
+            _categoryLabel.Location = new Point(8, 122);
+            _categoryLabel.Name = "_categoryLabel";
+            _categoryLabel.Size = new Size(72, 20);
+            _categoryLabel.TabIndex = 8;
+            _categoryLabel.Text = "Category:";
+            // 
+            // _descriptionTextBox
+            // 
+            _descriptionTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            _descriptionTextBox.Location = new Point(6, 361);
+            _descriptionTextBox.Multiline = true;
+            _descriptionTextBox.Name = "_descriptionTextBox";
+            _descriptionTextBox.Size = new Size(497, 115);
+            _descriptionTextBox.TabIndex = 7;
+            _descriptionTextBox.TextChanged += _descriptionTextBox_TextChanged;
+            // 
+            // _nameTextBox
+            // 
+            _nameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            _nameTextBox.Location = new Point(6, 220);
+            _nameTextBox.Multiline = true;
+            _nameTextBox.Name = "_nameTextBox";
+            _nameTextBox.Size = new Size(497, 115);
+            _nameTextBox.TabIndex = 6;
+            _nameTextBox.TextChanged += _nameTextBox_TextChanged;
+            // 
+            // _descriptionLabel
+            // 
+            _descriptionLabel.AutoSize = true;
+            _descriptionLabel.Location = new Point(6, 338);
+            _descriptionLabel.Name = "_descriptionLabel";
+            _descriptionLabel.Size = new Size(88, 20);
+            _descriptionLabel.TabIndex = 5;
+            _descriptionLabel.Text = "Description:";
+            // 
+            // _nameLabel
+            // 
+            _nameLabel.AutoSize = true;
+            _nameLabel.Location = new Point(6, 197);
+            _nameLabel.Name = "_nameLabel";
+            _nameLabel.Size = new Size(52, 20);
+            _nameLabel.TabIndex = 4;
+            _nameLabel.Text = "Name:";
+            // 
+            // _costTextBox
+            // 
+            _costTextBox.Location = new Point(86, 83);
+            _costTextBox.Name = "_costTextBox";
+            _costTextBox.Size = new Size(125, 27);
+            _costTextBox.TabIndex = 3;
+            _costTextBox.TextChanged += _costTextBox_TextChanged;
+            // 
+            // _idTextBox
+            // 
+            _idTextBox.Location = new Point(86, 43);
+            _idTextBox.Name = "_idTextBox";
+            _idTextBox.ReadOnly = true;
+            _idTextBox.Size = new Size(125, 27);
+            _idTextBox.TabIndex = 2;
+            // 
+            // _costLabel
+            // 
+            _costLabel.AutoSize = true;
+            _costLabel.Location = new Point(6, 86);
+            _costLabel.Name = "_costLabel";
+            _costLabel.Size = new Size(41, 20);
+            _costLabel.TabIndex = 1;
+            _costLabel.Text = "Cost:";
+            // 
+            // _idLabel
+            // 
+            _idLabel.AutoSize = true;
+            _idLabel.Location = new Point(6, 46);
+            _idLabel.Name = "_idLabel";
+            _idLabel.Size = new Size(27, 20);
+            _idLabel.TabIndex = 0;
+            _idLabel.Text = "ID:";
             // 
             // _itemsLeftTableLayoutPanel
             // 
@@ -149,97 +263,6 @@ namespace ObjectOrientedPractics.View.Tabs
             _itemsRandomButton.UseVisualStyleBackColor = true;
             _itemsRandomButton.Click += _itemsRandomButton_Click;
             // 
-            // _itemGroupBox
-            // 
-            _itemGroupBox.Controls.Add(_descriptionTextBox);
-            _itemGroupBox.Controls.Add(_nameTextBox);
-            _itemGroupBox.Controls.Add(_descriptionLabel);
-            _itemGroupBox.Controls.Add(_nameLabel);
-            _itemGroupBox.Controls.Add(_costTextBox);
-            _itemGroupBox.Controls.Add(_idTextBox);
-            _itemGroupBox.Controls.Add(_costLabel);
-            _itemGroupBox.Controls.Add(_idLabel);
-            _itemGroupBox.Dock = DockStyle.Fill;
-            _itemGroupBox.Location = new Point(377, 15);
-            _itemGroupBox.Margin = new Padding(12, 3, 3, 3);
-            _itemGroupBox.Name = "_itemGroupBox";
-            _itemGroupBox.Size = new Size(515, 609);
-            _itemGroupBox.TabIndex = 1;
-            _itemGroupBox.TabStop = false;
-            _itemGroupBox.Text = "Selected Item";
-            // 
-            // _descriptionTextBox
-            // 
-            _descriptionTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            _descriptionTextBox.Location = new Point(6, 302);
-            _descriptionTextBox.Multiline = true;
-            _descriptionTextBox.Name = "_descriptionTextBox";
-            _descriptionTextBox.Size = new Size(497, 296);
-            _descriptionTextBox.TabIndex = 7;
-            _descriptionTextBox.TextChanged += _descriptionTextBox_TextChanged;
-            // 
-            // _nameTextBox
-            // 
-            _nameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            _nameTextBox.Location = new Point(6, 151);
-            _nameTextBox.Multiline = true;
-            _nameTextBox.Name = "_nameTextBox";
-            _nameTextBox.Size = new Size(497, 115);
-            _nameTextBox.TabIndex = 6;
-            _nameTextBox.TextChanged += _nameTextBox_TextChanged;
-            // 
-            // _descriptionLabel
-            // 
-            _descriptionLabel.AutoSize = true;
-            _descriptionLabel.Location = new Point(6, 279);
-            _descriptionLabel.Name = "_descriptionLabel";
-            _descriptionLabel.Size = new Size(88, 20);
-            _descriptionLabel.TabIndex = 5;
-            _descriptionLabel.Text = "Description:";
-            // 
-            // _nameLabel
-            // 
-            _nameLabel.AutoSize = true;
-            _nameLabel.Location = new Point(6, 128);
-            _nameLabel.Name = "_nameLabel";
-            _nameLabel.Size = new Size(52, 20);
-            _nameLabel.TabIndex = 4;
-            _nameLabel.Text = "Name:";
-            // 
-            // _costTextBox
-            // 
-            _costTextBox.Location = new Point(56, 83);
-            _costTextBox.Name = "_costTextBox";
-            _costTextBox.Size = new Size(125, 27);
-            _costTextBox.TabIndex = 3;
-            _costTextBox.TextChanged += _costTextBox_TextChanged;
-            // 
-            // _idTextBox
-            // 
-            _idTextBox.Location = new Point(56, 43);
-            _idTextBox.Name = "_idTextBox";
-            _idTextBox.ReadOnly = true;
-            _idTextBox.Size = new Size(125, 27);
-            _idTextBox.TabIndex = 2;
-            // 
-            // _costLabel
-            // 
-            _costLabel.AutoSize = true;
-            _costLabel.Location = new Point(6, 86);
-            _costLabel.Name = "_costLabel";
-            _costLabel.Size = new Size(41, 20);
-            _costLabel.TabIndex = 1;
-            _costLabel.Text = "Cost:";
-            // 
-            // _idLabel
-            // 
-            _idLabel.AutoSize = true;
-            _idLabel.Location = new Point(6, 46);
-            _idLabel.Name = "_idLabel";
-            _idLabel.Size = new Size(27, 20);
-            _idLabel.TabIndex = 0;
-            _idLabel.Text = "ID:";
-            // 
             // ItemsTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -248,11 +271,11 @@ namespace ObjectOrientedPractics.View.Tabs
             Name = "ItemsTab";
             Size = new Size(907, 639);
             _itemsRootTableLayoutPanel.ResumeLayout(false);
+            _itemGroupBox.ResumeLayout(false);
+            _itemGroupBox.PerformLayout();
             _itemsLeftTableLayoutPanel.ResumeLayout(false);
             _itemsLeftTableLayoutPanel.PerformLayout();
             _itemsButtonsFlowPanel.ResumeLayout(false);
-            _itemGroupBox.ResumeLayout(false);
-            _itemGroupBox.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -275,5 +298,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private TextBox _nameTextBox;
         private Label _descriptionLabel;
         private Label _nameLabel;
+        private ComboBox _itemsCategoryComboBox;
+        private Label _categoryLabel;
     }
 }

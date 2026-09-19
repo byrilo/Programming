@@ -21,8 +21,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Item> _items = new();
 
         /// <summary>
-        /// Признак того, что список элементов обновляется программно
-        /// (используется, чтобы избежать зацикливания событий).
+        /// Обновление списка элементов программно.
         /// </summary>
         private bool _isRefreshingListBox = false;
 
@@ -30,15 +29,39 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
 
+            /// <summary>
+            /// Заполнение комбобокса категориями товаров.
+            /// <summary>
+            foreach (var category in Enum.GetValues(typeof(Category)))
+            {
+                _itemsCategoryComboBox.Items.Add(category);
+            }
+        }
+        /// <summary>
+        /// Возвращает и задаёт список товаров, отображаемых на вкладке.
+        /// </summary>
+        public List<Item> Items 
+        { 
+            get { return _items; }
+            set
+            {
+                _items = value;
+                _itemsListBox.Items.Clear();
+                foreach (var item in _items)
+                {
+                    _itemsListBox.Items.Add(item);
+                }
+            }
         }
         /// <summary>
         /// Обрабатывает нажатие кнопки добавления товара
         /// </summary>
         /// <param name="sender">Источник события</param>
         /// <param name="e">Данные события</param>
+
         private void _addButton_Click(object sender, EventArgs e)
         {
-            var item = new Item("Item", "", 0);
+            var item = new Item("Item", "", 0, Category.Other);
             _items.Add(item);
             _itemsListBox.Items.Add(item);
             _itemsListBox.SelectedItem = item;
@@ -74,6 +97,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _nameTextBox.Text = selectedItem.Name;
                 _descriptionTextBox.Text = selectedItem.Info;
                 _costTextBox.Text = selectedItem.Cost.ToString();
+                _itemsCategoryComboBox.SelectedItem = selectedItem.Category;
             }
             else
             {
@@ -81,6 +105,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _nameTextBox.Clear();
                 _descriptionTextBox.Clear();
                 _costTextBox.Clear();
+                _itemsCategoryComboBox.SelectedItem = -1;
             }
         }
         /// <summary>
@@ -168,6 +193,18 @@ namespace ObjectOrientedPractics.View.Tabs
             _items.Add(item);
             _itemsListBox.Items.Add(item);
             _itemsListBox.SelectedItem = item;
+        }
+        /// <summary>
+        /// Проверка выбранной категории товара и присвоение её выбранному товару.
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
+        private void _itemsCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_itemsCategoryComboBox.SelectedItem is Category selectedCategory && _itemsListBox.SelectedItem is Item selectedItem)
+            {
+                selectedItem.Category = selectedCategory;
+            }
         }
     }
 }

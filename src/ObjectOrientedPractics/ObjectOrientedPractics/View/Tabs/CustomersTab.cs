@@ -29,6 +29,22 @@ namespace ObjectOrientedPractics.View.Tabs
             InitializeComponent();
         }
         /// <summary>
+        /// Возвращает и задаёт список покупателей, отображаемых на вкладке.
+        /// </summary>
+        public List<Customer> Customers
+        {
+            get { return _customers; }
+            set
+            {
+                _customers = value;
+                _customersListBox.Items.Clear();
+                foreach (var customer in _customers)
+                {
+                    _customersListBox.Items.Add(customer);
+                }
+            }
+        }
+        /// <summary>
         /// Обрабатывает выбранного покупателя в списке
         /// </summary>
         /// <param name="sender">Источник события</param>
@@ -43,13 +59,13 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _customersIdTextBox.Text = selectedCustomer.Id.ToString();
                 _customersFullNameTextBox.Text = selectedCustomer.Fullname;
-                _customersAddressTextBox.Text = selectedCustomer.Address;
+                _customersAddressControl.Address = selectedCustomer.Address;
             }
             else
             {
                 _customersIdTextBox.Text = string.Empty;
                 _customersFullNameTextBox.Text = string.Empty;
-                _customersAddressTextBox.Text = string.Empty;
+                _customersAddressControl.Address = new Address();
             }
         }
         /// <summary>
@@ -59,7 +75,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e">Данные события</param>
         private void _customersAddButton_Click(object sender, EventArgs e)
         {
-            var customer = new Customer("Full Name", "Address");
+            var customer = new Customer("Full Name", new Address());
             _customers.Add(customer);
             _customersListBox.Items.Add(customer);
             _customersListBox.SelectedItem = customer;
@@ -75,26 +91,6 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _customers.Remove(selectedCustomer);
                 _customersListBox.Items.Remove(selectedCustomer);
-            }
-        }
-        /// <summary>
-        /// Обрабатывает измененеие адресса покупателя
-        /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
-        private void _customersAddressTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (_customersListBox.SelectedItem is Customer selectedCustomer)
-            {
-                try
-                {
-                    selectedCustomer.Address = _customersAddressTextBox.Text;
-                    _customersAddressTextBox.BackColor = SystemColors.Window;
-                }
-                catch (ArgumentException)
-                {
-                    _customersAddressTextBox.BackColor = Color.Red;
-                }
             }
         }
         /// <summary>

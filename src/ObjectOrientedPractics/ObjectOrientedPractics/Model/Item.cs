@@ -82,17 +82,24 @@ namespace ObjectOrientedPractics.Model
             }
         }
         /// <summary>
+        /// Возвращает и задаёт категорию товара.
+        /// </summary>
+        public Category Category { get; set; }
+
+        /// <summary>
         /// Создаёт экземпляр класса <see cref="Item"/>.
         /// </summary>
         /// <param name="name"> Название товара </param>
         /// <param name="info"> Информация о товаре </param>
         /// <param name="cost"> Стоимость товара </param>
-        public Item(string name, string info, double cost)
+        /// <param name="category"> Категория товара </param>
+        public Item(string name, string info, double cost, Category category)
         {
             _id = IdGenerator.GetNextId();
             Name = name;
             Info = info;
-            Cost = cost;            
+            Cost = cost;
+            Category = category;
         }
 
         /// <summary>

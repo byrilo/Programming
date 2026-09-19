@@ -29,15 +29,15 @@ namespace ObjectOrientedPractics.Services
         /// <summary>
         /// Возможные адреса покупателей
         /// </summary>
-        private static readonly string[] _addresses =
+        private static readonly Address[] _addresses =
         {
-            "г. Москва, ул. Тверская, д. 12, кв. 45",
-            "г. Санкт-Петербург, Невский пр-т, д. 78, кв. 10",
-            "г. Казань, ул. Баумана, д. 5",
-            "г. Новосибирск, ул. Ленина, д. 23, кв. 67",
-            "г. Екатеринбург, ул. Малышева, д. 31",
-            "г. Нижний Новгород, ул. Большая Покровская, д. 9, кв. 3"
-        }; 
+        new Address(101000, "Россия", "Москва", "Тверская", "12", "45"),
+        new Address(190000, "Россия", "Санкт-Петербург", "Невский проспект", "78", "10"),
+        new Address(420000, "Россия", "Казань", "Баумана", "5", "1"),
+        new Address(630000, "Россия", "Новосибирск", "Ленина", "23", "67"),
+        new Address(620000, "Россия", "Екатеринбург", "Малышева", "31", "2"),
+        new Address(603000, "Россия", "Нижний Новгород", "Большая Покровская", "9", "3")
+        };
         /// <summary>
         /// Генератор случайных чисел
         /// </summary>
@@ -50,7 +50,7 @@ namespace ObjectOrientedPractics.Services
         public static Customer GetRandomCustomer()
         {
             string fullname = _fullnames[_random.Next(_fullnames.Length)];
-            string address = _addresses[_random.Next(_addresses.Length)];
+            Address address = _addresses[_random.Next(_addresses.Length)];
             return new Customer(fullname, address);
         }
     }
