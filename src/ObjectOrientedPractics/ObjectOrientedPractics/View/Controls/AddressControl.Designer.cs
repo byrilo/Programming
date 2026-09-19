@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             _addressMainLabel = new Label();
             _postIndexLabel = new Label();
             _countryLabel = new Label();
@@ -41,6 +42,8 @@
             _cityTextBox = new TextBox();
             _buildingTextBox = new TextBox();
             _apartmentTextBox = new TextBox();
+            _addressErrorProvider = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)_addressErrorProvider).BeginInit();
             SuspendLayout();
             // 
             // _addressMainLabel
@@ -155,6 +158,10 @@
             _apartmentTextBox.TabIndex = 12;
             _apartmentTextBox.TextChanged += _apartmentTextBox_TextChanged;
             // 
+            // _addressErrorProvider
+            // 
+            _addressErrorProvider.ContainerControl = this;
+            // 
             // AddressControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -174,6 +181,7 @@
             Controls.Add(_addressMainLabel);
             Name = "AddressControl";
             Size = new Size(550, 261);
+            ((System.ComponentModel.ISupportInitialize)_addressErrorProvider).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -193,5 +201,6 @@
         private TextBox _cityTextBox;
         private TextBox _buildingTextBox;
         private TextBox _apartmentTextBox;
+        private ErrorProvider _addressErrorProvider;
     }
 }
