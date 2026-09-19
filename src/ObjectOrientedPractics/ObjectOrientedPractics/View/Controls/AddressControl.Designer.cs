@@ -113,6 +113,7 @@
             _postIndexTextBox.Name = "_postIndexTextBox";
             _postIndexTextBox.Size = new Size(125, 27);
             _postIndexTextBox.TabIndex = 7;
+            _postIndexTextBox.TextChanged += _postIndexTextBox_TextChanged;
             // 
             // _countryTextBox
             // 
@@ -120,6 +121,7 @@
             _countryTextBox.Name = "_countryTextBox";
             _countryTextBox.Size = new Size(190, 27);
             _countryTextBox.TabIndex = 8;
+            _countryTextBox.TextChanged += _countryTextBox_TextChanged;
             // 
             // _streetTextBox
             // 
@@ -127,6 +129,7 @@
             _streetTextBox.Name = "_streetTextBox";
             _streetTextBox.Size = new Size(412, 27);
             _streetTextBox.TabIndex = 9;
+            _streetTextBox.TextChanged += _streetTextBox_TextChanged;
             // 
             // _cityTextBox
             // 
@@ -134,6 +137,7 @@
             _cityTextBox.Name = "_cityTextBox";
             _cityTextBox.Size = new Size(173, 27);
             _cityTextBox.TabIndex = 10;
+            _cityTextBox.TextChanged += _cityTextBox_TextChanged;
             // 
             // _buildingTextBox
             // 
@@ -141,6 +145,7 @@
             _buildingTextBox.Name = "_buildingTextBox";
             _buildingTextBox.Size = new Size(125, 27);
             _buildingTextBox.TabIndex = 11;
+            _buildingTextBox.TextChanged += _buildingTextBox_TextChanged;
             // 
             // _apartmentTextBox
             // 
@@ -148,6 +153,7 @@
             _apartmentTextBox.Name = "_apartmentTextBox";
             _apartmentTextBox.Size = new Size(125, 27);
             _apartmentTextBox.TabIndex = 12;
+            _apartmentTextBox.TextChanged += _apartmentTextBox_TextChanged;
             // 
             // AddressControl
             // 
