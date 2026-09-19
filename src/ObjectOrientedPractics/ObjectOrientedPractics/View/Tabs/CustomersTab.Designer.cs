@@ -37,13 +37,11 @@ namespace ObjectOrientedPractics.View.Tabs
             _customersRemoveButton = new Button();
             _customersRandomButton = new Button();
             _customersGroupBox = new GroupBox();
-            _customersAddressLabel = new Label();
             _customersFullNameLabel = new Label();
             _customersIdLabel = new Label();
             _customersIdTextBox = new TextBox();
             _customersFullNameTextBox = new TextBox();
-            _customersAddressTextBox = new TextBox();
-            _customersPanel = new Panel();
+            _customersAddressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             _customersRootTableLayoutPanel.SuspendLayout();
             _customersLeftTableLayoutPanel.SuspendLayout();
             _customersButtonsFlowPanel.SuspendLayout();
@@ -151,13 +149,11 @@ namespace ObjectOrientedPractics.View.Tabs
             //
             // _customersGroupBox
             //
-            _customersGroupBox.Controls.Add(_customersAddressLabel);
             _customersGroupBox.Controls.Add(_customersFullNameLabel);
             _customersGroupBox.Controls.Add(_customersIdLabel);
             _customersGroupBox.Controls.Add(_customersIdTextBox);
             _customersGroupBox.Controls.Add(_customersFullNameTextBox);
-            _customersGroupBox.Controls.Add(_customersAddressTextBox);
-            _customersGroupBox.Controls.Add(_customersPanel);
+            _customersGroupBox.Controls.Add(_customersAddressControl);
             _customersGroupBox.Dock = DockStyle.Fill;
             _customersGroupBox.Location = new Point(343, 15);
             _customersGroupBox.Margin = new Padding(12, 3, 3, 3);
@@ -166,15 +162,6 @@ namespace ObjectOrientedPractics.View.Tabs
             _customersGroupBox.TabIndex = 1;
             _customersGroupBox.TabStop = false;
             _customersGroupBox.Text = "Selected customer";
-            //
-            // _customersAddressLabel
-            //
-            _customersAddressLabel.AutoSize = true;
-            _customersAddressLabel.Location = new Point(6, 132);
-            _customersAddressLabel.Name = "_customersAddressLabel";
-            _customersAddressLabel.Size = new Size(62, 20);
-            _customersAddressLabel.TabIndex = 10;
-            _customersAddressLabel.Text = "Address";
             //
             // _customersFullNameLabel
             //
@@ -211,23 +198,13 @@ namespace ObjectOrientedPractics.View.Tabs
             _customersFullNameTextBox.TabIndex = 6;
             _customersFullNameTextBox.TextChanged += _customersFullNameTextBox_TextChanged;
             //
-            // _customersAddressTextBox
+            // _customersAddressControl
             //
-            _customersAddressTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            _customersAddressTextBox.Location = new Point(87, 132);
-            _customersAddressTextBox.Multiline = true;
-            _customersAddressTextBox.Name = "_customersAddressTextBox";
-            _customersAddressTextBox.Size = new Size(405, 130);
-            _customersAddressTextBox.TabIndex = 7;
-            _customersAddressTextBox.TextChanged += _customersAddressTextBox_TextChanged;
-            //
-            // _customersPanel
-            //
-            _customersPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            _customersPanel.Location = new Point(6, 281);
-            _customersPanel.Name = "_customersPanel";
-            _customersPanel.Size = new Size(486, 280);
-            _customersPanel.TabIndex = 5;
+            _customersAddressControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            _customersAddressControl.Location = new Point(6, 108);
+            _customersAddressControl.Name = "_customersAddressControl";
+            _customersAddressControl.Size = new Size(486, 453);
+            _customersAddressControl.TabIndex = 7;
             //
             // CustomersTab
             //
@@ -256,12 +233,10 @@ namespace ObjectOrientedPractics.View.Tabs
         private Button _customersRemoveButton;
         private Button _customersRandomButton;
         private GroupBox _customersGroupBox;
-        private Label _customersAddressLabel;
         private Label _customersFullNameLabel;
         private Label _customersIdLabel;
         private TextBox _customersIdTextBox;
         private TextBox _customersFullNameTextBox;
-        private TextBox _customersAddressTextBox;
-        private Panel _customersPanel;
+        private ObjectOrientedPractics.View.Controls.AddressControl _customersAddressControl;
     }
 }
