@@ -38,6 +38,22 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
         /// <summary>
+        /// Возвращает и задаёт список товаров, отображаемых на вкладке.
+        /// </summary>
+        public List<Item> Items 
+        { 
+            get { return _items; }
+            set
+            {
+                _items = value;
+                _itemsListBox.Items.Clear();
+                foreach (var item in _items)
+                {
+                    _itemsListBox.Items.Add(item);
+                }
+            }
+        }
+        /// <summary>
         /// Обрабатывает нажатие кнопки добавления товара
         /// </summary>
         /// <param name="sender">Источник события</param>

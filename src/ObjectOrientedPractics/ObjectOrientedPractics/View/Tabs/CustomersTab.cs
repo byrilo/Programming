@@ -29,6 +29,22 @@ namespace ObjectOrientedPractics.View.Tabs
             InitializeComponent();
         }
         /// <summary>
+        /// Возвращает и задаёт список покупателей, отображаемых на вкладке.
+        /// </summary>
+        public List<Customer> Customers
+        {
+            get { return _customers; }
+            set
+            {
+                _customers = value;
+                _customersListBox.Items.Clear();
+                foreach (var customer in _customers)
+                {
+                    _customersListBox.Items.Add(customer);
+                }
+            }
+        }
+        /// <summary>
         /// Обрабатывает выбранного покупателя в списке
         /// </summary>
         /// <param name="sender">Источник события</param>
