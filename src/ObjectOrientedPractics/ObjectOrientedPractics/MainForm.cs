@@ -6,6 +6,9 @@ namespace ObjectOrientedPractics
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Хранилище данных приложения
+        /// </summary>
         private Store _store = new Store(); 
         public MainForm()
         {
