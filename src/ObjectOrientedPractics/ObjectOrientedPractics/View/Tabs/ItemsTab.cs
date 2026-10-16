@@ -21,49 +21,52 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Item> _items = new();
 
         /// <summary>
-        /// Обновление списка элементов программно.
+        /// Обёртка над списком <see cref="_items"/>, привязанная к <c>ListBox</c> через DataSource.
+        /// Работает с тем же списком, поэтому добавлять и удалять товары нужно через неё:
+        /// тогда <c>ListBox</c> узнаёт об изменениях и сам обновляется.
         /// </summary>
-        private bool _isRefreshingListBox = false;
+        private BindingList<Item> _bindingItems;
 
+        /// <summary>
+        /// Возвращает и задаёт список товаров, отображаемых на вкладке.
+        /// </summary>
+        public List<Item> Items
+        {
+            get { return _items; }
+            set
+            {
+                _items = value;
+                _bindingItems = new BindingList<Item>(_items);
+                _itemsListBox.DataSource = _bindingItems;
+            }
+        }
+
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="ItemsTab"/>.
+        /// </summary>
         public ItemsTab()
         {
             InitializeComponent();
 
-            /// <summary>
-            /// Заполнение комбобокса категориями товаров.
-            /// <summary>
+            _bindingItems = new BindingList<Item>(_items);
+            _itemsListBox.DataSource = _bindingItems;
+
+            // Заполнение комбобокса категориями товаров.
             foreach (var category in Enum.GetValues(typeof(Category)))
             {
                 _itemsCategoryComboBox.Items.Add(category);
             }
         }
-        /// <summary>
-        /// Возвращает и задаёт список товаров, отображаемых на вкладке.
-        /// </summary>
-        public List<Item> Items 
-        { 
-            get { return _items; }
-            set
-            {
-                _items = value;
-                _itemsListBox.Items.Clear();
-                foreach (var item in _items)
-                {
-                    _itemsListBox.Items.Add(item);
-                }
-            }
-        }
+
         /// <summary>
         /// Обрабатывает нажатие кнопки добавления товара
         /// </summary>
         /// <param name="sender">Источник события</param>
         /// <param name="e">Данные события</param>
-
         private void _addButton_Click(object sender, EventArgs e)
         {
             var item = new Item("Item", "", 0, Category.Other);
-            _items.Add(item);
-            _itemsListBox.Items.Add(item);
+            _bindingItems.Add(item);
             _itemsListBox.SelectedItem = item;
         }
         /// <summary>
@@ -75,8 +78,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (_itemsListBox.SelectedItem is Item selectedItem)
             {
-                _items.Remove(selectedItem);
-                _itemsListBox.Items.Remove(selectedItem);
+                _bindingItems.Remove(selectedItem);
             }
         }
         /// <summary>
@@ -86,11 +88,6 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e">Данные события</param>
         private void _itemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_isRefreshingListBox)
-            {
-                return;
-            }
-
             if (_itemsListBox.SelectedItem is Item selectedItem)
             {
                 _idTextBox.Text = selectedItem.Id.ToString();
@@ -105,7 +102,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _nameTextBox.Clear();
                 _descriptionTextBox.Clear();
                 _costTextBox.Clear();
-                _itemsCategoryComboBox.SelectedItem = -1;
+                _itemsCategoryComboBox.SelectedIndex = -1;
             }
         }
         /// <summary>
@@ -122,12 +119,8 @@ namespace ObjectOrientedPractics.View.Tabs
                     selectedItem.Name = _nameTextBox.Text;
                     _nameTextBox.BackColor = SystemColors.Window;
 
-                    _isRefreshingListBox = true;
-                    int index = _itemsListBox.SelectedIndex;
-                    _itemsListBox.Items.RemoveAt(index);
-                    _itemsListBox.Items.Insert(index, selectedItem);
-                    _itemsListBox.SelectedIndex = index;
-                    _isRefreshingListBox = false;
+                    // Сообщаем списку, что элемент изменился, чтобы он обновил отображаемое название.
+                    _bindingItems.ResetItem(_itemsListBox.SelectedIndex);
                 }
                 catch (ArgumentException)
                 {
@@ -190,8 +183,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void _itemsRandomButton_Click(object sender, EventArgs e)
         {
             var item = ItemFactory.GetRandomItem();
-            _items.Add(item);
-            _itemsListBox.Items.Add(item);
+            _bindingItems.Add(item);
             _itemsListBox.SelectedItem = item;
         }
         /// <summary>
