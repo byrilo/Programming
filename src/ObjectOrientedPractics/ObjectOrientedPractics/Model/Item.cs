@@ -110,6 +110,5 @@ namespace ObjectOrientedPractics.Model
         {
             return Name;
         }
-
     }
 }

@@ -20,14 +20,12 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Customer> _customers = new();
 
         /// <summary>
-        /// Признак того, что список элементов обновляется программно
-        /// (используется, чтобы избежать зацикливания событий).
+        /// Обёртка над списком <see cref="_customers"/>, привязанная к <c>ListBox</c> через DataSource.
+        /// Работает с тем же списком, поэтому добавлять и удалять покупателей нужно через неё:
+        /// тогда <c>ListBox</c> узнаёт об изменениях и сам обновляется.
         /// </summary>
-        private bool _IsRefreshingListBox = false;
-        public CustomersTab()
-        {
-            InitializeComponent();
-        }
+        private BindingList<Customer> _bindingCustomers;
+
         /// <summary>
         /// Возвращает и задаёт список покупателей, отображаемых на вкладке.
         /// </summary>
@@ -37,12 +35,20 @@ namespace ObjectOrientedPractics.View.Tabs
             set
             {
                 _customers = value;
-                _customersListBox.Items.Clear();
-                foreach (var customer in _customers)
-                {
-                    _customersListBox.Items.Add(customer);
-                }
+                _bindingCustomers = new BindingList<Customer>(_customers);
+                _customersListBox.DataSource = _bindingCustomers;
             }
+        }
+
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="CustomersTab"/>.
+        /// </summary>
+        public CustomersTab()
+        {
+            InitializeComponent();
+
+            _bindingCustomers = new BindingList<Customer>(_customers);
+            _customersListBox.DataSource = _bindingCustomers;
         }
         /// <summary>
         /// Обрабатывает выбранного покупателя в списке
@@ -51,10 +57,6 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e">Данные события</param>
         private void _customersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_IsRefreshingListBox)
-            {
-                return;
-            }
             if (_customersListBox.SelectedItem is Customer selectedCustomer)
             {
                 _customersIdTextBox.Text = selectedCustomer.Id.ToString();
@@ -76,8 +78,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void _customersAddButton_Click(object sender, EventArgs e)
         {
             var customer = new Customer("Full Name", new Address());
-            _customers.Add(customer);
-            _customersListBox.Items.Add(customer);
+            _bindingCustomers.Add(customer);
             _customersListBox.SelectedItem = customer;
         }
         /// <summary>
@@ -89,8 +90,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (_customersListBox.SelectedItem is Customer selectedCustomer)
             {
-                _customers.Remove(selectedCustomer);
-                _customersListBox.Items.Remove(selectedCustomer);
+                _bindingCustomers.Remove(selectedCustomer);
             }
         }
         /// <summary>
@@ -106,12 +106,9 @@ namespace ObjectOrientedPractics.View.Tabs
                 {
                     selectedCustomer.Fullname = _customersFullNameTextBox.Text;
                     _customersFullNameTextBox.BackColor = SystemColors.Window;
-                    _IsRefreshingListBox = true;
-                    int index = _customersListBox.SelectedIndex;
-                    _customersListBox.Items.RemoveAt(index);
-                    _customersListBox.Items.Insert(index, selectedCustomer);
-                    _customersListBox.SelectedIndex = index;
-                    _IsRefreshingListBox = false;
+
+                    // Сообщаем списку, что элемент изменился, чтобы он обновил отображаемое имя.
+                    _bindingCustomers.ResetItem(_customersListBox.SelectedIndex);
                 }
                 catch (ArgumentException)
                 {
@@ -127,8 +124,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void _customersRandomButton_Click(object sender, EventArgs e)
         {
             var customer = CustomerFactory.GetRandomCustomer();
-            _customers.Add(customer);
-            _customersListBox.Items.Add(customer);
+            _bindingCustomers.Add(customer);
             _customersListBox.SelectedItem = customer;
         }
     }
