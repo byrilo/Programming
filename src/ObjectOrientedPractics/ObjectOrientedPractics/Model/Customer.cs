@@ -33,6 +33,11 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает уникальный идентификатор покупателя.
         /// </summary>
+
+        /// <summary>
+        /// Список заказов покупателя.
+        /// </summary>
+        private List<Order> _orders = new List<Order>();
         public int Id
         {
             get { return _id; }
@@ -69,6 +74,15 @@ namespace ObjectOrientedPractics.Model
         {
             get { return _cart; }
             set { _cart = value; }
+        }
+
+        /// <summary>
+        /// Получает и задает список заказов покупателя.
+        /// </summary>
+        public List<Order> Orders
+        {
+            get { return _orders; }
+            set { _orders = value; }
         }
         /// <summary>
         /// Создает экземпляр класса <see cref="Customer"/>.
