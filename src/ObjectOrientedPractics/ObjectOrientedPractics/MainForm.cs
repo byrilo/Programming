@@ -21,6 +21,7 @@ namespace ObjectOrientedPractics
             customersTab1.Customers = _store.Customers;
             cartsTab1.Items = _store.Items;
             cartsTab1.Customers = _store.Customers;
+            _ordersTab.Customers = _store.Customers;
         }
 
         /// <summary>
@@ -34,6 +35,10 @@ namespace ObjectOrientedPractics
             if (elem.SelectedTab == Cart)
             {
                 cartsTab1.RefreshData();
+            }
+            else if (elem.SelectedTab == _ordersTabPage)
+            {
+                _ordersTab.RefreshData();
             }
         }
     }
