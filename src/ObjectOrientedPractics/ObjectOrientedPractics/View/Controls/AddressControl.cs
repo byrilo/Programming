@@ -159,6 +159,8 @@ namespace ObjectOrientedPractics.View.Controls
         /// <summary>
         /// Получает или задает адрес.
         /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Address Address
         {
             get { return _address; }
@@ -166,6 +168,24 @@ namespace ObjectOrientedPractics.View.Controls
             {
                 _address = value;
                 ShowAddress();
+            }
+        }
+
+        /// <summary>
+        /// Возвращает и задаёт признак того, что поля адреса доступны только для чтения.
+        /// </summary>
+        [DefaultValue(false)]
+        public bool ReadOnly
+        {
+            get { return _postIndexTextBox.ReadOnly; }
+            set
+            {
+                _postIndexTextBox.ReadOnly = value;
+                _countryTextBox.ReadOnly = value;
+                _cityTextBox.ReadOnly = value;
+                _streetTextBox.ReadOnly = value;
+                _buildingTextBox.ReadOnly = value;
+                _apartmentTextBox.ReadOnly = value;
             }
         }
 

@@ -27,8 +27,17 @@ namespace ObjectOrientedPractics.Model
         private Address _address = new Address();
 
         /// <summary>
+        /// Корзина покупателя.
+        /// </summary>
+        private Cart _cart;
+        /// <summary>
         /// Возвращает уникальный идентификатор покупателя.
         /// </summary>
+
+        /// <summary>
+        /// Список заказов покупателя.
+        /// </summary>
+        private List<Order> _orders = new List<Order>();
         public int Id
         {
             get { return _id; }
@@ -59,15 +68,34 @@ namespace ObjectOrientedPractics.Model
             }
         }
         /// <summary>
+        /// Получает и задает корзину покупателя.
+        /// </summary>
+        public Cart Cart
+        {
+            get { return _cart; }
+            set { _cart = value; }
+        }
+
+        /// <summary>
+        /// Получает и задает список заказов покупателя.
+        /// </summary>
+        public List<Order> Orders
+        {
+            get { return _orders; }
+            set { _orders = value; }
+        }
+        /// <summary>
         /// Создает экземпляр класса <see cref="Customer"/>.
         /// </summary>
         /// <param name="fullname">Полное имя покупателя.</param>
         /// <param name="address">Адрес доставки покупателя.</param>
+        /// <param name="cart">Корзина покупателя.</param>
         public Customer(string fullname, Address address)
         {
             _id = IdGenerator.GetNextId();
             Fullname = fullname;
             Address = address;
+            _cart = new Cart();
         }
         /// <summary>
         /// Возвращает строковое представление объекта <see cref="Customer"/>.
