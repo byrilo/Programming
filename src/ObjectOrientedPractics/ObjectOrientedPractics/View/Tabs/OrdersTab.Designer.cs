@@ -108,6 +108,7 @@ namespace ObjectOrientedPractics.View.Tabs
             _ordersDataGridView.AllowUserToDeleteRows = false;
             _ordersDataGridView.AllowUserToOrderColumns = false;
             _ordersDataGridView.AllowUserToResizeRows = false;
+            _ordersDataGridView.AutoGenerateColumns = false;
             _ordersDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             _ordersDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             _ordersDataGridView.Columns.AddRange(new DataGridViewColumn[] { _idColumn, _createdColumn, _customerColumn, _addressColumn, _amountColumn, _statusColumn });
@@ -119,10 +120,12 @@ namespace ObjectOrientedPractics.View.Tabs
             _ordersDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             _ordersDataGridView.Size = new Size(474, 655);
             _ordersDataGridView.TabIndex = 1;
+            _ordersDataGridView.CellFormatting += _ordersDataGridView_CellFormatting;
             _ordersDataGridView.SelectionChanged += _ordersDataGridView_SelectionChanged;
             //
             // _idColumn
             //
+            _idColumn.DataPropertyName = "Id";
             _idColumn.FillWeight = 8F;
             _idColumn.HeaderText = "Id";
             _idColumn.MinimumWidth = 40;
@@ -134,6 +137,7 @@ namespace ObjectOrientedPractics.View.Tabs
             //
             createdCellStyle.Format = "dd.MM.yy HH:mm";
             _createdColumn.DefaultCellStyle = createdCellStyle;
+            _createdColumn.DataPropertyName = "Created";
             _createdColumn.FillWeight = 40F;
             _createdColumn.HeaderText = "Created";
             _createdColumn.MinimumWidth = 80;
@@ -152,6 +156,7 @@ namespace ObjectOrientedPractics.View.Tabs
             //
             // _addressColumn
             //
+            _addressColumn.DataPropertyName = "Address";
             _addressColumn.FillWeight = 46F;
             _addressColumn.HeaderText = "Address";
             _addressColumn.MinimumWidth = 80;
@@ -163,6 +168,7 @@ namespace ObjectOrientedPractics.View.Tabs
             //
             amountCellStyle.Format = "N2";
             _amountColumn.DefaultCellStyle = amountCellStyle;
+            _amountColumn.DataPropertyName = "Amount";
             _amountColumn.FillWeight = 26F;
             _amountColumn.HeaderText = "Amount";
             _amountColumn.MinimumWidth = 60;
@@ -172,6 +178,7 @@ namespace ObjectOrientedPractics.View.Tabs
             //
             // _statusColumn
             //
+            _statusColumn.DataPropertyName = "Status";
             _statusColumn.FillWeight = 22F;
             _statusColumn.HeaderText = "Order Status";
             _statusColumn.MinimumWidth = 80;

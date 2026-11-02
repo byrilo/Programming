@@ -103,7 +103,7 @@
             Cart.Location = new Point(4, 29);
             Cart.Name = "Cart";
             Cart.Padding = new Padding(3);
-            Cart.Size = new Size(1104, 723);
+            Cart.Size = new Size(192, 67);
             Cart.TabIndex = 2;
             Cart.Text = "Cart";
             Cart.UseVisualStyleBackColor = true;
@@ -113,7 +113,7 @@
             cartsTab1.Dock = DockStyle.Fill;
             cartsTab1.Location = new Point(3, 3);
             cartsTab1.Name = "cartsTab1";
-            cartsTab1.Size = new Size(1098, 717);
+            cartsTab1.Size = new Size(186, 61);
             cartsTab1.TabIndex = 0;
             // 
             // _ordersTabPage
