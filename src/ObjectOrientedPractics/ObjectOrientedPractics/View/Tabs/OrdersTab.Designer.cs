@@ -53,10 +53,15 @@ namespace ObjectOrientedPractics.View.Tabs
             _orderItemsListBox = new ListBox();
             _orderAmountLabel = new Label();
             _orderAmountValueLabel = new Label();
+            _priorityOptionsPanel = new Panel();
+            _priorityOptionsLabel = new Label();
+            _deliveryTimeLabel = new Label();
+            _deliveryTimeComboBox = new ComboBox();
             _ordersRootTableLayoutPanel.SuspendLayout();
             _ordersLeftTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)_ordersDataGridView).BeginInit();
             _ordersRightTableLayoutPanel.SuspendLayout();
+            _priorityOptionsPanel.SuspendLayout();
             SuspendLayout();
             //
             // _ordersRootTableLayoutPanel
@@ -189,7 +194,8 @@ namespace ObjectOrientedPractics.View.Tabs
             // _ordersRightTableLayoutPanel
             //
             _ordersRightTableLayoutPanel.AutoSize = true;
-            _ordersRightTableLayoutPanel.ColumnCount = 2;
+            _ordersRightTableLayoutPanel.ColumnCount = 3;
+            _ordersRightTableLayoutPanel.ColumnStyles.Add(new ColumnStyle());
             _ordersRightTableLayoutPanel.ColumnStyles.Add(new ColumnStyle());
             _ordersRightTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             _ordersRightTableLayoutPanel.Controls.Add(_selectedOrderLabel, 0, 0);
@@ -200,16 +206,18 @@ namespace ObjectOrientedPractics.View.Tabs
             _ordersRightTableLayoutPanel.Controls.Add(_orderCreatedTextBox, 1, 2);
             _ordersRightTableLayoutPanel.Controls.Add(_orderStatusLabel, 0, 3);
             _ordersRightTableLayoutPanel.Controls.Add(_orderStatusComboBox, 1, 3);
+            _ordersRightTableLayoutPanel.Controls.Add(_priorityOptionsPanel, 2, 0);
+            _ordersRightTableLayoutPanel.SetRowSpan(_priorityOptionsPanel, 4);
             _ordersRightTableLayoutPanel.Controls.Add(_orderAddressControl, 0, 4);
-            _ordersRightTableLayoutPanel.SetColumnSpan(_orderAddressControl, 2);
+            _ordersRightTableLayoutPanel.SetColumnSpan(_orderAddressControl, 3);
             _ordersRightTableLayoutPanel.Controls.Add(_orderItemsLabel, 0, 5);
-            _ordersRightTableLayoutPanel.SetColumnSpan(_orderItemsLabel, 2);
+            _ordersRightTableLayoutPanel.SetColumnSpan(_orderItemsLabel, 3);
             _ordersRightTableLayoutPanel.Controls.Add(_orderItemsListBox, 0, 6);
-            _ordersRightTableLayoutPanel.SetColumnSpan(_orderItemsListBox, 2);
+            _ordersRightTableLayoutPanel.SetColumnSpan(_orderItemsListBox, 3);
             _ordersRightTableLayoutPanel.Controls.Add(_orderAmountLabel, 0, 7);
-            _ordersRightTableLayoutPanel.SetColumnSpan(_orderAmountLabel, 2);
+            _ordersRightTableLayoutPanel.SetColumnSpan(_orderAmountLabel, 3);
             _ordersRightTableLayoutPanel.Controls.Add(_orderAmountValueLabel, 0, 8);
-            _ordersRightTableLayoutPanel.SetColumnSpan(_orderAmountValueLabel, 2);
+            _ordersRightTableLayoutPanel.SetColumnSpan(_orderAmountValueLabel, 3);
             _ordersRightTableLayoutPanel.Dock = DockStyle.Fill;
             _ordersRightTableLayoutPanel.Location = new Point(507, 15);
             _ordersRightTableLayoutPanel.Name = "_ordersRightTableLayoutPanel";
@@ -342,6 +350,48 @@ namespace ObjectOrientedPractics.View.Tabs
             _orderAmountValueLabel.Text = "0";
             _orderAmountValueLabel.TextAlign = ContentAlignment.MiddleRight;
             //
+            // _priorityOptionsPanel
+            //
+            _priorityOptionsPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            _priorityOptionsPanel.AutoSize = true;
+            _priorityOptionsPanel.Controls.Add(_priorityOptionsLabel);
+            _priorityOptionsPanel.Controls.Add(_deliveryTimeLabel);
+            _priorityOptionsPanel.Controls.Add(_deliveryTimeComboBox);
+            _priorityOptionsPanel.Margin = new Padding(30, 0, 3, 0);
+            _priorityOptionsPanel.Name = "_priorityOptionsPanel";
+            _priorityOptionsPanel.Size = new Size(260, 62);
+            _priorityOptionsPanel.TabIndex = 13;
+            _priorityOptionsPanel.Visible = false;
+            //
+            // _priorityOptionsLabel
+            //
+            _priorityOptionsLabel.AutoSize = true;
+            _priorityOptionsLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            _priorityOptionsLabel.Location = new Point(0, 0);
+            _priorityOptionsLabel.Name = "_priorityOptionsLabel";
+            _priorityOptionsLabel.Size = new Size(110, 20);
+            _priorityOptionsLabel.TabIndex = 0;
+            _priorityOptionsLabel.Text = "Priority Options";
+            //
+            // _deliveryTimeLabel
+            //
+            _deliveryTimeLabel.AutoSize = true;
+            _deliveryTimeLabel.Location = new Point(0, 33);
+            _deliveryTimeLabel.Name = "_deliveryTimeLabel";
+            _deliveryTimeLabel.Size = new Size(103, 20);
+            _deliveryTimeLabel.TabIndex = 1;
+            _deliveryTimeLabel.Text = "Delivery Time:";
+            //
+            // _deliveryTimeComboBox
+            //
+            _deliveryTimeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            _deliveryTimeComboBox.FormattingEnabled = true;
+            _deliveryTimeComboBox.Location = new Point(109, 29);
+            _deliveryTimeComboBox.Name = "_deliveryTimeComboBox";
+            _deliveryTimeComboBox.Size = new Size(150, 28);
+            _deliveryTimeComboBox.TabIndex = 2;
+            _deliveryTimeComboBox.SelectedIndexChanged += _deliveryTimeComboBox_SelectedIndexChanged;
+            //
             // OrdersTab
             //
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -356,6 +406,8 @@ namespace ObjectOrientedPractics.View.Tabs
             ((System.ComponentModel.ISupportInitialize)_ordersDataGridView).EndInit();
             _ordersRightTableLayoutPanel.ResumeLayout(false);
             _ordersRightTableLayoutPanel.PerformLayout();
+            _priorityOptionsPanel.ResumeLayout(false);
+            _priorityOptionsPanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -384,5 +436,9 @@ namespace ObjectOrientedPractics.View.Tabs
         private ListBox _orderItemsListBox;
         private Label _orderAmountLabel;
         private Label _orderAmountValueLabel;
+        private Panel _priorityOptionsPanel;
+        private Label _priorityOptionsLabel;
+        private Label _deliveryTimeLabel;
+        private ComboBox _deliveryTimeComboBox;
     }
 }
