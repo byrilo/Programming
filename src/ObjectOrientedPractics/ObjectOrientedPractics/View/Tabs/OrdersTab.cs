@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using ObjectOrientedPractics.Model;
 
 namespace ObjectOrientedPractics.View.Tabs
@@ -13,9 +14,9 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Customer> _customers = new List<Customer>();
 
         /// <summary>
-        /// Общий список заказов всех покупателей. Порядок совпадает с порядком строк в таблице.
+        /// Заказы всех покупателей. Служат источником данных таблицы.
         /// </summary>
-        private List<Order> _orders = new List<Order>();
+        private BindingList<Order> _orders = new BindingList<Order>();
 
         /// <summary>
         /// Текущий выбранный заказ.
@@ -70,32 +71,24 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Собирает заказы всех покупателей в один список и перезаполняет таблицу.
+        /// Собирает заказы всех покупателей в один список и назначает его источником данных таблицы.
         /// Если ранее выбранный заказ ещё существует, он остаётся выбранным.
         /// </summary>
         private void UpdateOrders()
         {
             Order? previousOrder = CurrentOrder;
 
-            _ordersDataGridView.Rows.Clear();
-            _orders.Clear();
-
+            List<Order> orders = new List<Order>();
             foreach (Customer customer in _customers)
             {
-                foreach (Order order in customer.Orders)
-                {
-                    _orders.Add(order);
-                    _ordersDataGridView.Rows.Add(
-                        order.Id,
-                        order.Created,
-                        customer.Fullname,
-                        FormatAddress(order.Address),
-                        order.Amount,
-                        order.Status);
-                }
+                orders.AddRange(customer.Orders);
             }
 
+            _orders = new BindingList<Order>(orders);
+            _ordersDataGridView.DataSource = _orders;
+
             int previousIndex = previousOrder == null ? -1 : _orders.IndexOf(previousOrder);
+            _ordersDataGridView.ClearSelection();
             if (previousIndex >= 0)
             {
                 _ordersDataGridView.Rows[previousIndex].Selected = true;
@@ -103,8 +96,71 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             else
             {
-                _ordersDataGridView.ClearSelection();
                 ShowOrder(null);
+            }
+        }
+
+        /// <summary>
+        /// Возвращает покупателя, которому принадлежит заказ.
+        /// </summary>
+        /// <param name="order">Заказ.</param>
+        /// <returns>Покупатель или <c>null</c>, если заказ не найден ни у одного покупателя.</returns>
+        private Customer? FindCustomer(Order order)
+        {
+            foreach (Customer customer in _customers)
+            {
+                if (customer.Orders.Contains(order))
+                {
+                    return customer;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Формирует адрес доставки в виде одной строки, пропуская незаполненные части.
+        /// </summary>
+        /// <param name="address">Адрес доставки.</param>
+        /// <returns>Адрес одной строкой.</returns>
+        private static string FormatAddress(Address address)
+        {
+            string index = address.Index > 0 ? address.Index.ToString() : string.Empty;
+            string[] parts =
+            {
+                index,
+                address.Country,
+                address.City,
+                address.Street,
+                address.Building,
+                address.Apartment
+            };
+
+            return string.Join(", ", parts.Where(part => !string.IsNullOrWhiteSpace(part)));
+        }
+
+        /// <summary>
+        /// Подставляет в таблицу значения, которых нет в самом заказе: имя покупателя и адрес одной строкой.
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
+        private void _ordersDataGridView_CellFormatting(object? sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.RowIndex >= _orders.Count)
+            {
+                return;
+            }
+
+            Order order = _orders[e.RowIndex];
+            if (e.ColumnIndex == _customerColumn.Index)
+            {
+                e.Value = FindCustomer(order)?.Fullname;
+                e.FormattingApplied = true;
+            }
+            else if (e.ColumnIndex == _addressColumn.Index)
+            {
+                e.Value = FormatAddress(order.Address);
+                e.FormattingApplied = true;
             }
         }
 
@@ -137,27 +193,6 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Формирует адрес доставки в виде одной строки, пропуская незаполненные части.
-        /// </summary>
-        /// <param name="address">Адрес доставки.</param>
-        /// <returns>Адрес одной строкой.</returns>
-        private static string FormatAddress(Address address)
-        {
-            string index = address.Index > 0 ? address.Index.ToString() : string.Empty;
-            string[] parts =
-            {
-                index,
-                address.Country,
-                address.City,
-                address.Street,
-                address.Building,
-                address.Apartment
-            };
-
-            return string.Join(", ", parts.Where(part => !string.IsNullOrWhiteSpace(part)));
-        }
-
-        /// <summary>
         /// Обрабатывает выбор строки в таблице заказов и показывает выбранный заказ на панели справа.
         /// </summary>
         /// <param name="sender">Источник события</param>
@@ -170,8 +205,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
 
-            int index = _ordersDataGridView.SelectedRows[0].Index;
-            ShowOrder(index < _orders.Count ? _orders[index] : null);
+            ShowOrder(_ordersDataGridView.SelectedRows[0].DataBoundItem as Order);
         }
 
         /// <summary>
@@ -181,14 +215,16 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e">Данные события</param>
         private void _orderStatusComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CurrentOrder != null && _orderStatusComboBox.SelectedItem is OrderStatus status)
+            if (CurrentOrder != null
+                && _orderStatusComboBox.SelectedItem is OrderStatus status
+                && CurrentOrder.Status != status)
             {
                 CurrentOrder.Status = status;
 
                 int index = _orders.IndexOf(CurrentOrder);
                 if (index >= 0)
                 {
-                    _ordersDataGridView.Rows[index].Cells[_statusColumn.Index].Value = status;
+                    _orders.ResetItem(index);
                 }
             }
         }
