@@ -142,6 +142,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Обрабатывает нажатие кнопки создания заказа: переносит товары из корзины
         /// текущего покупателя в новый заказ, добавляет заказ покупателю и очищает корзину.
+        /// Для приоритетного покупателя создаётся <see cref="PriorityOrder"/>, для остальных — <see cref="Order"/>.
         /// </summary>
         /// <param name="sender">Источник события</param>
         /// <param name="e">Данные события</param>
@@ -149,7 +150,20 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (CurrentCustomer != null && CurrentCustomer.Cart.Items.Count > 0)
             {
-                var order = new Order(CurrentCustomer.Address, CurrentCustomer.Cart.Items);
+                Order order;
+                if (CurrentCustomer.IsPriority)
+                {
+                    order = new PriorityOrder(
+                        CurrentCustomer.Address,
+                        CurrentCustomer.Cart.Items,
+                        DateTime.Today,
+                        PriorityOrder.AvailableDeliveryTimes[0]);
+                }
+                else
+                {
+                    order = new Order(CurrentCustomer.Address, CurrentCustomer.Cart.Items);
+                }
+
                 CurrentCustomer.Orders.Add(order);
                 CurrentCustomer.Cart.Items.Clear();
                 UpdateCart();

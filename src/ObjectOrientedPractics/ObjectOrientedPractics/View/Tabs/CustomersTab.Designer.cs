@@ -41,6 +41,7 @@ namespace ObjectOrientedPractics.View.Tabs
             _customersIdLabel = new Label();
             _customersIdTextBox = new TextBox();
             _customersFullNameTextBox = new TextBox();
+            _customersIsPriorityCheckBox = new CheckBox();
             _customersAddressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             _customersRootTableLayoutPanel.SuspendLayout();
             _customersLeftTableLayoutPanel.SuspendLayout();
@@ -153,6 +154,7 @@ namespace ObjectOrientedPractics.View.Tabs
             _customersGroupBox.Controls.Add(_customersIdLabel);
             _customersGroupBox.Controls.Add(_customersIdTextBox);
             _customersGroupBox.Controls.Add(_customersFullNameTextBox);
+            _customersGroupBox.Controls.Add(_customersIsPriorityCheckBox);
             _customersGroupBox.Controls.Add(_customersAddressControl);
             _customersGroupBox.Dock = DockStyle.Fill;
             _customersGroupBox.Location = new Point(343, 15);
@@ -198,12 +200,23 @@ namespace ObjectOrientedPractics.View.Tabs
             _customersFullNameTextBox.TabIndex = 6;
             _customersFullNameTextBox.TextChanged += _customersFullNameTextBox_TextChanged;
             //
+            // _customersIsPriorityCheckBox
+            //
+            _customersIsPriorityCheckBox.AutoSize = true;
+            _customersIsPriorityCheckBox.Location = new Point(87, 108);
+            _customersIsPriorityCheckBox.Name = "_customersIsPriorityCheckBox";
+            _customersIsPriorityCheckBox.Size = new Size(98, 24);
+            _customersIsPriorityCheckBox.TabIndex = 10;
+            _customersIsPriorityCheckBox.Text = "Is Priority";
+            _customersIsPriorityCheckBox.UseVisualStyleBackColor = true;
+            _customersIsPriorityCheckBox.CheckedChanged += _customersIsPriorityCheckBox_CheckedChanged;
+            //
             // _customersAddressControl
             //
             _customersAddressControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            _customersAddressControl.Location = new Point(6, 108);
+            _customersAddressControl.Location = new Point(6, 138);
             _customersAddressControl.Name = "_customersAddressControl";
-            _customersAddressControl.Size = new Size(486, 453);
+            _customersAddressControl.Size = new Size(486, 423);
             _customersAddressControl.TabIndex = 7;
             //
             // CustomersTab
@@ -237,6 +250,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private Label _customersIdLabel;
         private TextBox _customersIdTextBox;
         private TextBox _customersFullNameTextBox;
+        private CheckBox _customersIsPriorityCheckBox;
         private ObjectOrientedPractics.View.Controls.AddressControl _customersAddressControl;
     }
 }

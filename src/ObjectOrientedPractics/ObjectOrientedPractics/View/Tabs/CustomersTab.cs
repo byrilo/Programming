@@ -61,13 +61,27 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _customersIdTextBox.Text = selectedCustomer.Id.ToString();
                 _customersFullNameTextBox.Text = selectedCustomer.Fullname;
+                _customersIsPriorityCheckBox.Checked = selectedCustomer.IsPriority;
                 _customersAddressControl.Address = selectedCustomer.Address;
             }
             else
             {
                 _customersIdTextBox.Text = string.Empty;
                 _customersFullNameTextBox.Text = string.Empty;
+                _customersIsPriorityCheckBox.Checked = false;
                 _customersAddressControl.Address = new Address();
+            }
+        }
+        /// <summary>
+        /// Обрабатывает изменение флажка приоритетного покупателя
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
+        private void _customersIsPriorityCheckBox_CheckedChanged(object? sender, EventArgs e)
+        {
+            if (_customersListBox.SelectedItem is Customer selectedCustomer)
+            {
+                selectedCustomer.IsPriority = _customersIsPriorityCheckBox.Checked;
             }
         }
         /// <summary>

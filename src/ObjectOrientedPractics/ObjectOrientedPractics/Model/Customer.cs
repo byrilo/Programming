@@ -38,6 +38,12 @@ namespace ObjectOrientedPractics.Model
         /// Список заказов покупателя.
         /// </summary>
         private List<Order> _orders = new List<Order>();
+
+        /// <summary>
+        /// Признак приоритетного покупателя.
+        /// </summary>
+        private bool _isPriority;
+
         public int Id
         {
             get { return _id; }
@@ -84,6 +90,18 @@ namespace ObjectOrientedPractics.Model
             get { return _orders; }
             set { _orders = value; }
         }
+
+        /// <summary>
+        /// Возвращает и задает признак приоритетного покупателя.
+        /// Заказы приоритетного покупателя создаются как <see cref="PriorityOrder"/>.
+        /// По умолчанию <c>false</c>.
+        /// </summary>
+        public bool IsPriority
+        {
+            get { return _isPriority; }
+            set { _isPriority = value; }
+        }
+
         /// <summary>
         /// Создает экземпляр класса <see cref="Customer"/>.
         /// </summary>
