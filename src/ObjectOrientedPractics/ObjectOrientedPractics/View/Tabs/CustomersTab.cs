@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
+using ObjectOrientedPractics.Model.Discounts;
+using ObjectOrientedPractics.Model.Enums;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -61,13 +63,29 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _customersIdTextBox.Text = selectedCustomer.Id.ToString();
                 _customersFullNameTextBox.Text = selectedCustomer.Fullname;
+                _customersIsPriorityCheckBox.Checked = selectedCustomer.IsPriority;
                 _customersAddressControl.Address = selectedCustomer.Address;
             }
             else
             {
                 _customersIdTextBox.Text = string.Empty;
                 _customersFullNameTextBox.Text = string.Empty;
+                _customersIsPriorityCheckBox.Checked = false;
                 _customersAddressControl.Address = new Address();
+            }
+
+            UpdateDiscounts();
+        }
+        /// <summary>
+        /// Обрабатывает изменение флажка приоритетного покупателя
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
+        private void _customersIsPriorityCheckBox_CheckedChanged(object? sender, EventArgs e)
+        {
+            if (_customersListBox.SelectedItem is Customer selectedCustomer)
+            {
+                selectedCustomer.IsPriority = _customersIsPriorityCheckBox.Checked;
             }
         }
         /// <summary>
@@ -126,6 +144,71 @@ namespace ObjectOrientedPractics.View.Tabs
             var customer = CustomerFactory.GetRandomCustomer();
             _bindingCustomers.Add(customer);
             _customersListBox.SelectedItem = customer;
+        }
+        /// <summary>Показывает скидки выбранного покупателя.</summary>
+        private void UpdateDiscounts()
+        {
+            _discountsListBox.Items.Clear();
+            if (_customersListBox.SelectedItem is Customer customer)
+            {
+                foreach (IDiscount discount in customer.Discounts)
+                {
+                    _discountsListBox.Items.Add(discount);
+                }
+            }
+
+            _addDiscountButton.Enabled = _customersListBox.SelectedItem is Customer selectedCustomer
+                && selectedCustomer.Discounts.OfType<PercentDiscount>().Count() < Enum.GetValues<Category>().Length;
+            _removeDiscountButton.Enabled = false;
+        }
+
+        /// <summary>Открывает диалог выбора категории и добавляет процентную скидку.</summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Данные события.</param>
+        private void _addDiscountButton_Click(object? sender, EventArgs e)
+        {
+            if (_customersListBox.SelectedItem is not Customer customer)
+            {
+                return;
+            }
+
+            var availableCategories = Enum.GetValues<Category>()
+                .Except(customer.Discounts.OfType<PercentDiscount>().Select(discount => discount.Category))
+                .ToArray();
+            if (availableCategories.Length == 0)
+            {
+                return;
+            }
+
+            using var dialog = new DiscountCategoryForm(availableCategories);
+            if (dialog.ShowDialog(this) == DialogResult.OK)
+            {
+                var discount = new PercentDiscount(dialog.SelectedCategory);
+                customer.Discounts.Add(discount);
+                UpdateDiscounts();
+                _discountsListBox.SelectedItem = discount;
+            }
+        }
+
+        /// <summary>Разрешает удаление выбранной процентной скидки.</summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Данные события.</param>
+        private void _discountsListBox_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            _removeDiscountButton.Enabled = _discountsListBox.SelectedItem is PercentDiscount;
+        }
+
+        /// <summary>Удаляет выбранную процентную скидку.</summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Данные события.</param>
+        private void _removeDiscountButton_Click(object? sender, EventArgs e)
+        {
+            if (_customersListBox.SelectedItem is Customer customer
+                && _discountsListBox.SelectedItem is PercentDiscount discount)
+            {
+                customer.Discounts.Remove(discount);
+                UpdateDiscounts();
+            }
         }
     }
 }

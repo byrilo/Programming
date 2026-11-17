@@ -1,9 +1,12 @@
-﻿using System;
+using ObjectOrientedPractics.Model.Orders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ObjectOrientedPractics.Services;
+
+using ObjectOrientedPractics.Model.Discounts;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -38,6 +41,12 @@ namespace ObjectOrientedPractics.Model
         /// Список заказов покупателя.
         /// </summary>
         private List<Order> _orders = new List<Order>();
+
+        /// <summary>
+        /// Признак приоритетного покупателя.
+        /// </summary>
+        private bool _isPriority;
+
         public int Id
         {
             get { return _id; }
@@ -84,18 +93,33 @@ namespace ObjectOrientedPractics.Model
             get { return _orders; }
             set { _orders = value; }
         }
+
+        /// <summary>
+        /// Возвращает и задает признак приоритетного покупателя.
+        /// Заказы приоритетного покупателя создаются как <see cref="PriorityOrder"/>.
+        /// По умолчанию <c>false</c>.
+        /// </summary>
+        public bool IsPriority
+        {
+            get { return _isPriority; }
+            set { _isPriority = value; }
+        }
+
+        /// <summary>Возвращает список скидок покупателя.</summary>
+        public List<IDiscount> Discounts { get; }
+
         /// <summary>
         /// Создает экземпляр класса <see cref="Customer"/>.
         /// </summary>
         /// <param name="fullname">Полное имя покупателя.</param>
         /// <param name="address">Адрес доставки покупателя.</param>
-        /// <param name="cart">Корзина покупателя.</param>
         public Customer(string fullname, Address address)
         {
             _id = IdGenerator.GetNextId();
             Fullname = fullname;
             Address = address;
             _cart = new Cart();
+            Discounts = new List<IDiscount> { new PointsDiscount() };
         }
         /// <summary>
         /// Возвращает строковое представление объекта <see cref="Customer"/>.

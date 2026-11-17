@@ -134,7 +134,7 @@
             _ordersTab.Name = "_ordersTab";
             _ordersTab.Size = new Size(1098, 717);
             _ordersTab.TabIndex = 0;
-            // 
+            //
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);

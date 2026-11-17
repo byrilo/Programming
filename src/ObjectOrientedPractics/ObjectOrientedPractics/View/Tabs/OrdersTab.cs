@@ -1,3 +1,5 @@
+using ObjectOrientedPractics.Model.Orders;
+using ObjectOrientedPractics.Model.Enums;
 using System.ComponentModel;
 using ObjectOrientedPractics.Model;
 
@@ -24,6 +26,12 @@ namespace ObjectOrientedPractics.View.Tabs
         private Order? _currentOrder;
 
         /// <summary>
+        /// Текущий выбранный заказ как приоритетный. Ссылается на тот же объект, что и
+        /// <see cref="_currentOrder"/>, если заказ приоритетный, иначе равен <c>null</c>.
+        /// </summary>
+        private PriorityOrder? _selectedPriorityOrder;
+
+        /// <summary>
         /// Возвращает и задаёт список покупателей, заказы которых отображаются на вкладке.
         /// </summary>
         public List<Customer> Customers
@@ -37,12 +45,18 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Возвращает и задаёт текущий выбранный заказ.
+        /// Возвращает и задаёт текущий выбранный заказ. При смене заказа определяет, является ли он
+        /// приоритетным, и показывает или скрывает панель настроек приоритетного заказа.
         /// </summary>
         private Order? CurrentOrder
         {
             get { return _currentOrder; }
-            set { _currentOrder = value; }
+            set
+            {
+                _currentOrder = value;
+                _selectedPriorityOrder = value as PriorityOrder;
+                _priorityOptionsPanel.Visible = _selectedPriorityOrder != null;
+            }
         }
 
         /// <summary>
@@ -56,6 +70,12 @@ namespace ObjectOrientedPractics.View.Tabs
             foreach (var status in Enum.GetValues(typeof(OrderStatus)))
             {
                 _orderStatusComboBox.Items.Add(status);
+            }
+
+            // Заполнение выпадающего списка временем доставки приоритетного заказа.
+            foreach (string time in PriorityOrder.AvailableDeliveryTimes)
+            {
+                _deliveryTimeComboBox.Items.Add(time);
             }
 
             // Все данные заказа, кроме статуса, на панели только для чтения.
@@ -180,6 +200,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _orderAddressControl.Address = new Address();
                 _orderItemsListBox.DataSource = null;
                 _orderAmountValueLabel.Text = 0.0.ToString("N2");
+                _orderTotalValueLabel.Text = 0.0.ToString("N2");
                 return;
             }
 
@@ -190,6 +211,12 @@ namespace ObjectOrientedPractics.View.Tabs
             _orderItemsListBox.DataSource = null;
             _orderItemsListBox.DataSource = order.Items;
             _orderAmountValueLabel.Text = order.Amount.ToString("N2");
+            _orderTotalValueLabel.Text = order.Total.ToString("N2");
+
+            if (_selectedPriorityOrder != null)
+            {
+                _deliveryTimeComboBox.SelectedItem = _selectedPriorityOrder.DesiredTime;
+            }
         }
 
         /// <summary>
@@ -226,6 +253,21 @@ namespace ObjectOrientedPractics.View.Tabs
                 {
                     _orders.ResetItem(index);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Обрабатывает выбор времени доставки: сохраняет его в выбранном приоритетном заказе.
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
+        private void _deliveryTimeComboBox_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            if (_selectedPriorityOrder != null
+                && _deliveryTimeComboBox.SelectedItem is string time
+                && _selectedPriorityOrder.DesiredTime != time)
+            {
+                _selectedPriorityOrder.DesiredTime = time;
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Orders;
+using ObjectOrientedPractics.Model;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -83,6 +84,7 @@ namespace ObjectOrientedPractics.View.Tabs
             _customerComboBox.SelectedIndex = previousCustomer == null ? -1 : _customers.IndexOf(previousCustomer);
 
             CurrentCustomer = _customerComboBox.SelectedItem as Customer;
+            UpdateDiscounts();
             UpdateCart();
         }
 
@@ -94,6 +96,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void _customerComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             CurrentCustomer = _customerComboBox.SelectedItem as Customer;
+            UpdateDiscounts();
             UpdateCart();
         }
 
@@ -142,6 +145,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Обрабатывает нажатие кнопки создания заказа: переносит товары из корзины
         /// текущего покупателя в новый заказ, добавляет заказ покупателю и очищает корзину.
+        /// Для приоритетного покупателя создаётся <see cref="PriorityOrder"/>, для остальных — <see cref="Order"/>.
         /// </summary>
         /// <param name="sender">Источник события</param>
         /// <param name="e">Данные события</param>
@@ -149,9 +153,33 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (CurrentCustomer != null && CurrentCustomer.Cart.Items.Count > 0)
             {
-                var order = new Order(CurrentCustomer.Address, CurrentCustomer.Cart.Items);
+                Order order;
+                if (CurrentCustomer.IsPriority)
+                {
+                    order = new PriorityOrder(
+                        CurrentCustomer.Address,
+                        CurrentCustomer.Cart.Items,
+                        DateTime.Today,
+                        PriorityOrder.AvailableDeliveryTimes[0]);
+                }
+                else
+                {
+                    order = new Order(CurrentCustomer.Address, CurrentCustomer.Cart.Items);
+                }
+
+                foreach (IDiscount discount in _discountsCheckedListBox.CheckedItems)
+                {
+                    order.DiscountAmount += discount.Apply(order.Items);
+                }
+
+                foreach (IDiscount discount in CurrentCustomer.Discounts)
+                {
+                    discount.Update(order.Items);
+                }
+
                 CurrentCustomer.Orders.Add(order);
                 CurrentCustomer.Cart.Items.Clear();
+                UpdateDiscounts();
                 UpdateCart();
             }
         }
@@ -172,6 +200,55 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _amountValueLabel.Text = 0.0.ToString("N2");
             }
+
+            UpdateDiscountAmount();
+        }
+
+        /// <summary>Показывает скидки покупателя и включает их при смене покупателя.</summary>
+        private void UpdateDiscounts()
+        {
+            _discountsCheckedListBox.Items.Clear();
+            if (CurrentCustomer != null)
+            {
+                foreach (IDiscount discount in CurrentCustomer.Discounts)
+                {
+                    _discountsCheckedListBox.Items.Add(discount, true);
+                }
+            }
+        }
+
+        /// <summary>Пересчитывает скидку и итоговую сумму до оформления заказа.</summary>
+        /// <param name="changedIndex">Индекс галочки, которая сейчас меняется.</param>
+        /// <param name="newState">Новое состояние этой галочки.</param>
+        private void UpdateDiscountAmount(int changedIndex = -1, CheckState newState = CheckState.Unchecked)
+        {
+            double discountAmount = 0;
+            double amount = CurrentCustomer?.Cart.Amount ?? 0;
+
+            if (CurrentCustomer != null)
+            {
+                for (int i = 0; i < _discountsCheckedListBox.Items.Count; i++)
+                {
+                    bool isChecked = i == changedIndex
+                        ? newState == CheckState.Checked
+                        : _discountsCheckedListBox.GetItemChecked(i);
+                    if (isChecked && _discountsCheckedListBox.Items[i] is IDiscount discount)
+                    {
+                        discountAmount += discount.Calculate(CurrentCustomer.Cart.Items);
+                    }
+                }
+            }
+
+            _discountAmountValueLabel.Text = discountAmount.ToString("N2");
+            _totalValueLabel.Text = (amount - discountAmount).ToString("N2");
+        }
+
+        /// <summary>Обновляет сумму при изменении выбранных скидок.</summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Новое состояние галочки.</param>
+        private void _discountsCheckedListBox_ItemCheck(object? sender, ItemCheckEventArgs e)
+        {
+            UpdateDiscountAmount(e.Index, e.NewValue);
         }
     }
 }
