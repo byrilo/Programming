@@ -43,6 +43,13 @@ namespace ObjectOrientedPractics.View.Tabs
             _customersFullNameTextBox = new TextBox();
             _customersIsPriorityCheckBox = new CheckBox();
             _customersAddressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
+            _discountsGroupBox = new GroupBox();
+            _discountsListBox = new ListBox();
+            _discountButtonsPanel = new FlowLayoutPanel();
+            _addDiscountButton = new Button();
+            _removeDiscountButton = new Button();
+            _discountsGroupBox.SuspendLayout();
+            _discountButtonsPanel.SuspendLayout();
             _customersRootTableLayoutPanel.SuspendLayout();
             _customersLeftTableLayoutPanel.SuspendLayout();
             _customersButtonsFlowPanel.SuspendLayout();
@@ -156,6 +163,7 @@ namespace ObjectOrientedPractics.View.Tabs
             _customersGroupBox.Controls.Add(_customersFullNameTextBox);
             _customersGroupBox.Controls.Add(_customersIsPriorityCheckBox);
             _customersGroupBox.Controls.Add(_customersAddressControl);
+            _customersGroupBox.Controls.Add(_discountsGroupBox);
             _customersGroupBox.Dock = DockStyle.Fill;
             _customersGroupBox.Location = new Point(343, 15);
             _customersGroupBox.Margin = new Padding(12, 3, 3, 3);
@@ -213,11 +221,40 @@ namespace ObjectOrientedPractics.View.Tabs
             //
             // _customersAddressControl
             //
-            _customersAddressControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            _customersAddressControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             _customersAddressControl.Location = new Point(6, 138);
             _customersAddressControl.Name = "_customersAddressControl";
-            _customersAddressControl.Size = new Size(486, 423);
+            _customersAddressControl.Size = new Size(486, 261);
             _customersAddressControl.TabIndex = 7;
+            //
+            // _discountsGroupBox
+            //
+            _discountsGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            _discountsGroupBox.Controls.Add(_discountsListBox);
+            _discountsGroupBox.Controls.Add(_discountButtonsPanel);
+            _discountsGroupBox.Location = new Point(6, 402);
+            _discountsGroupBox.Name = "_discountsGroupBox";
+            _discountsGroupBox.Size = new Size(486, 159);
+            _discountsGroupBox.Text = "Discounts";
+            _discountsListBox.DisplayMember = "Info";
+            _discountsListBox.Dock = DockStyle.Fill;
+            _discountsListBox.IntegralHeight = false;
+            _discountsListBox.Name = "_discountsListBox";
+            _discountsListBox.SelectedIndexChanged += _discountsListBox_SelectedIndexChanged;
+            _discountButtonsPanel.AutoSize = true;
+            _discountButtonsPanel.Dock = DockStyle.Bottom;
+            _discountButtonsPanel.Controls.Add(_addDiscountButton);
+            _discountButtonsPanel.Controls.Add(_removeDiscountButton);
+            _addDiscountButton.AutoSize = true;
+            _addDiscountButton.Enabled = false;
+            _addDiscountButton.Name = "_addDiscountButton";
+            _addDiscountButton.Text = "Add";
+            _addDiscountButton.Click += _addDiscountButton_Click;
+            _removeDiscountButton.AutoSize = true;
+            _removeDiscountButton.Enabled = false;
+            _removeDiscountButton.Name = "_removeDiscountButton";
+            _removeDiscountButton.Text = "Remove";
+            _removeDiscountButton.Click += _removeDiscountButton_Click;
             //
             // CustomersTab
             //
@@ -232,11 +269,20 @@ namespace ObjectOrientedPractics.View.Tabs
             _customersButtonsFlowPanel.ResumeLayout(false);
             _customersGroupBox.ResumeLayout(false);
             _customersGroupBox.PerformLayout();
+            _discountButtonsPanel.ResumeLayout(false);
+            _discountButtonsPanel.PerformLayout();
+            _discountsGroupBox.ResumeLayout(false);
+            _discountsGroupBox.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
+        private GroupBox _discountsGroupBox;
+        private ListBox _discountsListBox;
+        private FlowLayoutPanel _discountButtonsPanel;
+        private Button _addDiscountButton;
+        private Button _removeDiscountButton;
         private TableLayoutPanel _customersRootTableLayoutPanel;
         private TableLayoutPanel _customersLeftTableLayoutPanel;
         private Label _customersLabel;

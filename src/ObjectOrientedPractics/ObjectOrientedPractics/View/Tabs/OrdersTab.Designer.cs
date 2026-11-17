@@ -40,6 +40,7 @@ namespace ObjectOrientedPractics.View.Tabs
             _addressColumn = new DataGridViewTextBoxColumn();
             _amountColumn = new DataGridViewTextBoxColumn();
             _statusColumn = new DataGridViewTextBoxColumn();
+            _totalColumn = new DataGridViewTextBoxColumn();
             _ordersRightTableLayoutPanel = new TableLayoutPanel();
             _selectedOrderLabel = new Label();
             _orderIdLabel = new Label();
@@ -53,6 +54,8 @@ namespace ObjectOrientedPractics.View.Tabs
             _orderItemsListBox = new ListBox();
             _orderAmountLabel = new Label();
             _orderAmountValueLabel = new Label();
+            _orderTotalLabel = new Label();
+            _orderTotalValueLabel = new Label();
             _priorityOptionsPanel = new Panel();
             _priorityOptionsLabel = new Label();
             _deliveryTimeLabel = new Label();
@@ -116,7 +119,7 @@ namespace ObjectOrientedPractics.View.Tabs
             _ordersDataGridView.AutoGenerateColumns = false;
             _ordersDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             _ordersDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            _ordersDataGridView.Columns.AddRange(new DataGridViewColumn[] { _idColumn, _createdColumn, _customerColumn, _addressColumn, _amountColumn, _statusColumn });
+            _ordersDataGridView.Columns.AddRange(new DataGridViewColumn[] { _idColumn, _createdColumn, _customerColumn, _addressColumn, _amountColumn, _totalColumn, _statusColumn });
             _ordersDataGridView.Dock = DockStyle.Fill;
             _ordersDataGridView.MultiSelect = false;
             _ordersDataGridView.Name = "_ordersDataGridView";
@@ -183,6 +186,14 @@ namespace ObjectOrientedPractics.View.Tabs
             //
             // _statusColumn
             //
+            _totalColumn.DataPropertyName = "Total";
+            _totalColumn.HeaderText = "Total";
+            _totalColumn.DefaultCellStyle = amountCellStyle;
+            _totalColumn.FillWeight = 18F;
+            _totalColumn.MinimumWidth = 55;
+            _totalColumn.Name = "_totalColumn";
+            _totalColumn.ReadOnly = true;
+            _totalColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
             _statusColumn.DataPropertyName = "Status";
             _statusColumn.FillWeight = 22F;
             _statusColumn.HeaderText = "Order Status";
@@ -215,9 +226,11 @@ namespace ObjectOrientedPractics.View.Tabs
             _ordersRightTableLayoutPanel.Controls.Add(_orderItemsListBox, 0, 6);
             _ordersRightTableLayoutPanel.SetColumnSpan(_orderItemsListBox, 3);
             _ordersRightTableLayoutPanel.Controls.Add(_orderAmountLabel, 0, 7);
-            _ordersRightTableLayoutPanel.SetColumnSpan(_orderAmountLabel, 3);
+            _ordersRightTableLayoutPanel.SetColumnSpan(_orderAmountLabel, 2);
             _ordersRightTableLayoutPanel.Controls.Add(_orderAmountValueLabel, 0, 8);
-            _ordersRightTableLayoutPanel.SetColumnSpan(_orderAmountValueLabel, 3);
+            _ordersRightTableLayoutPanel.SetColumnSpan(_orderAmountValueLabel, 2);
+            _ordersRightTableLayoutPanel.Controls.Add(_orderTotalLabel, 2, 7);
+            _ordersRightTableLayoutPanel.Controls.Add(_orderTotalValueLabel, 2, 8);
             _ordersRightTableLayoutPanel.Dock = DockStyle.Fill;
             _ordersRightTableLayoutPanel.Location = new Point(507, 15);
             _ordersRightTableLayoutPanel.Name = "_ordersRightTableLayoutPanel";
@@ -349,6 +362,16 @@ namespace ObjectOrientedPractics.View.Tabs
             _orderAmountValueLabel.TabIndex = 12;
             _orderAmountValueLabel.Text = "0";
             _orderAmountValueLabel.TextAlign = ContentAlignment.MiddleRight;
+            _orderTotalLabel.Anchor = AnchorStyles.Right;
+            _orderTotalLabel.AutoSize = true;
+            _orderTotalLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            _orderTotalLabel.Name = "_orderTotalLabel";
+            _orderTotalLabel.Text = "Total:";
+            _orderTotalValueLabel.Anchor = AnchorStyles.Right;
+            _orderTotalValueLabel.AutoSize = true;
+            _orderTotalValueLabel.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            _orderTotalValueLabel.Name = "_orderTotalValueLabel";
+            _orderTotalValueLabel.Text = "0";
             //
             // _priorityOptionsPanel
             //
@@ -423,6 +446,9 @@ namespace ObjectOrientedPractics.View.Tabs
         private DataGridViewTextBoxColumn _addressColumn;
         private DataGridViewTextBoxColumn _amountColumn;
         private DataGridViewTextBoxColumn _statusColumn;
+        private DataGridViewTextBoxColumn _totalColumn;
+        private Label _orderTotalLabel;
+        private Label _orderTotalValueLabel;
         private TableLayoutPanel _ordersRightTableLayoutPanel;
         private Label _selectedOrderLabel;
         private Label _orderIdLabel;

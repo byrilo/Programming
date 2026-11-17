@@ -1,6 +1,7 @@
+using ObjectOrientedPractics.Model.Enums;
 using ObjectOrientedPractics.Services;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     /// <summary>
     /// Заказ покупателя.
@@ -97,6 +98,12 @@ namespace ObjectOrientedPractics.Model
                 return sum;
             }
         }
+
+        /// <summary>Возвращает и задаёт размер применённой скидки.</summary>
+        public double DiscountAmount { get; set; }
+
+        /// <summary>Возвращает стоимость заказа с учётом скидки.</summary>
+        public double Total => Amount - DiscountAmount;
 
         /// <summary>
         /// Создаёт новый заказ со статусом <see cref="OrderStatus.New"/>.

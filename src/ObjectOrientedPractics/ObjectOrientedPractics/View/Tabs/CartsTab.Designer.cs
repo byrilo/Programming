@@ -1,4 +1,4 @@
-﻿namespace ObjectOrientedPractics.View.Tabs
+namespace ObjectOrientedPractics.View.Tabs
 {
     partial class CartsTab
     {
@@ -44,6 +44,14 @@
             _createOrderButton = new Button();
             _removeItemButton = new Button();
             _clearCartButton = new Button();
+            _discountsPanel = new TableLayoutPanel();
+            _discountsLabel = new Label();
+            _discountsCheckedListBox = new CheckedListBox();
+            _discountAmountLabel = new Label();
+            _discountAmountValueLabel = new Label();
+            _totalLabel = new Label();
+            _totalValueLabel = new Label();
+            _discountsPanel.SuspendLayout();
             _cartsRootTableLayoutPanel.SuspendLayout();
             _cartsLeftTableLayoutPanel.SuspendLayout();
             _cartsRightTableLayoutPanel.SuspendLayout();
@@ -128,14 +136,17 @@
             _cartsRightTableLayoutPanel.Controls.Add(_cartListBox, 0, 2);
             _cartsRightTableLayoutPanel.Controls.Add(_amountLabel, 0, 3);
             _cartsRightTableLayoutPanel.Controls.Add(_amountValueLabel, 0, 4);
-            _cartsRightTableLayoutPanel.Controls.Add(_cartsButtonsTableLayoutPanel, 0, 5);
+            _cartsRightTableLayoutPanel.Controls.Add(_discountsPanel, 0, 5);
+            _cartsRightTableLayoutPanel.SetColumnSpan(_discountsPanel, 2);
+            _cartsRightTableLayoutPanel.Controls.Add(_cartsButtonsTableLayoutPanel, 0, 6);
             _cartsRightTableLayoutPanel.Dock = DockStyle.Fill;
             _cartsRightTableLayoutPanel.Location = new Point(444, 15);
             _cartsRightTableLayoutPanel.Name = "_cartsRightTableLayoutPanel";
-            _cartsRightTableLayoutPanel.RowCount = 6;
+            _cartsRightTableLayoutPanel.RowCount = 7;
             _cartsRightTableLayoutPanel.RowStyles.Add(new RowStyle());
             _cartsRightTableLayoutPanel.RowStyles.Add(new RowStyle());
             _cartsRightTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            _cartsRightTableLayoutPanel.RowStyles.Add(new RowStyle());
             _cartsRightTableLayoutPanel.RowStyles.Add(new RowStyle());
             _cartsRightTableLayoutPanel.RowStyles.Add(new RowStyle());
             _cartsRightTableLayoutPanel.RowStyles.Add(new RowStyle());
@@ -212,6 +223,43 @@
             _amountValueLabel.Text = "0";
             _amountValueLabel.TextAlign = ContentAlignment.MiddleRight;
             // 
+            // _discountsPanel
+            //
+            _discountsPanel.AutoSize = true;
+            _discountsPanel.ColumnCount = 2;
+            _discountsPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            _discountsPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            _discountsPanel.Controls.Add(_discountsLabel, 0, 0);
+            _discountsPanel.Controls.Add(_discountsCheckedListBox, 0, 1);
+            _discountsPanel.SetColumnSpan(_discountsCheckedListBox, 2);
+            _discountsPanel.Controls.Add(_discountAmountLabel, 0, 2);
+            _discountsPanel.Controls.Add(_totalLabel, 1, 2);
+            _discountsPanel.Controls.Add(_discountAmountValueLabel, 0, 3);
+            _discountsPanel.Controls.Add(_totalValueLabel, 1, 3);
+            _discountsPanel.Dock = DockStyle.Fill;
+            _discountsPanel.Name = "_discountsPanel";
+            _discountsPanel.RowCount = 4;
+            _discountsLabel.AutoSize = true;
+            _discountsLabel.Text = "Discounts:";
+            _discountsCheckedListBox.CheckOnClick = true;
+            _discountsCheckedListBox.DisplayMember = "Info";
+            _discountsCheckedListBox.Dock = DockStyle.Fill;
+            _discountsCheckedListBox.Height = 165;
+            _discountsCheckedListBox.IntegralHeight = false;
+            _discountsCheckedListBox.Name = "_discountsCheckedListBox";
+            _discountsCheckedListBox.ItemCheck += _discountsCheckedListBox_ItemCheck;
+            _discountAmountLabel.AutoSize = true;
+            _discountAmountLabel.Text = "Discount Amount:";
+            _discountAmountValueLabel.AutoSize = true;
+            _discountAmountValueLabel.Name = "_discountAmountValueLabel";
+            _discountAmountValueLabel.Text = "0.00";
+            _totalLabel.AutoSize = true;
+            _totalLabel.Text = "Total:";
+            _totalValueLabel.AutoSize = true;
+            _totalValueLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            _totalValueLabel.Name = "_totalValueLabel";
+            _totalValueLabel.Text = "0.00";
+            //
             // _cartsButtonsTableLayoutPanel
             // 
             _cartsButtonsTableLayoutPanel.AutoSize = true;
@@ -276,11 +324,20 @@
             _cartsRightTableLayoutPanel.ResumeLayout(false);
             _cartsRightTableLayoutPanel.PerformLayout();
             _cartsButtonsTableLayoutPanel.ResumeLayout(false);
+            _discountsPanel.ResumeLayout(false);
+            _discountsPanel.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
+        private TableLayoutPanel _discountsPanel;
+        private Label _discountsLabel;
+        private CheckedListBox _discountsCheckedListBox;
+        private Label _discountAmountLabel;
+        private Label _discountAmountValueLabel;
+        private Label _totalLabel;
+        private Label _totalValueLabel;
         private TableLayoutPanel _cartsRootTableLayoutPanel;
         private TableLayoutPanel _cartsLeftTableLayoutPanel;
         private Label _itemsLabel;

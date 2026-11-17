@@ -1,4 +1,4 @@
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Enums
 {
     /// <summary>
     /// Состояние заказа в процессе его выполнения.

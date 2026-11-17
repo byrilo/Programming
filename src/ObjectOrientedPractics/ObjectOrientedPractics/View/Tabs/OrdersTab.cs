@@ -1,3 +1,5 @@
+using ObjectOrientedPractics.Model.Orders;
+using ObjectOrientedPractics.Model.Enums;
 using System.ComponentModel;
 using ObjectOrientedPractics.Model;
 
@@ -198,6 +200,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _orderAddressControl.Address = new Address();
                 _orderItemsListBox.DataSource = null;
                 _orderAmountValueLabel.Text = 0.0.ToString("N2");
+                _orderTotalValueLabel.Text = 0.0.ToString("N2");
                 return;
             }
 
@@ -208,6 +211,7 @@ namespace ObjectOrientedPractics.View.Tabs
             _orderItemsListBox.DataSource = null;
             _orderItemsListBox.DataSource = order.Items;
             _orderAmountValueLabel.Text = order.Amount.ToString("N2");
+            _orderTotalValueLabel.Text = order.Total.ToString("N2");
 
             if (_selectedPriorityOrder != null)
             {

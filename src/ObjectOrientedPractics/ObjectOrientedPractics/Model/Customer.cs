@@ -1,9 +1,12 @@
-﻿using System;
+using ObjectOrientedPractics.Model.Orders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ObjectOrientedPractics.Services;
+
+using ObjectOrientedPractics.Model.Discounts;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -102,18 +105,21 @@ namespace ObjectOrientedPractics.Model
             set { _isPriority = value; }
         }
 
+        /// <summary>Возвращает список скидок покупателя.</summary>
+        public List<IDiscount> Discounts { get; }
+
         /// <summary>
         /// Создает экземпляр класса <see cref="Customer"/>.
         /// </summary>
         /// <param name="fullname">Полное имя покупателя.</param>
         /// <param name="address">Адрес доставки покупателя.</param>
-        /// <param name="cart">Корзина покупателя.</param>
         public Customer(string fullname, Address address)
         {
             _id = IdGenerator.GetNextId();
             Fullname = fullname;
             Address = address;
             _cart = new Cart();
+            Discounts = new List<IDiscount> { new PointsDiscount() };
         }
         /// <summary>
         /// Возвращает строковое представление объекта <see cref="Customer"/>.
